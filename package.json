@@ -2,6 +2,11 @@
   "name": "form-builder",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "yarn": "PLEASE-USE-NPM",
+    "pnpm": "PLEASE-USE-NPM",
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
