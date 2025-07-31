@@ -1,2 +1,5 @@
 npm run lint
 npm run format
+# Add all modified files back to staging
+git add -u
+
