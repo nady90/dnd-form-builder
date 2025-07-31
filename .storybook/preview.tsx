@@ -41,7 +41,7 @@ const preview: Preview = {
           // In the default case, don't apply a layout
           return (
             // Your page layout is probably a little more complex than this ;)
-            <div>
+            <div className={`antialiased`}>
               <Story />
             </div>
           );
