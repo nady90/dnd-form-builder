@@ -90,8 +90,6 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-storybook": "^9.0.18",
     "husky": "^9.1.7",
-    "msw": "^2.10.4",
-    "msw-storybook-addon": "^2.0.5",
     "playwright": "^1.54.1",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
