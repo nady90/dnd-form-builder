@@ -27,13 +27,13 @@ const preview: Preview = {
         case "page":
           return (
             // Your page layout is probably a little more complex than this ;)
-            <div>
+            <div className={`font-inter antialiased`}>
               <Story />
             </div>
           );
         case "page-mobile":
           return (
-            <div className="">
+            <div className={`font-inter antialiased`}>
               <Story />
             </div>
           );
@@ -41,7 +41,7 @@ const preview: Preview = {
           // In the default case, don't apply a layout
           return (
             // Your page layout is probably a little more complex than this ;)
-            <div className={`antialiased`}>
+            <div className={`font-inter antialiased`}>
               <Story />
             </div>
           );
