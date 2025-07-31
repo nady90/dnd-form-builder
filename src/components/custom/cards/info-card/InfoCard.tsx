@@ -5,6 +5,7 @@ import { MdInfoOutline } from "react-icons/md";
 
 import Dots from "@/components/icons/Dots";
 import { Separator } from "@/components/ui/separator";
+import { getRandomGradient } from "@/lib/utils";
 
 export interface IInfoCard {
   responses: string;
@@ -15,7 +16,9 @@ export interface IInfoCard {
 const InfoCard: React.FC<IInfoCard> = ({ responses, category, name }) => {
   return (
     <div className="flex w-[191px] max-w-full flex-col">
-      <div className="relative mb-[2px] h-[119px] rounded-t-lg rounded-b-xs bg-linear-to-br from-blue-50 to-blue-500">
+      <div
+        className={`relative mb-[2px] h-[119px] rounded-t-lg rounded-b-xs bg-linear-to-br ${getRandomGradient()}`}
+      >
         <div className="absolute right-[11px] bottom-0 h-[86px] w-[112px] rounded-t-lg bg-white px-3 py-2">
           <div className="flex flex-col items-center gap-y-[9.33px] text-center">
             <span className="text-xs font-light text-gray-600">{category}</span>
