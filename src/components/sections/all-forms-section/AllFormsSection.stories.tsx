@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, userEvent, within } from "storybook/test";
 
 import AllFormsSection from "./AllFormsSection";
 import { mockAllFormsSectionProps } from "./AllFormsSection.mocks";
@@ -33,4 +34,10 @@ export const Primary: Story = {
       );
     },
   ],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const sectionHeading = canvas.getByText("all forms");
+    userEvent.click(sectionHeading);
+    await expect(sectionHeading).toBeInTheDocument();
+  },
 };
