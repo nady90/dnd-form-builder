@@ -24,7 +24,6 @@ const base: IAllFormsSection = {
     },
   ],
   loading: false,
-  status: 200,
   error: false,
 };
 
