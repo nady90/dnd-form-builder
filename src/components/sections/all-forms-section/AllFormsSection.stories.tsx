@@ -41,3 +41,15 @@ export const Primary: Story = {
     await expect(sectionHeading).toBeInTheDocument();
   },
 };
+
+export const OneRow: Story = {
+  args: {
+    ...mockAllFormsSectionProps.oneRow,
+  },
+};
+
+export const ThreeRows: Story = {
+  args: {
+    ...mockAllFormsSectionProps.threeRows,
+  },
+};
