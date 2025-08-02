@@ -12,7 +12,9 @@ const meta = {
     layout: "centered",
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ["autodocs"],
+  // Abanoub: This is just an example component that I want to remove from the sidebar to reduce clutter.
+  // Abanoub: Using a tag of "!dev" removes it from the sidebar.
+  tags: ["!autodocs", "!dev"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     backgroundColor: { control: "color" },

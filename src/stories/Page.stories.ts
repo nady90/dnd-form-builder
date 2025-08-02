@@ -10,6 +10,9 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
   },
+  // Abanoub: This is just an example component that I want to remove from the sidebar to reduce clutter.
+  // Abanoub: Using a tag of "!dev" removes it from the sidebar.
+  tags: ["!autodocs", "!dev"],
 } satisfies Meta<typeof Page>;
 
 export default meta;

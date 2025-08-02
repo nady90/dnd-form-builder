@@ -7,7 +7,9 @@ const meta = {
   title: "Example/Header",
   component: Header,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ["autodocs"],
+  // Abanoub: This is just an example component that I want to remove from the sidebar to reduce clutter.
+  // Abanoub: Using a tag of "!dev" removes it from the sidebar.
+  tags: ["!autodocs", "!dev"],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
