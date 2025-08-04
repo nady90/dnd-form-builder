@@ -2,7 +2,7 @@ import React from "react";
 
 import InfoCard, {
   IInfoCard,
-} from "@/components/custom/cards/info-card/InfoCard";
+} from "@/components/custom/cards/old-info-card/InfoCard";
 import FormsFilterBar from "@/components/custom/filter-bars/forms-filter-bar/FormsFilterBar";
 import Grid4to1 from "@/components/layouts/Grid4to1";
 import MaxWidthWrapper from "@/components/layouts/MaxWidthWrapper";
