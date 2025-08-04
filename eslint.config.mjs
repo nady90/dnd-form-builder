@@ -2,6 +2,7 @@
 import storybook from "eslint-plugin-storybook";
 
 import { FlatCompat } from "@eslint/eslintrc";
+
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -21,6 +22,9 @@ const eslintConfig = [
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
     },
+  },
+  {
+    ignores: ["src/generated"],
   },
   ...storybook.configs["flat/recommended"],
 ];
