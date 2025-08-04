@@ -1,8 +1,7 @@
 import React from "react";
 
-import InfoCard, {
-  IInfoCard,
-} from "@/components/custom/cards/old-info-card/InfoCard";
+import InfoCard from "@/components/custom/cards/info-card/InfoCard";
+import { IInfoCard } from "@/components/custom/cards/info-card/InfoCard";
 import FormsFilterBar from "@/components/custom/filter-bars/forms-filter-bar/FormsFilterBar";
 import Grid4to1 from "@/components/layouts/Grid4to1";
 import MaxWidthWrapper from "@/components/layouts/MaxWidthWrapper";
@@ -33,15 +32,18 @@ const AllFormsSection: React.FC<IAllFormsSection> = ({
             <FormsFilterBar title="all forms" />
           </div>
           <div className="">
-            <Grid4to1>
+            <Grid4to1 className={"xl:gap-x-5 xl:gap-y-5"}>
               {data &&
                 data.map((card, idx) => {
                   return (
                     <InfoCard
                       key={idx}
                       name={card.name}
-                      responses={card.responses}
-                      category={card.category}
+                      description={card.description}
+                      published={card.published}
+                      views={card.views}
+                      date={card.date}
+                      loading={loading}
                     />
                   );
                 })}
