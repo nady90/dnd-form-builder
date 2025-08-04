@@ -14,7 +14,7 @@ const Tag: React.FC<ITag> = ({ text, variant }) => {
     );
   } else if (variant === "outline") {
     return (
-      <div className="rounded-lg bg-transparent px-1.5 py-1 text-xs text-gray-800 capitalize outline outline-gray-800">
+      <div className="inline-flex items-center justify-center rounded-lg bg-transparent px-1.5 py-1 text-center text-xs text-gray-800 capitalize outline outline-gray-800">
         {text}
       </div>
     );
