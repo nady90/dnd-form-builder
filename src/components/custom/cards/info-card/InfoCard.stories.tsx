@@ -31,3 +31,9 @@ export const Draft: Story = {
     ...mockInfoCardProps.draft,
   },
 };
+
+export const Loading: Story = {
+  args: {
+    ...mockInfoCardProps.loading,
+  },
+};
