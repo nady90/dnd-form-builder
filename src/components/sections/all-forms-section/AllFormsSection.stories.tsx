@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, userEvent, within } from "storybook/test";
 
-import FormsFilterBar from "./FormsFilterBar";
-import { mockFormsFilterBarProps } from "./FormsFilterBar.mocks";
+import AllFormsSection from "./AllFormsSection";
+import { mockAllFormsSectionProps } from "./AllFormsSection.mocks";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Components/ Filter Bars/ Forms Filter Bar",
-  component: FormsFilterBar,
+  title: "Sections/ Dashboard/ All Forms",
+  component: AllFormsSection,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
@@ -14,7 +15,7 @@ const meta = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
-} satisfies Meta<typeof FormsFilterBar>;
+} satisfies Meta<typeof AllFormsSection>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -22,15 +23,33 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   args: {
-    ...mockFormsFilterBarProps.base,
+    ...mockAllFormsSectionProps.base,
   },
   decorators: [
     (Story) => {
       return (
-        <div className="p-10">
+        <div>
           <Story />
         </div>
       );
     },
   ],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const sectionHeading = canvas.getByText("all forms");
+    userEvent.click(sectionHeading);
+    await expect(sectionHeading).toBeInTheDocument();
+  },
+};
+
+export const OneRow: Story = {
+  args: {
+    ...mockAllFormsSectionProps.oneRow,
+  },
+};
+
+export const ThreeRows: Story = {
+  args: {
+    ...mockAllFormsSectionProps.threeRows,
+  },
 };
