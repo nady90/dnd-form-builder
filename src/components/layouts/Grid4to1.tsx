@@ -6,7 +6,7 @@ export default function Grid4to1({
   className,
   children,
 }: {
-  className: string;
+  className?: string;
   children: ReactNode;
 }) {
   return (
