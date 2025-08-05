@@ -7,7 +7,7 @@ import Grid4to1 from "@/components/layouts/Grid4to1";
 import MaxWidthWrapper from "@/components/layouts/MaxWidthWrapper";
 
 export interface IAllFormsSection {
-  data: IInfoCard[];
+  data: Omit<IInfoCard, "loading">[];
   loading: boolean;
   error: boolean;
 }

@@ -8,7 +8,6 @@ const base: IAllFormsSection = {
       date: "3 hours ago",
       views: 5,
       published: true,
-      loading: false,
     },
     {
       name: "beta tester form",
@@ -16,7 +15,6 @@ const base: IAllFormsSection = {
       date: "yesterday",
       views: 0,
       published: false,
-      loading: false,
     },
     {
       name: "support request",
@@ -24,7 +22,6 @@ const base: IAllFormsSection = {
       date: "just now",
       views: 0,
       published: false,
-      loading: false,
     },
     {
       name: "contact form",
@@ -32,7 +29,6 @@ const base: IAllFormsSection = {
       date: "2 days ago",
       views: 7,
       published: true,
-      loading: false,
     },
     {
       name: "job application",
@@ -40,7 +36,6 @@ const base: IAllFormsSection = {
       date: "4 hours ago",
       views: 9,
       published: true,
-      loading: false,
     },
     {
       name: "internal review form",
@@ -48,7 +43,6 @@ const base: IAllFormsSection = {
       date: "last week",
       views: 0,
       published: false,
-      loading: false,
     },
     {
       name: "feedback form",
@@ -56,7 +50,6 @@ const base: IAllFormsSection = {
       date: "about 1 hour ago",
       views: 0,
       published: false,
-      loading: false,
     },
     {
       name: "newsletter signup",
@@ -64,7 +57,6 @@ const base: IAllFormsSection = {
       date: "5 minutes ago",
       views: 3,
       published: true,
-      loading: false,
     },
   ],
   loading: false,
@@ -79,7 +71,6 @@ const oneRow: IAllFormsSection = {
       date: "2 hours ago",
       views: 7,
       published: true,
-      loading: false,
     },
     {
       name: "feedback form",
@@ -87,7 +78,6 @@ const oneRow: IAllFormsSection = {
       date: "1 day ago",
       views: 0,
       published: false,
-      loading: false,
     },
     {
       name: "survey form",
@@ -95,7 +85,6 @@ const oneRow: IAllFormsSection = {
       date: "just now",
       views: 11,
       published: true,
-      loading: false,
     },
     {
       name: "job application",
@@ -103,7 +92,6 @@ const oneRow: IAllFormsSection = {
       date: "3 days ago",
       views: 5,
       published: true,
-      loading: false,
     },
   ],
   loading: false,
@@ -118,7 +106,6 @@ const threeRows: IAllFormsSection = {
       date: "2 days ago",
       views: 0,
       published: false,
-      loading: false,
     },
     {
       name: "employment form",
@@ -126,7 +113,6 @@ const threeRows: IAllFormsSection = {
       date: "about 1 hour ago",
       views: 3,
       published: true,
-      loading: false,
     },
     {
       name: "survey form",
@@ -134,7 +120,6 @@ const threeRows: IAllFormsSection = {
       date: "5 minutes ago",
       views: 15,
       published: true,
-      loading: false,
     },
     {
       name: "registration form",
@@ -142,7 +127,6 @@ const threeRows: IAllFormsSection = {
       date: "yesterday",
       views: 0,
       published: false,
-      loading: false,
     },
     {
       name: "feedback form",
@@ -150,7 +134,6 @@ const threeRows: IAllFormsSection = {
       date: "3 hours ago",
       views: 8,
       published: true,
-      loading: false,
     },
     {
       name: "newsletter signup",
@@ -158,7 +141,6 @@ const threeRows: IAllFormsSection = {
       date: "just now",
       views: 2,
       published: true,
-      loading: false,
     },
     {
       name: "bug report",
@@ -166,7 +148,6 @@ const threeRows: IAllFormsSection = {
       date: "1 week ago",
       views: 0,
       published: false,
-      loading: false,
     },
     {
       name: "survey form",
@@ -174,7 +155,6 @@ const threeRows: IAllFormsSection = {
       date: "30 minutes ago",
       views: 6,
       published: true,
-      loading: false,
     },
     {
       name: "contact form",
@@ -182,7 +162,6 @@ const threeRows: IAllFormsSection = {
       date: "4 hours ago",
       views: 4,
       published: true,
-      loading: false,
     },
     {
       name: "feedback form",
@@ -190,7 +169,6 @@ const threeRows: IAllFormsSection = {
       date: "about 1 hour ago",
       views: 0,
       published: false,
-      loading: false,
     },
     {
       name: "volunteer form",
@@ -198,7 +176,6 @@ const threeRows: IAllFormsSection = {
       date: "10 minutes ago",
       views: 1,
       published: true,
-      loading: false,
     },
     {
       name: "application form",
@@ -206,7 +183,6 @@ const threeRows: IAllFormsSection = {
       date: "3 days ago",
       views: 0,
       published: false,
-      loading: false,
     },
   ],
 
