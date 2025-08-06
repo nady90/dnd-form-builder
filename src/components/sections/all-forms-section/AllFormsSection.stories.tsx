@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { expect, userEvent, within } from "storybook/test";
 
+import { assertInterFontForAllText } from "@/test/test-utils";
+
 import AllFormsSection from "./AllFormsSection";
 import { mockAllFormsSectionProps } from "./AllFormsSection.mocks";
 
@@ -14,7 +16,9 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
+  play: ({ canvasElement }) => {
+    assertInterFontForAllText(canvasElement);
+  },
 } satisfies Meta<typeof AllFormsSection>;
 
 export default meta;
@@ -34,7 +38,8 @@ export const Primary: Story = {
       );
     },
   ],
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, context }) => {
+    meta.play(context);
     const canvas = within(canvasElement);
     const sectionHeading = canvas.getByText("all forms");
     userEvent.click(sectionHeading);
