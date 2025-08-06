@@ -53,3 +53,24 @@ export const ThreeRows: Story = {
     ...mockAllFormsSectionProps.threeRows,
   },
 };
+
+export const Loading: Story = {
+  args: {
+    ...mockAllFormsSectionProps.loading,
+  },
+  decorators: [
+    (Story) => {
+      return (
+        <div>
+          <Story />
+        </div>
+      );
+    },
+  ],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const sectionHeading = canvas.getByText("all forms");
+    userEvent.click(sectionHeading);
+    await expect(sectionHeading).toBeInTheDocument();
+  },
+};

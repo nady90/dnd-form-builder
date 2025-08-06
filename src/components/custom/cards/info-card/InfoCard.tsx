@@ -28,7 +28,7 @@ const InfoCard: React.FC<IInfoCard> = ({
   return (
     <>
       {!loading && (
-        <div className="flex w-full grow flex-col gap-y-4 rounded-lg bg-gray-100 p-3 xl:min-w-[269px]">
+        <div className="flex w-full grow flex-col gap-y-4 rounded-lg bg-gray-100 p-3 xl:min-w-[250px]">
           <div className="flex min-w-0 flex-col gap-y-1">
             <div className="flex flex-row justify-between">
               <Tag
@@ -62,7 +62,7 @@ const InfoCard: React.FC<IInfoCard> = ({
         </div>
       )}
       {loading && (
-        <Skeleton className="h-full w-full min-w-[269px] rounded-lg bg-gray-100 p-3">
+        <Skeleton className="h-full w-full min-w-[250px] rounded-lg bg-gray-100 p-3">
           <div className="opacity-0">
             <div className="flex min-w-0 flex-col gap-y-1">
               <div className="flex flex-row justify-between">

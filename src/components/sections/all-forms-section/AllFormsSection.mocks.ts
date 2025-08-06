@@ -190,8 +190,72 @@ const threeRows: IAllFormsSection = {
   error: false,
 };
 
+const loading: IAllFormsSection = {
+  data: [
+    {
+      name: "volunteer signup",
+      description: "Join our volunteer program.",
+      date: "3 hours ago",
+      views: 5,
+      published: true,
+    },
+    {
+      name: "beta tester form",
+      description: "",
+      date: "yesterday",
+      views: 0,
+      published: false,
+    },
+    {
+      name: "support request",
+      description: "Request support from the team.",
+      date: "just now",
+      views: 0,
+      published: false,
+    },
+    {
+      name: "contact form",
+      description: "Used to get in touch.",
+      date: "2 days ago",
+      views: 7,
+      published: true,
+    },
+    {
+      name: "job application",
+      description: "Apply for open roles.",
+      date: "4 hours ago",
+      views: 9,
+      published: true,
+    },
+    {
+      name: "internal review form",
+      description: "",
+      date: "last week",
+      views: 0,
+      published: false,
+    },
+    {
+      name: "feedback form",
+      description: "",
+      date: "about 1 hour ago",
+      views: 0,
+      published: false,
+    },
+    {
+      name: "newsletter signup",
+      description: "Subscribe for updates.",
+      date: "5 minutes ago",
+      views: 3,
+      published: true,
+    },
+  ],
+  loading: true,
+  error: false,
+};
+
 export const mockAllFormsSectionProps = {
   base,
   oneRow,
   threeRows,
+  loading,
 };
