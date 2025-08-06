@@ -1,5 +1,17 @@
 import React, { ReactNode } from "react";
 
-export default function SectionHeading({ children }: { children: ReactNode }) {
-  return <h3 className="text-3xl font-bold text-gray-900">{children}</h3>;
+import { cn } from "@/lib/utils";
+
+export default function SectionHeading({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <h3 className={cn("text-3xl font-bold text-gray-900", className)}>
+      {children}
+    </h3>
+  );
 }
