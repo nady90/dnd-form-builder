@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
+import { assertInterFontForAllText } from "@/test/test-utils";
+
 import InfoCard from "./InfoCard";
 import { mockInfoCardProps } from "./InfoCard.mocks";
 
@@ -13,6 +15,9 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
+  play: ({ canvasElement }) => {
+    assertInterFontForAllText(canvasElement);
+  },
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
 } satisfies Meta<typeof InfoCard>;
 

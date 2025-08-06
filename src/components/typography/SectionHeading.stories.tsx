@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
+import { assertInterFontForAllText } from "@/test/test-utils";
+
 import SectionHeading from "./SectionHeading";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
@@ -13,6 +15,9 @@ const meta = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
+  play: ({ canvasElement }) => {
+    assertInterFontForAllText(canvasElement);
+  },
 } satisfies Meta<typeof SectionHeading>;
 
 export default meta;

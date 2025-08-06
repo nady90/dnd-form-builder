@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
+import { assertInterFontForAllText } from "@/test/test-utils";
+
 import FormsFilterBar from "./FormsFilterBar";
 import { mockFormsFilterBarProps } from "./FormsFilterBar.mocks";
 
@@ -14,6 +16,9 @@ const meta = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
+  play: ({ canvasElement }) => {
+    assertInterFontForAllText(canvasElement);
+  },
 } satisfies Meta<typeof FormsFilterBar>;
 
 export default meta;
