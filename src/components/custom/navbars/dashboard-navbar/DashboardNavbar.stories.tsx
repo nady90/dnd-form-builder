@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
+import { assertInterFontForAllText } from "@/test/test-utils";
+
 import DashboardNabar from "./DashboardNavbar";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
@@ -12,7 +14,9 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
+  play: ({ canvasElement }) => {
+    assertInterFontForAllText(canvasElement);
+  },
 } satisfies Meta<typeof DashboardNabar>;
 
 export default meta;
