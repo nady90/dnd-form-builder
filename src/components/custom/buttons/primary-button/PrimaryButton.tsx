@@ -4,11 +4,18 @@ import { Button } from "@/components/ui/button";
 
 export interface IPrimaryButton {
   text: string;
+  disabled?: boolean;
 }
 
-const PrimaryButton: React.FC<IPrimaryButton> = ({ text }) => {
+const PrimaryButton: React.FC<IPrimaryButton> = ({
+  text,
+  disabled = false,
+}) => {
   return (
-    <Button className="inline-flex cursor-pointer items-center justify-center rounded-lg bg-blue-500 px-2.5 py-2 text-lg font-medium text-white transition-all duration-500 hover:bg-blue-600">
+    <Button
+      disabled={disabled}
+      className="inline-flex cursor-pointer items-center justify-center rounded-lg bg-blue-500 px-2.5 py-2 text-lg font-medium text-white transition-all duration-500 hover:bg-blue-600"
+    >
       {text}
     </Button>
   );

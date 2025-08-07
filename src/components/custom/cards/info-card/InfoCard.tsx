@@ -62,7 +62,7 @@ const InfoCard: React.FC<IInfoCard> = ({
         </div>
       )}
       {loading && (
-        <Skeleton className="h-full w-full min-w-[250px] rounded-lg bg-gray-100 p-3">
+        <Skeleton className="pointer-events-none h-full w-full min-w-[250px] rounded-lg bg-gray-100 p-3">
           <div className="opacity-0">
             <div className="flex min-w-0 flex-col gap-y-1">
               <div className="flex flex-row justify-between">
@@ -92,6 +92,7 @@ const InfoCard: React.FC<IInfoCard> = ({
               </div>
             </div>
             <PrimaryButton
+              disabled={true}
               text={published ? "View submissions" : "Finish the form"}
             />
           </div>
