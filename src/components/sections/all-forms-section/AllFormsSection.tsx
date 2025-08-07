@@ -66,7 +66,7 @@ const AllFormsSection: React.FC<IAllFormsSection> = ({
   return (
     <div className="flex w-full flex-col items-center px-[10px] py-[40px] sm:gap-y-[40px] sm:px-[40px] lg:px-[112px] lg:py-[56px]">
       <MaxWidthWrapper>
-        <div className="flex flex-col items-stretch gap-y-10">
+        <div className="flex flex-col items-stretch gap-y-6 md:gap-y-10">
           <div>
             <FormsFilterBar title="all forms" />
           </div>

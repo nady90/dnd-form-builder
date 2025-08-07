@@ -32,7 +32,7 @@ export const Primary: Story = {
   decorators: [
     (Story) => {
       return (
-        <div className="p-10">
+        <div className="p-4 md:p-10">
           <Story />
         </div>
       );
@@ -47,7 +47,7 @@ export const Loading: Story = {
   decorators: [
     (Story) => {
       return (
-        <div className="p-10">
+        <div className="p-4 md:p-10">
           <Story />
         </div>
       );
