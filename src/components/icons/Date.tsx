@@ -13,7 +13,7 @@ export default function DateIcon({ className }: { className?: string }) {
       <path
         d="M13 2.5H3C2.17157 2.5 1.5 3.17157 1.5 4V13C1.5 13.8284 2.17157 14.5 3 14.5H13C13.8284 14.5 14.5 13.8284 14.5 13V4C14.5 3.17157 13.8284 2.5 13 2.5Z"
         stroke="#6A7282"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M9.25 8C9.66421 8 10 7.66421 10 7.25C10 6.83579 9.66421 6.5 9.25 6.5C8.83579 6.5 8.5 6.83579 8.5 7.25C8.5 7.66421 8.83579 8 9.25 8Z"
@@ -54,10 +54,10 @@ export default function DateIcon({ className }: { className?: string }) {
       <path
         d="M4 1.5V2.5M12 1.5V2.5"
         stroke="#6A7282"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <path d="M14.5 5H1.5" stroke="#6A7282" stroke-linejoin="round" />
+      <path d="M14.5 5H1.5" stroke="#6A7282" strokeLinejoin="round" />
     </svg>
   );
 }
