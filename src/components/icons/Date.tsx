@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function DateIcon({ className }: { className: string }) {
+export default function DateIcon({ className }: { className?: string }) {
   return (
     <svg
       className={className}
