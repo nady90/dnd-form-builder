@@ -15,8 +15,8 @@ const FormsFilterBar: React.FC<IFormsFilterBar> = ({ title }) => {
         <SectionHeading>{title}</SectionHeading>
       </div>
       <div className="flex flex-row gap-x-3">
-        <FilterButton text="filter by" />
-        <FilterButton text="sort by" />
+        <FilterButton variant="filter" text="filter by" />
+        <FilterButton variant="sort" text="sort by" />
       </div>
     </div>
   );
