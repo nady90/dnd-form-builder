@@ -11,7 +11,7 @@ export interface IBaseTemplate {
 
 const BaseTemplate: React.FC<IBaseTemplate> = ({ title }) => {
   return (
-    <div className="py-12">
+    <div className="border-b border-gray-200 py-12">
       <MaxWidthWrapper className="mx-auto">
         <div className="flex flex-col gap-y-6">
           <SectionHeading>{title}</SectionHeading>
