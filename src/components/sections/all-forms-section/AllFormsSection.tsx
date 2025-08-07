@@ -38,20 +38,19 @@ const AllFormsSection: React.FC<IAllFormsSection> = ({
             </div>
             <div className="">
               <Grid4to1 className={"xl:gap-x-5 xl:gap-y-5"}>
-                {data &&
-                  data.map((card, idx) => {
-                    return (
-                      <InfoCard
-                        key={idx}
-                        name={card.name}
-                        description={card.description}
-                        published={card.published}
-                        views={card.views}
-                        date={card.date}
-                        loading={loading}
-                      />
-                    );
-                  })}
+                {new Array(8).fill(0).map((card, idx) => {
+                  return (
+                    <InfoCard
+                      key={idx}
+                      name={card.name}
+                      description={card.description}
+                      published={card.published}
+                      views={card.views}
+                      date={card.date}
+                      loading={loading}
+                    />
+                  );
+                })}
               </Grid4to1>
             </div>
           </div>
@@ -59,6 +58,7 @@ const AllFormsSection: React.FC<IAllFormsSection> = ({
       </div>
     );
   }
+
   if (error) {
     return <div>Error</div>;
   }
