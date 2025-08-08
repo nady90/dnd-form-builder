@@ -124,7 +124,17 @@ export function CardForm() {
           }}
         />
 
-        <PrimaryButton type="submit" className="w-full" text="Save" />
+        {!form.formState.isSubmitting && (
+          <PrimaryButton type="submit" className="w-full" text="Save" />
+        )}
+        {form.formState.isSubmitting && (
+          <PrimaryButton
+            disabled
+            type="submit"
+            className="w-full"
+            text="Save"
+          />
+        )}
         <DialogClose asChild>
           <GhostButton icon={BackArrow} text="Cancel" />
         </DialogClose>
