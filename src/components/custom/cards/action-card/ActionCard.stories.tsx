@@ -180,3 +180,9 @@ export const Import: Story = {
     ...mockActionCardProps.importCard,
   },
 };
+
+export const AI: Story = {
+  args: {
+    ...mockActionCardProps.aiCard,
+  },
+};

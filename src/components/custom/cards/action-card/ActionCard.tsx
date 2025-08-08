@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import AddIcon from "@/components/icons/Add";
+import AICardIcon from "@/components/icons/AiCardIcon";
 import BackArrow from "@/components/icons/BackArrow";
 import ImportCardIcon from "@/components/icons/ImportCardIcon";
 import TemplateCardIcon from "@/components/icons/TemplateCardIcon";
@@ -45,6 +46,10 @@ const ActionCard: React.FC<IActionCard> = ({ text, subText, variant }) => {
             )}
             {variant === "import" && (
               <ImportCardIcon className="h-[92px] w-[59px] transition-all duration-300 group-hover:h-[106px] group-hover:w-[74px]" />
+            )}
+
+            {variant === "ai" && (
+              <AICardIcon className="h-[105px] w-[108px] scale-90 transition-all duration-300 group-hover:scale-100" />
             )}
           </div>
           <div className="flex max-w-[197px] flex-col">

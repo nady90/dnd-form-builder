@@ -18,8 +18,15 @@ const importCard: IActionCard = {
   variant: "import",
 };
 
+const aiCard: IActionCard = {
+  text: "Create with AI",
+  subText: "Save time and create forms faster. Let AI hand the first draft",
+  variant: "ai",
+};
+
 export const mockActionCardProps = {
   base,
   template,
   importCard,
+  aiCard,
 };
