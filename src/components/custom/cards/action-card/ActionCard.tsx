@@ -7,6 +7,7 @@ import { z } from "zod";
 
 import AddIcon from "@/components/icons/Add";
 import BackArrow from "@/components/icons/BackArrow";
+import ImportCardIcon from "@/components/icons/ImportCardIcon";
 import TemplateCardIcon from "@/components/icons/TemplateCardIcon";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import {
@@ -41,6 +42,9 @@ const ActionCard: React.FC<IActionCard> = ({ text, subText, variant }) => {
             )}
             {variant === "template" && (
               <TemplateCardIcon className="h-[92px] w-[59px] transition-all duration-300 group-hover:h-[106px] group-hover:w-[74px]" />
+            )}
+            {variant === "import" && (
+              <ImportCardIcon className="h-[92px] w-[59px] transition-all duration-300 group-hover:h-[106px] group-hover:w-[74px]" />
             )}
           </div>
           <div className="flex max-w-[197px] flex-col">

@@ -12,7 +12,14 @@ const template: IActionCard = {
   variant: "template",
 };
 
+const importCard: IActionCard = {
+  text: "Import Form",
+  subText: "Convert your existing forms instantly",
+  variant: "import",
+};
+
 export const mockActionCardProps = {
   base,
   template,
+  importCard,
 };

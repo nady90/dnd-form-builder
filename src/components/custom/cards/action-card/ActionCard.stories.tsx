@@ -174,3 +174,9 @@ export const Template: Story = {
     ...mockActionCardProps.template,
   },
 };
+
+export const Import: Story = {
+  args: {
+    ...mockActionCardProps.importCard,
+  },
+};
