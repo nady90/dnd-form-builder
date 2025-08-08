@@ -15,8 +15,10 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
-  play: ({ canvasElement }) => {
-    assertInterFontForAllText(canvasElement);
+  play: async ({ canvasElement, step }) => {
+    await step("Font family should be Inter", async () => {
+      assertInterFontForAllText(canvasElement);
+    });
   },
 } satisfies Meta<typeof BaseTemplate>;
 
