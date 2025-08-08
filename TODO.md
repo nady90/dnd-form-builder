@@ -14,3 +14,4 @@
 7. Toast when creating a new form.
 8. Loading indicator when creating a new form..
 9. Dialog form: Border of input when active
+10. change Action cards dialogs for the create template, import and ai.

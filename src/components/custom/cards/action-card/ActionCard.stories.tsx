@@ -168,3 +168,9 @@ export const SmallName: Story = {
     });
   },
 };
+
+export const Template: Story = {
+  args: {
+    ...mockActionCardProps.template,
+  },
+};

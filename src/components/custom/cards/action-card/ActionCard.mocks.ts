@@ -6,6 +6,13 @@ const base: IActionCard = {
   variant: "add",
 };
 
+const template: IActionCard = {
+  text: "Use Template",
+  subText: "Use a template to create and send a survey faster",
+  variant: "template",
+};
+
 export const mockActionCardProps = {
   base,
+  template,
 };
