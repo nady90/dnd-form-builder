@@ -13,7 +13,7 @@ const DefaultButton: React.FC<IDefaultButton> = ({ text, icon }) => {
   return (
     <Button className="inline-flex cursor-pointer items-center justify-center rounded-xs bg-blue-500 px-3 py-2 text-base font-normal text-white transition-all duration-300 hover:bg-blue-600">
       {Icon && <Icon className="h-6 w-6" />}
-      {text}
+      <span className="hidden sm:block">{text}</span>
     </Button>
   );
 };
