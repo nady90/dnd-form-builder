@@ -1,6 +1,5 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { DialogClose } from "@radix-ui/react-dialog";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -10,7 +9,7 @@ import AICardIcon from "@/components/icons/AiCardIcon";
 import BackArrow from "@/components/icons/BackArrow";
 import ImportCardIcon from "@/components/icons/ImportCardIcon";
 import TemplateCardIcon from "@/components/icons/TemplateCardIcon";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogClose, DialogTrigger } from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -148,6 +147,7 @@ export function CardForm() {
             text="Save"
           />
         )}
+
         <DialogClose asChild>
           <GhostButton icon={BackArrow} text="Cancel" />
         </DialogClose>
