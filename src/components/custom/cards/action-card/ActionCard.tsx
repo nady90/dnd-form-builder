@@ -1,16 +1,27 @@
+"use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { DialogClose } from "@radix-ui/react-dialog";
 import React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 import AddIcon from "@/components/icons/Add";
+import BackArrow from "@/components/icons/BackArrow";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
+import GhostButton from "../../buttons/ghost-button/GhostButton";
+import PrimaryButton from "../../buttons/primary-button/PrimaryButton";
+import DialogCard from "../dialog-card/DialogCard";
 
 export interface IActionCard {
   text: string;
@@ -34,14 +45,92 @@ const ActionCard: React.FC<IActionCard> = ({ text, subText, variant }) => {
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle></DialogTitle>
-          <DialogDescription></DialogDescription>
-        </DialogHeader>
-      </DialogContent>
+      <DialogCard
+        title={"Create Form"}
+        description="Create a new form from scratch to start collecting responses."
+        form={CardForm}
+      />
     </Dialog>
   );
 };
+
+export function CardForm() {
+  const formSchema = z.strictObject({
+    name: z
+      .string()
+      .trim()
+      .min(1, { error: "Name is requied." })
+      .min(3, { error: "Name must have at least three characters." }),
+    description: z.string().trim().optional(),
+  });
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      description: "",
+    },
+    mode: "onBlur",
+  });
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
+  }
+
+  return (
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-y-2"
+      >
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => {
+            return (
+              <FormItem className="flex flex-col gap-y-2">
+                <FormLabel className="text-xs text-gray-800">Name</FormLabel>
+                <FormControl>
+                  <Input
+                    className="h-[36px] outline-none focus:border focus:border-blue-500 focus:shadow-none focus:outline-none"
+                    placeholder="Ex: Employment Form..."
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
+
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => {
+            return (
+              <FormItem className="flex flex-col gap-y-2">
+                <FormLabel className="text-xs text-gray-800">
+                  Description
+                </FormLabel>
+                <FormControl>
+                  <Textarea
+                    className="h-[133px] resize-none"
+                    placeholder="Descripe your form..."
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            );
+          }}
+        />
+
+        <PrimaryButton type="submit" className="w-full" text="Save" />
+        <DialogClose asChild>
+          <GhostButton icon={BackArrow} text="Cancel" />
+        </DialogClose>
+      </form>
+    </Form>
+  );
+}
 
 export default ActionCard;

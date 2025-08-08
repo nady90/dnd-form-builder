@@ -54,13 +54,117 @@ export const Clicked: Story = {
 
     await step("Dialog should popup when clicking the card", async () => {
       await userEvent.click(startFromScratchText!);
-      dialogHeading = await canvas.findByText(/Create form/i);
-      await expect(dialogHeading).toBeVisible();
+      dialogHeading = await screen.findByText(/create form/i);
+      await expect(dialogHeading).toBeInTheDocument();
 
-      dialogDescription = await canvas.findByText(
+      dialogDescription = await screen.findByText(
         /Create a new form from scratch to start collecting responses/i,
       );
-      await expect(dialogDescription).toBeVisible();
+      await expect(dialogDescription).toBeInTheDocument();
+
+      dialogNameInput = await screen.findByLabelText(/Name/i);
+      await expect(dialogNameInput).toBeInTheDocument();
+
+      dialogDescriptionInput = await screen.findByLabelText(/Description/i);
+      await expect(dialogDescriptionInput).toBeInTheDocument();
+
+      dialogSaveBtn = await screen.findByRole("button", { name: /save/i });
+      await expect(dialogSaveBtn).toBeInTheDocument();
+
+      dialogCancelBtn = await screen.findByRole("button", { name: /cancel/i });
+      await expect(dialogCancelBtn).toBeInTheDocument();
+    });
+  },
+};
+
+export const CorrectValues: Story = {
+  args: {
+    ...mockActionCardProps.base,
+  },
+  play: async ({ context, step }) => {
+    await Clicked.play?.(context);
+    await step("Fill the forms with correct values", async () => {
+      const dialogNameInput = await screen.findByPlaceholderText(
+        /Ex: Employment Form.../i,
+      );
+      await expect(dialogNameInput).toBeInTheDocument();
+      await userEvent.type(dialogNameInput, "volunteer signup");
+
+      const dialogDescriptionInput = await screen.findByPlaceholderText(
+        /Descripe your form.../i,
+      );
+      await expect(dialogDescriptionInput).toBeInTheDocument();
+      await userEvent.type(
+        dialogDescriptionInput,
+        "Join our volunteer program.",
+      );
+    });
+    await step("The card should have NO error messages.", () => {
+      const nameErrorMsg = screen.queryByText(/Name is requied./i);
+      expect(nameErrorMsg).not.toBeInTheDocument();
+    });
+  },
+};
+
+export const MissingName: Story = {
+  args: {
+    ...mockActionCardProps.base,
+  },
+  play: async ({ context, step }) => {
+    await Clicked.play?.(context);
+    await step("Do NOT fill in the name", async () => {
+      const dialogNameInput = await screen.findByPlaceholderText(
+        /Ex: Employment Form.../i,
+      );
+      await expect(dialogNameInput).toBeInTheDocument();
+
+      const dialogDescriptionInput = await screen.findByPlaceholderText(
+        /Descripe your form.../i,
+      );
+      await expect(dialogDescriptionInput).toBeInTheDocument();
+      await userEvent.type(
+        dialogDescriptionInput,
+        "Join our volunteer program.",
+      );
+    });
+
+    await step("The form should display a required error message", async () => {
+      await userEvent.tab();
+      const errorMsg = await screen.findByText(/Name is requied./i);
+      await expect(errorMsg).toBeInTheDocument();
+    });
+  },
+};
+
+export const SmallName: Story = {
+  args: {
+    ...mockActionCardProps.base,
+  },
+  play: async ({ context, step }) => {
+    await Clicked.play?.(context);
+    await step("Fill in the name with a two-letter value", async () => {
+      const dialogNameInput = await screen.findByPlaceholderText(
+        /Ex: Employment Form.../i,
+      );
+      await expect(dialogNameInput).toBeInTheDocument();
+      await userEvent.type(dialogNameInput, "ac");
+
+      const dialogDescriptionInput = await screen.findByPlaceholderText(
+        /Descripe your form.../i,
+      );
+      await expect(dialogDescriptionInput).toBeInTheDocument();
+      await userEvent.click(dialogDescriptionInput);
+      await userEvent.type(
+        dialogDescriptionInput,
+        "Join our volunteer program.",
+      );
+    });
+    await step("The form should display a length error message", async () => {
+      await userEvent.tab(); // moves focus away -> triggers onBlur/onTouched
+      const errorMsg = await screen.findByText(
+        /Name must have at least three characters./i,
+      );
+      await expect(errorMsg).toBeInTheDocument();
     });
   },
 };

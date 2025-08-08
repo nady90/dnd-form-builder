@@ -22,3 +22,11 @@ export function assertInterFontForAllText(container: HTMLElement) {
     }
   });
 }
+
+export async function sleep(ms: number) {
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      resolve(1);
+    }, ms),
+  );
+}
