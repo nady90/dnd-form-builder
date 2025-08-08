@@ -27,7 +27,7 @@ const GhostButton: React.FC<IGhostButton> = ({
       {Icon && (
         <Icon
           aria-hidden={true}
-          className="inline-flex translate-y-0.5 scale-x-110 items-center justify-center"
+          className="inline-flex translate-y-[1px] scale-x-110 items-center justify-center"
         />
       )}
       <span>{text}</span>
