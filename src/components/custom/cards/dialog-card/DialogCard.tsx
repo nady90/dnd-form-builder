@@ -11,11 +11,14 @@ import {
 export interface IDialogCard {
   title: string;
   description: string;
-  form: React.FC;
+  children: React.ReactNode;
 }
 
-const DialogCard: React.FC<IDialogCard> = ({ title, description, form }) => {
-  const Form = form;
+const DialogCard: React.FC<IDialogCard> = ({
+  title,
+  description,
+  children,
+}) => {
   return (
     <DialogPortal>
       <DialogContent className="flex w-[464px] flex-col gap-y-6 rounded-lg px-6 pt-6 pb-4">
@@ -27,9 +30,7 @@ const DialogCard: React.FC<IDialogCard> = ({ title, description, form }) => {
             {description}
           </DialogDescription>
         </DialogHeader>
-        <div>
-          <Form />
-        </div>
+        <div>{children}</div>
       </DialogContent>
     </DialogPortal>
   );

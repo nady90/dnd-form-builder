@@ -1,5 +1,6 @@
 import React from "react";
 
+import ExtraLargeButton from "@/components/custom/buttons/extra-large-button/ExtraLargeButton";
 import InfoCard from "@/components/custom/cards/info-card/InfoCard";
 import { IInfoCard } from "@/components/custom/cards/info-card/InfoCard";
 import FormsFilterBar from "@/components/custom/filter-bars/forms-filter-bar/FormsFilterBar";
@@ -45,8 +46,8 @@ const AllFormsSection: React.FC<IAllFormsSection> = ({
                       name={card.name}
                       description={card.description}
                       published={card.published}
-                      views={card.views}
-                      date={card.date}
+                      visits={card.views}
+                      createdAt={new Date()}
                       loading={loading}
                     />
                   );
@@ -81,7 +82,7 @@ const AllFormsSection: React.FC<IAllFormsSection> = ({
           </div>
           <div className="">
             <Grid4to1 className={"xl:gap-x-5 xl:gap-y-5"}>
-              {data &&
+              {data.length > 0 &&
                 data.map((card, idx) => {
                   return (
                     <InfoCard
@@ -89,13 +90,21 @@ const AllFormsSection: React.FC<IAllFormsSection> = ({
                       name={card.name}
                       description={card.description}
                       published={card.published}
-                      views={card.views}
-                      date={card.date}
+                      visits={card.visits}
+                      createdAt={card.createdAt}
                       loading={loading}
                     />
                   );
                 })}
             </Grid4to1>
+            {data.length < 1 && (
+              <div className="flex w-full flex-col items-center justify-center gap-y-7 rounded-lg border border-gray-400 py-7 text-center">
+                <h3 className="text-5xl font-medium text-gray-500">
+                  You have no forms
+                </h3>
+                <ExtraLargeButton text="Create a form" />
+              </div>
+            )}
           </div>
         </div>
       </MaxWidthWrapper>

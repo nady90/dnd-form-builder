@@ -1,9 +1,9 @@
-import { IBaseTemplate } from "./CreateFormSection";
+import { ICreateFormSection } from "./CreateFormSection";
 
-const base: IBaseTemplate = {
+const base: ICreateFormSection = {
   title: "Create Form",
 };
 
-export const mockBaseTemplateProps = {
+export const mockCreateFormProps = {
   base,
 };

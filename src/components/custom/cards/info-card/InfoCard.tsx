@@ -1,3 +1,4 @@
+import { formatDistance } from "date-fns";
 import { EyeIcon } from "lucide-react";
 import React from "react";
 import { BsThreeDots } from "react-icons/bs";
@@ -11,8 +12,8 @@ import Tag from "../../tags/tag/Tag";
 export interface IInfoCard {
   name: string;
   description: string;
-  date: string;
-  views: number;
+  createdAt: Date;
+  visits: number;
   published: boolean;
   loading: boolean;
 }
@@ -20,8 +21,8 @@ export interface IInfoCard {
 const InfoCard: React.FC<IInfoCard> = ({
   name,
   description,
-  date,
-  views,
+  createdAt,
+  visits,
   published,
   loading,
 }) => {
@@ -49,11 +50,15 @@ const InfoCard: React.FC<IInfoCard> = ({
           <div className="flex flex-col gap-y-2 text-xs font-light text-gray-500">
             <div className="flex flex-row items-center justify-start gap-x-2">
               <DateIcon className="text-gray-500" />
-              <p>{date}</p>
+              <p>
+                {formatDistance(createdAt, Date(), {
+                  addSuffix: true,
+                })}
+              </p>
             </div>
             <div className="flex flex-row items-center justify-start gap-x-2">
               <EyeIcon className="h-4 w-4 text-gray-500" />
-              <p>{views} views</p>
+              <p>{visits} views</p>
             </div>
           </div>
           <PrimaryButton
@@ -84,11 +89,15 @@ const InfoCard: React.FC<IInfoCard> = ({
             <div className="flex flex-col gap-y-2 text-xs font-light text-gray-500">
               <div className="flex flex-row items-center justify-start gap-x-2">
                 <DateIcon className="text-gray-500" />
-                <p>{date}</p>
+                <p>
+                  {formatDistance(createdAt, Date(), {
+                    addSuffix: true,
+                  })}
+                </p>
               </div>
               <div className="flex flex-row items-center justify-start gap-x-2">
                 <EyeIcon className="h-4 w-4 text-gray-500" />
-                <p>{views} views</p>
+                <p>{visits} views</p>
               </div>
             </div>
             <PrimaryButton

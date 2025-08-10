@@ -18,17 +18,19 @@ model Form {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
-  userId      Int
+  userId      String
   name        String
   description String  @default("")
   content     String  @default("[]")
   published   Boolean @default(false)
 
-  visits      Int
-  submissions Int
+  visits      Int @default(0)
+  submissions Int @default(0)
 
   shareURL        String            @default(uuid())
   FormSubmissions FormSubmissions[]
+
+  @@unique([name, userId])
 }
 
 model FormSubmissions {

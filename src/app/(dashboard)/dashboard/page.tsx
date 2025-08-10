@@ -1,5 +1,29 @@
-import React from "react";
+import React, { Suspense } from "react";
+
+import DashboardNavbar from "@/components/custom/navbars/dashboard-navbar/DashboardNavbar";
+import AllFormsSection from "@/components/sections/all-forms-section/AllFormsSection";
+import AllFormsFetcher from "@/components/sections/all-forms-section/AllformsSection.fetcher";
+import { mockAllFormsSectionProps } from "@/components/sections/all-forms-section/AllFormsSection.mocks";
+import CreatFormSectionFetcher from "@/components/sections/create-form-section/CreatFormSection.fetcher";
 
 export default function Dashboard() {
-  return <div>dashboard page</div>;
+  return (
+    <div>
+      <DashboardNavbar />
+
+      <CreatFormSectionFetcher />
+
+      <Suspense
+        fallback={
+          <AllFormsSection
+            loading={true}
+            error={false}
+            data={mockAllFormsSectionProps.base.data}
+          />
+        }
+      >
+        <AllFormsFetcher />
+      </Suspense>
+    </div>
+  );
 }

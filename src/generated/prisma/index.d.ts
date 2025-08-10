@@ -441,7 +441,7 @@ export namespace Prisma {
         ? False
         : T extends Uint8Array
           ? False
-          : T extends bigint
+          : T extends BigInt
             ? False
             : T extends object
               ? True
@@ -1097,14 +1097,12 @@ export namespace Prisma {
 
   export type FormAvgAggregateOutputType = {
     id: number | null;
-    userId: number | null;
     visits: number | null;
     submissions: number | null;
   };
 
   export type FormSumAggregateOutputType = {
     id: number | null;
-    userId: number | null;
     visits: number | null;
     submissions: number | null;
   };
@@ -1112,7 +1110,7 @@ export namespace Prisma {
   export type FormMinAggregateOutputType = {
     id: number | null;
     createdAt: Date | null;
-    userId: number | null;
+    userId: string | null;
     name: string | null;
     description: string | null;
     content: string | null;
@@ -1125,7 +1123,7 @@ export namespace Prisma {
   export type FormMaxAggregateOutputType = {
     id: number | null;
     createdAt: Date | null;
-    userId: number | null;
+    userId: string | null;
     name: string | null;
     description: string | null;
     content: string | null;
@@ -1151,14 +1149,12 @@ export namespace Prisma {
 
   export type FormAvgAggregateInputType = {
     id?: true;
-    userId?: true;
     visits?: true;
     submissions?: true;
   };
 
   export type FormSumAggregateInputType = {
     id?: true;
-    userId?: true;
     visits?: true;
     submissions?: true;
   };
@@ -1295,7 +1291,7 @@ export namespace Prisma {
   export type FormGroupByOutputType = {
     id: number;
     createdAt: Date;
-    userId: number;
+    userId: string;
     name: string;
     description: string;
     content: string;
@@ -1430,7 +1426,7 @@ export namespace Prisma {
       {
         id: number;
         createdAt: Date;
-        userId: number;
+        userId: string;
         name: string;
         description: string;
         content: string;
@@ -2036,7 +2032,7 @@ export namespace Prisma {
   interface FormFieldRefs {
     readonly id: FieldRef<"Form", "Int">;
     readonly createdAt: FieldRef<"Form", "DateTime">;
-    readonly userId: FieldRef<"Form", "Int">;
+    readonly userId: FieldRef<"Form", "String">;
     readonly name: FieldRef<"Form", "String">;
     readonly description: FieldRef<"Form", "String">;
     readonly content: FieldRef<"Form", "String">;
@@ -4000,7 +3996,7 @@ export namespace Prisma {
     NOT?: FormWhereInput | FormWhereInput[];
     id?: IntFilter<"Form"> | number;
     createdAt?: DateTimeFilter<"Form"> | Date | string;
-    userId?: IntFilter<"Form"> | number;
+    userId?: StringFilter<"Form"> | string;
     name?: StringFilter<"Form"> | string;
     description?: StringFilter<"Form"> | string;
     content?: StringFilter<"Form"> | string;
@@ -4028,11 +4024,12 @@ export namespace Prisma {
   export type FormWhereUniqueInput = Prisma.AtLeast<
     {
       id?: number;
+      name_userId?: FormNameUserIdCompoundUniqueInput;
       AND?: FormWhereInput | FormWhereInput[];
       OR?: FormWhereInput[];
       NOT?: FormWhereInput | FormWhereInput[];
       createdAt?: DateTimeFilter<"Form"> | Date | string;
-      userId?: IntFilter<"Form"> | number;
+      userId?: StringFilter<"Form"> | string;
       name?: StringFilter<"Form"> | string;
       description?: StringFilter<"Form"> | string;
       content?: StringFilter<"Form"> | string;
@@ -4042,7 +4039,7 @@ export namespace Prisma {
       shareURL?: StringFilter<"Form"> | string;
       FormSubmissions?: FormSubmissionsListRelationFilter;
     },
-    "id"
+    "id" | "name_userId"
   >;
 
   export type FormOrderByWithAggregationInput = {
@@ -4073,7 +4070,7 @@ export namespace Prisma {
       | FormScalarWhereWithAggregatesInput[];
     id?: IntWithAggregatesFilter<"Form"> | number;
     createdAt?: DateTimeWithAggregatesFilter<"Form"> | Date | string;
-    userId?: IntWithAggregatesFilter<"Form"> | number;
+    userId?: StringWithAggregatesFilter<"Form"> | string;
     name?: StringWithAggregatesFilter<"Form"> | string;
     description?: StringWithAggregatesFilter<"Form"> | string;
     content?: StringWithAggregatesFilter<"Form"> | string;
@@ -4144,13 +4141,13 @@ export namespace Prisma {
 
   export type FormCreateInput = {
     createdAt?: Date | string;
-    userId: number;
+    userId: string;
     name: string;
     description?: string;
     content?: string;
     published?: boolean;
-    visits: number;
-    submissions: number;
+    visits?: number;
+    submissions?: number;
     shareURL?: string;
     FormSubmissions?: FormSubmissionsCreateNestedManyWithoutFormInput;
   };
@@ -4158,20 +4155,20 @@ export namespace Prisma {
   export type FormUncheckedCreateInput = {
     id?: number;
     createdAt?: Date | string;
-    userId: number;
+    userId: string;
     name: string;
     description?: string;
     content?: string;
     published?: boolean;
-    visits: number;
-    submissions: number;
+    visits?: number;
+    submissions?: number;
     shareURL?: string;
     FormSubmissions?: FormSubmissionsUncheckedCreateNestedManyWithoutFormInput;
   };
 
   export type FormUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    userId?: IntFieldUpdateOperationsInput | number;
+    userId?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
     description?: StringFieldUpdateOperationsInput | string;
     content?: StringFieldUpdateOperationsInput | string;
@@ -4185,7 +4182,7 @@ export namespace Prisma {
   export type FormUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    userId?: IntFieldUpdateOperationsInput | number;
+    userId?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
     description?: StringFieldUpdateOperationsInput | string;
     content?: StringFieldUpdateOperationsInput | string;
@@ -4199,19 +4196,19 @@ export namespace Prisma {
   export type FormCreateManyInput = {
     id?: number;
     createdAt?: Date | string;
-    userId: number;
+    userId: string;
     name: string;
     description?: string;
     content?: string;
     published?: boolean;
-    visits: number;
-    submissions: number;
+    visits?: number;
+    submissions?: number;
     shareURL?: string;
   };
 
   export type FormUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    userId?: IntFieldUpdateOperationsInput | number;
+    userId?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
     description?: StringFieldUpdateOperationsInput | string;
     content?: StringFieldUpdateOperationsInput | string;
@@ -4224,7 +4221,7 @@ export namespace Prisma {
   export type FormUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    userId?: IntFieldUpdateOperationsInput | number;
+    userId?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
     description?: StringFieldUpdateOperationsInput | string;
     content?: StringFieldUpdateOperationsInput | string;
@@ -4331,6 +4328,11 @@ export namespace Prisma {
     _count?: SortOrder;
   };
 
+  export type FormNameUserIdCompoundUniqueInput = {
+    name: string;
+    userId: string;
+  };
+
   export type FormCountOrderByAggregateInput = {
     id?: SortOrder;
     createdAt?: SortOrder;
@@ -4346,7 +4348,6 @@ export namespace Prisma {
 
   export type FormAvgOrderByAggregateInput = {
     id?: SortOrder;
-    userId?: SortOrder;
     visits?: SortOrder;
     submissions?: SortOrder;
   };
@@ -4379,7 +4380,6 @@ export namespace Prisma {
 
   export type FormSumOrderByAggregateInput = {
     id?: SortOrder;
-    userId?: SortOrder;
     visits?: SortOrder;
     submissions?: SortOrder;
   };
@@ -4514,20 +4514,20 @@ export namespace Prisma {
     set?: Date | string;
   };
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number;
-    increment?: number;
-    decrement?: number;
-    multiply?: number;
-    divide?: number;
-  };
-
   export type StringFieldUpdateOperationsInput = {
     set?: string;
   };
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean;
+  };
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number;
+    increment?: number;
+    decrement?: number;
+    multiply?: number;
+    divide?: number;
   };
 
   export type FormSubmissionsUpdateManyWithoutFormNestedInput = {
@@ -4801,26 +4801,26 @@ export namespace Prisma {
 
   export type FormCreateWithoutFormSubmissionsInput = {
     createdAt?: Date | string;
-    userId: number;
+    userId: string;
     name: string;
     description?: string;
     content?: string;
     published?: boolean;
-    visits: number;
-    submissions: number;
+    visits?: number;
+    submissions?: number;
     shareURL?: string;
   };
 
   export type FormUncheckedCreateWithoutFormSubmissionsInput = {
     id?: number;
     createdAt?: Date | string;
-    userId: number;
+    userId: string;
     name: string;
     description?: string;
     content?: string;
     published?: boolean;
-    visits: number;
-    submissions: number;
+    visits?: number;
+    submissions?: number;
     shareURL?: string;
   };
 
@@ -4854,7 +4854,7 @@ export namespace Prisma {
 
   export type FormUpdateWithoutFormSubmissionsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    userId?: IntFieldUpdateOperationsInput | number;
+    userId?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
     description?: StringFieldUpdateOperationsInput | string;
     content?: StringFieldUpdateOperationsInput | string;
@@ -4867,7 +4867,7 @@ export namespace Prisma {
   export type FormUncheckedUpdateWithoutFormSubmissionsInput = {
     id?: IntFieldUpdateOperationsInput | number;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    userId?: IntFieldUpdateOperationsInput | number;
+    userId?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
     description?: StringFieldUpdateOperationsInput | string;
     content?: StringFieldUpdateOperationsInput | string;

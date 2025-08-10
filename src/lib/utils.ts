@@ -18,3 +18,10 @@ export function getRandomGradient() {
   const gradientLength = linearGradients.length;
   return linearGradients[Math.floor(Math.random() * (gradientLength - 1))];
 }
+
+export function getRandomDate(daysBack: number) {
+  const now = new Date();
+  const past = new Date(now);
+  past.setDate(now.getDate() - Math.floor(Math.random() * daysBack));
+  return past;
+}

@@ -2,7 +2,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import AddIcon from "@/components/icons/Add";
 import AICardIcon from "@/components/icons/AiCardIcon";
@@ -20,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { createFormSchema, CreateFormSchemaType } from "@/schemas/form";
 
 import GhostButton from "../../buttons/ghost-button/GhostButton";
 import PrimaryButton from "../../buttons/primary-button/PrimaryButton";
@@ -29,9 +29,15 @@ export interface IActionCard {
   text: string;
   subText: string;
   variant: "add" | "template" | "import" | "ai";
+  submitHandler: (values: CreateFormSchemaType) => void;
 }
 
-const ActionCard: React.FC<IActionCard> = ({ text, subText, variant }) => {
+const ActionCard: React.FC<IActionCard> = ({
+  text,
+  subText,
+  variant,
+  submitHandler,
+}) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -60,34 +66,26 @@ const ActionCard: React.FC<IActionCard> = ({ text, subText, variant }) => {
       <DialogCard
         title={"Create Form"}
         description="Create a new form from scratch to start collecting responses."
-        form={CardForm}
-      />
+      >
+        <CardForm onSubmit={submitHandler} />
+      </DialogCard>
     </Dialog>
   );
 };
 
-export function CardForm() {
-  const formSchema = z.strictObject({
-    name: z
-      .string()
-      .trim()
-      .min(1, { error: "Name is requied." })
-      .min(3, { error: "Name must have at least three characters." }),
-    description: z.string().trim().optional(),
-  });
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+export function CardForm({
+  onSubmit,
+}: {
+  onSubmit: (values: CreateFormSchemaType) => void;
+}) {
+  const form = useForm<CreateFormSchemaType>({
+    resolver: zodResolver(createFormSchema),
     defaultValues: {
       name: "",
       description: "",
     },
     mode: "onBlur",
   });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
 
   return (
     <Form {...form}>
@@ -139,12 +137,13 @@ export function CardForm() {
         {!form.formState.isSubmitting && (
           <PrimaryButton type="submit" className="w-full" text="Save" />
         )}
+
         {form.formState.isSubmitting && (
           <PrimaryButton
             disabled
             type="submit"
             className="w-full"
-            text="Save"
+            text="Saving..."
           />
         )}
 

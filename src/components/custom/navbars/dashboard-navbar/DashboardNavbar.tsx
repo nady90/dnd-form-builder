@@ -7,7 +7,7 @@ import Logo from "@/components/icons/Logo";
 import DefaultButton from "../../buttons/default-button/DefaultButton";
 import SecondaryButton from "../../buttons/secondary-butotn/SecondaryButton";
 
-const DashboardNabar: React.FC = () => {
+const DashboardNavbar: React.FC = () => {
   return (
     <div className="flex h-[60px] flex-col justify-center border-b border-gray-200">
       <div className="flex h-full w-full flex-row items-center justify-between px-2 md:px-8">
@@ -21,4 +21,4 @@ const DashboardNabar: React.FC = () => {
   );
 };
 
-export default DashboardNabar;
+export default DashboardNavbar;

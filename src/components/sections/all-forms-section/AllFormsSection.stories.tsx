@@ -79,3 +79,23 @@ export const Loading: Story = {
     await expect(sectionHeading).toBeInTheDocument();
   },
 };
+
+export const NoData: Story = {
+  args: {
+    ...mockAllFormsSectionProps.noData,
+  },
+  decorators: [
+    (Story) => {
+      return (
+        <div>
+          <Story />
+        </div>
+      );
+    },
+  ],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const sectionHeading = canvas.getByText("all forms");
+    await expect(sectionHeading).toBeInTheDocument();
+  },
+};

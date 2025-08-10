@@ -42,7 +42,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased`}
         >
-          <header className="flex h-16 items-center justify-end gap-4 p-4">
+          <header className="flex h-16 items-center justify-end gap-4 border border-gray-500 p-4">
             <SignedOut>
               <SignInButton />
               <SignUpButton>
