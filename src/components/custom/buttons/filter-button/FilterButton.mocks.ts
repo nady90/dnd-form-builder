@@ -1,12 +1,12 @@
 import { IFilterButton } from "./FilterButton";
 
 const base: IFilterButton = {
-  text: "Filter By",
+  children: "Filter By",
   variant: "filter",
 };
 
 const sort: IFilterButton = {
-  text: "Sort By",
+  children: "Sort By",
   variant: "sort",
 };
 

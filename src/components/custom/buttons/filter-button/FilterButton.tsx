@@ -6,15 +6,15 @@ import {
 } from "react-icons/md";
 
 export interface IFilterButton {
-  text: string;
+  children: React.ReactNode;
   variant: "filter" | "sort";
 }
 
-const FilterButton: React.FC<IFilterButton> = ({ text, variant }) => {
+const FilterButton: React.FC<IFilterButton> = ({ children, variant }) => {
   return (
     <>
       <div className="hidden md:block">
-        <FilterButtonLarge text={text} variant={variant} />
+        <FilterButtonLarge variant={variant}>{children}</FilterButtonLarge>
       </div>
       <div className="block md:hidden">
         <FilterButtonMobile variant={variant} />
@@ -24,10 +24,10 @@ const FilterButton: React.FC<IFilterButton> = ({ text, variant }) => {
 };
 
 function FilterButtonLarge({
-  text,
+  children,
   variant,
 }: {
-  text: string;
+  children: React.ReactNode;
   variant: "filter" | "sort";
 }) {
   return (
@@ -40,7 +40,7 @@ function FilterButtonLarge({
             <MdOutlineSortByAlpha className="scale-125" />
           )}
         </div>
-        <span>{text}</span>
+        <span>{children}</span>
       </div>
       <div>
         <MdKeyboardArrowDown className="scale-125" />
