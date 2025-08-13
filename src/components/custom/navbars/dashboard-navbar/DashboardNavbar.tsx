@@ -13,7 +13,7 @@ const DashboardNavbar: React.FC = () => {
       <div className="flex h-full w-full flex-row items-center justify-between px-2 md:px-8">
         <Logo className="h-[35px] cursor-pointer md:h-[40px] md:w-[117px]" />
         <div className="flex flex-row items-center gap-x-2.5">
-          <SecondaryButton text="Give Feedback" icon={InfoIcon} />
+          <SecondaryButton icon={InfoIcon}>Give Feedback</SecondaryButton>
           <DefaultButton text="Learn More" icon={EducationIcon} />
         </div>
       </div>
