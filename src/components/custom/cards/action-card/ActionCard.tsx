@@ -147,7 +147,7 @@ export function CardForm({
         )}
 
         <DialogClose asChild>
-          <GhostButton icon={BackArrow} text="Cancel" />
+          <GhostButton icon={BackArrow}>Cancel</GhostButton>
         </DialogClose>
       </form>
     </Form>

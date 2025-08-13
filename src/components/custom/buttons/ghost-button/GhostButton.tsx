@@ -5,13 +5,13 @@ import { cn } from "@/lib/utils";
 
 export interface IGhostButton
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  text?: string;
+  children?: React.ReactNode;
   className?: string;
   icon?: React.ComponentType<{ className?: string }>;
 }
 
 const GhostButton = React.forwardRef<HTMLButtonElement, IGhostButton>(
-  ({ text, className, disabled, icon, type, ...props }, ref) => {
+  ({ children, className, disabled, icon, type, ...props }, ref) => {
     const Icon = icon;
 
     return (
@@ -29,7 +29,7 @@ const GhostButton = React.forwardRef<HTMLButtonElement, IGhostButton>(
             className="inline-flex translate-y-[1px] scale-x-110 items-center justify-center"
           />
         )}
-        <span>{text}</span>
+        <span>{children}</span>
       </Button>
     );
   },
