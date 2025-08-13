@@ -14,7 +14,7 @@ const DashboardNavbar: React.FC = () => {
         <Logo className="h-[35px] cursor-pointer md:h-[40px] md:w-[117px]" />
         <div className="flex flex-row items-center gap-x-2.5">
           <SecondaryButton icon={InfoIcon}>Give Feedback</SecondaryButton>
-          <DefaultButton text="Learn More" icon={EducationIcon} />
+          <DefaultButton icon={EducationIcon}>Learn More</DefaultButton>
         </div>
       </div>
     </div>

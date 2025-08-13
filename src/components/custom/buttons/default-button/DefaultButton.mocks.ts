@@ -3,7 +3,7 @@ import EducationIcon from "@/components/icons/Education";
 import { IDefaultButton } from "./DefaultButton";
 
 const base: IDefaultButton = {
-  text: "Learn More",
+  children: "Learn More",
   icon: EducationIcon,
 };
 
