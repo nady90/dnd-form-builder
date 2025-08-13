@@ -1,7 +1,7 @@
 import { IExtraLargeButton } from "./ExtraLargeButton";
 
 const base: IExtraLargeButton = {
-  text: "Create a form",
+  children: "Create a form",
 };
 
 export const mockExtraLargeButtonProps = {

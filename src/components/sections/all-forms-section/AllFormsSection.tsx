@@ -102,7 +102,7 @@ const AllFormsSection: React.FC<IAllFormsSection> = ({
                 <h3 className="text-5xl font-medium text-gray-500">
                   You have no forms
                 </h3>
-                <ExtraLargeButton text="Create a form" />
+                <ExtraLargeButton>Create a form</ExtraLargeButton>
               </div>
             )}
           </div>
