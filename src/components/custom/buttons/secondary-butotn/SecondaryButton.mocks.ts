@@ -3,7 +3,7 @@ import InfoIcon from "@/components/icons/Info";
 import { ISecondaryButton } from "./SecondaryButton";
 
 const base: ISecondaryButton = {
-  text: "Give Feedback",
+  children: "Give Feedback",
   icon: InfoIcon,
 };
 
