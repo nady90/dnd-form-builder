@@ -4,14 +4,14 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export interface IPrimaryButton {
-  text: string;
+  children: React.ReactNode;
   className?: string;
   type?: "button" | "submit" | "reset" | undefined;
   disabled?: boolean;
 }
 
 const PrimaryButton: React.FC<IPrimaryButton> = ({
-  text,
+  children,
   className,
   type,
   disabled = false,
@@ -25,7 +25,7 @@ const PrimaryButton: React.FC<IPrimaryButton> = ({
         className,
       )}
     >
-      {text}
+      {children}
     </Button>
   );
 };

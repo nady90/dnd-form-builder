@@ -61,9 +61,10 @@ const InfoCard: React.FC<IInfoCard> = ({
               <p>{visits} views</p>
             </div>
           </div>
-          <PrimaryButton
-            text={published ? "View submissions" : "Finish the form"}
-          />
+
+          <PrimaryButton>
+            {published ? "View submissions" : "Finish the form"}
+          </PrimaryButton>
         </div>
       )}
       {loading && (
@@ -100,10 +101,9 @@ const InfoCard: React.FC<IInfoCard> = ({
                 <p>{visits} views</p>
               </div>
             </div>
-            <PrimaryButton
-              disabled={true}
-              text={published ? "View submissions" : "Finish the form"}
-            />
+            <PrimaryButton disabled={true}>
+              {published ? "View submissions" : "Finish the form"}
+            </PrimaryButton>
           </div>
         </Skeleton>
       )}

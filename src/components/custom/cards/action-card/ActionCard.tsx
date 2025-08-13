@@ -135,16 +135,15 @@ export function CardForm({
         />
 
         {!form.formState.isSubmitting && (
-          <PrimaryButton type="submit" className="w-full" text="Save" />
+          <PrimaryButton type="submit" className="w-full">
+            save
+          </PrimaryButton>
         )}
 
         {form.formState.isSubmitting && (
-          <PrimaryButton
-            disabled
-            type="submit"
-            className="w-full"
-            text="Saving..."
-          />
+          <PrimaryButton disabled type="submit" className="w-full">
+            Saving...
+          </PrimaryButton>
         )}
 
         <DialogClose asChild>
