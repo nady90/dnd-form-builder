@@ -81,7 +81,7 @@ const AllFormsSection: React.FC<IAllFormsSection> = ({
             />
           </div>
           <div className="">
-            <Grid4to1 className={"xl:gap-x-5 xl:gap-y-5"}>
+            <Grid4to1 className={"lg:grid-cols-4 lg:gap-x-3.5"}>
               {data.length > 0 &&
                 data.map((card, idx) => {
                   return (

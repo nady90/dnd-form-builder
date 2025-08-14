@@ -29,7 +29,7 @@ const InfoCard: React.FC<IInfoCard> = ({
   return (
     <>
       {!loading && (
-        <div className="flex w-full grow flex-col gap-y-4 rounded-lg bg-gray-100 p-3 xl:min-w-[250px]">
+        <div className="flex w-full grow flex-col gap-y-4 rounded-lg bg-gray-100 p-3 xl:max-w-[270px] xl:min-w-[250px]">
           <div className="flex min-w-0 flex-col gap-y-1">
             <div className="flex flex-row justify-between">
               <Tag
