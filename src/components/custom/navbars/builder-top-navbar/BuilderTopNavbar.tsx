@@ -61,12 +61,13 @@ function LeftDiv({
       <div className="flex w-[233px] flex-col gap-y-1">
         <div className="flex flex-row items-start justify-between">
           {!isEditingTitle && (
-            <p className="text-lg font-bold text-gray-800">
+            <p className="truncate text-lg font-bold text-gray-800">
               {localTitle ? localTitle : "No title"}
             </p>
           )}
           {isEditingTitle && (
             <Input
+              aria-label="change title"
               className="h-[28px] w-10/12 rounded-none border-none outline-none selection:border-none selection:ring-0 selection:outline-none focus:border-none focus:shadow-none focus:ring-0 focus:outline-none"
               ref={(element) => {
                 element?.focus();
@@ -75,10 +76,12 @@ function LeftDiv({
                 setLocalTitle(e.target.value);
                 setIsEditingTitle(false);
               }}
-              defaultValue={localTitle}
+              placeholder={localTitle}
             />
           )}
           <EditIcon
+            role="button"
+            aria-label="edit title"
             onClick={() => {
               setIsEditingTitle(true);
             }}
@@ -93,6 +96,7 @@ function LeftDiv({
           )}
           {isEditingDescription && (
             <Input
+              aria-label="change description"
               className="h-[32px] w-10/12 rounded-none border-none outline-none selection:border-none selection:ring-0 selection:outline-none focus:border-none focus:shadow-none focus:ring-0 focus:outline-none"
               ref={(element) => {
                 element?.focus();
@@ -101,10 +105,12 @@ function LeftDiv({
                 setLocalDescription(e.target.value);
                 setIsEditingDescription(false);
               }}
-              defaultValue={localDescription}
+              placeholder={localDescription}
             />
           )}
           <EditIcon
+            role="button"
+            aria-label="edit description"
             onClick={() => {
               setIsEditingDescription(true);
             }}

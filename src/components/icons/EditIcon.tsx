@@ -5,7 +5,8 @@ import { cn } from "@/lib/utils";
 export default function EditIcon({
   className,
   onClick,
-}: {
+  ...props
+}: React.ComponentProps<"svg"> & {
   className?: string;
   onClick?: () => void;
 }) {
@@ -16,6 +17,7 @@ export default function EditIcon({
       viewBox="0 0 12 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         className="group-hover:stroke-blue-500"
