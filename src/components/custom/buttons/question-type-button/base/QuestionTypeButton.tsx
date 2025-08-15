@@ -65,7 +65,7 @@ const QuestionTypeButton: React.FC<IQuestionTypeButton> = ({
       {variant === "Attachments" && <Attachments />}
       {variant === "Image" && <ImageIcon />}
       {variant === "Slider" && <Slider />}
-      <div className="text-[12px] text-gray-800">{variant}</div>
+      <div className="text-[12px] text-gray-800 capitalize">{variant}</div>
     </div>
   );
 };
