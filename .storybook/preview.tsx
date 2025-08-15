@@ -2,6 +2,8 @@ import "../src/app/globals.css";
 
 import type { Preview } from "@storybook/nextjs-vite";
 
+import { Toaster } from "../src/components/ui/sonner";
+
 const preview: Preview = {
   parameters: {
     controls: {
@@ -42,6 +44,7 @@ const preview: Preview = {
           return (
             // Your page layout is probably a little more complex than this ;)
             <div className={`font-inter antialiased`}>
+              <Toaster />
               <Story />
             </div>
           );
