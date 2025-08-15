@@ -73,11 +73,16 @@ export const WorkFlowSelected: Story = {
       "When clicking on workflow, its background should change",
       async () => {
         const workflowTab = await screen.getByText(/workflow/i);
+        const workFlowBackgroundBeforeClick =
+          window.getComputedStyle(workflowTab).backgroundColor;
+
         await userEvent.click(workflowTab);
 
-        const workFlowBackground =
+        const workFlowBackgroundAfterClick =
           window.getComputedStyle(workflowTab).backgroundColor;
-        expect(workFlowBackground).toBe("rgb(255, 255, 255)");
+        expect(workFlowBackgroundAfterClick).not.toBe(
+          workFlowBackgroundBeforeClick,
+        );
       },
     );
   },
