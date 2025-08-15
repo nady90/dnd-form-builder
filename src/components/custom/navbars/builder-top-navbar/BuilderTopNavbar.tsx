@@ -6,6 +6,7 @@ import { MdRemoveRedEye } from "react-icons/md";
 
 import EditIcon from "@/components/icons/EditIcon";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 export interface IBuilderTopNavbar {
   title: string;
@@ -74,6 +75,7 @@ function LeftDiv({
                 setLocalTitle(e.target.value);
                 setIsEditingTitle(false);
               }}
+              defaultValue={localTitle}
             />
           )}
           <EditIcon
@@ -91,7 +93,7 @@ function LeftDiv({
           )}
           {isEditingDescription && (
             <Input
-              className="h-[28px] w-10/12 rounded-none border-none outline-none selection:border-none selection:ring-0 selection:outline-none focus:border-none focus:shadow-none focus:ring-0 focus:outline-none"
+              className="h-[32px] w-10/12 rounded-none border-none outline-none selection:border-none selection:ring-0 selection:outline-none focus:border-none focus:shadow-none focus:ring-0 focus:outline-none"
               ref={(element) => {
                 element?.focus();
               }}
@@ -99,6 +101,7 @@ function LeftDiv({
                 setLocalDescription(e.target.value);
                 setIsEditingDescription(false);
               }}
+              defaultValue={localDescription}
             />
           )}
           <EditIcon
@@ -113,15 +116,41 @@ function LeftDiv({
 }
 
 function CenterDiv() {
+  const [selectedIdx, setSelectedIdx] = useState<number>(0);
+
   return (
     <div className="inline-flex w-[271px] flex-row items-center justify-center rounded-md bg-gray-100 p-1 text-xs font-medium text-gray-800">
-      <div className="inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-white px-3 py-1">
+      <div
+        onClick={() => {
+          setSelectedIdx(0);
+        }}
+        className={cn(
+          "inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1",
+          [selectedIdx === 0 && "bg-white"],
+        )}
+      >
         Fields
       </div>
-      <div className="inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1">
+      <div
+        onClick={() => {
+          setSelectedIdx(1);
+        }}
+        className={cn(
+          "inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1",
+          [selectedIdx === 1 && "bg-white"],
+        )}
+      >
         Workflow
       </div>
-      <div className="inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1">
+      <div
+        onClick={() => {
+          setSelectedIdx(2);
+        }}
+        className={cn(
+          "inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1",
+          [selectedIdx === 2 && "bg-white"],
+        )}
+      >
         Permissions
       </div>
     </div>
