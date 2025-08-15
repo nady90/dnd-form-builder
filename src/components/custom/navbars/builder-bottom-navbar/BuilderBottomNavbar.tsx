@@ -47,7 +47,7 @@ const BuilderBottomNavbar: React.FC<IBuilderBottomNavbar> = ({
           Delete
         </NavbarBtn>
         <NavbarBtn onClick={previewFn} loading={false} variety="preview">
-          Previw
+          Preview
         </NavbarBtn>
         <NavbarBtn onClick={saveFn} loading={false} variety="save">
           Save & Publish
