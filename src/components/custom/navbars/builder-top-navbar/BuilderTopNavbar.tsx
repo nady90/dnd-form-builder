@@ -1,0 +1,147 @@
+"use client";
+import { formatDistance } from "date-fns";
+import React, { useState } from "react";
+import { IoMdClose } from "react-icons/io";
+import { MdRemoveRedEye } from "react-icons/md";
+
+import EditIcon from "@/components/icons/EditIcon";
+import { Input } from "@/components/ui/input";
+
+export interface IBuilderTopNavbar {
+  title: string;
+  description: string;
+  savedAt: Date;
+  closeBtnFn: () => void;
+}
+
+const BuilderTopNavbar: React.FC<IBuilderTopNavbar> = ({
+  title,
+  description,
+  savedAt,
+  closeBtnFn,
+}) => {
+  return (
+    <div className="flex h-[88px] flex-row items-center justify-between border-b border-gray-100 px-5 py-4">
+      <LeftDiv
+        title={title}
+        description={description}
+        closeBtnFn={closeBtnFn}
+      />
+
+      <CenterDiv />
+
+      <RightDiv savedAt={savedAt} />
+    </div>
+  );
+};
+
+function LeftDiv({
+  title,
+  description,
+  closeBtnFn,
+}: {
+  title: string;
+  description: string;
+  closeBtnFn: () => void;
+}) {
+  const [isEditingTitle, setIsEditingTitle] = useState<boolean>(false);
+  const [isEditingDescription, setIsEditingDescription] =
+    useState<boolean>(false);
+  const [localTitle, setLocalTitle] = useState(title);
+  const [localDescription, setLocalDescription] = useState(description);
+
+  return (
+    <div className="flex flex-row items-center gap-x-4">
+      <IoMdClose
+        onClick={closeBtnFn}
+        className="h-[14px] w-[14px] cursor-pointer text-gray-800 transition-all duration-500 hover:scale-125"
+      />
+      <div className="h-[46px] w-[1px] bg-gray-200"></div>
+      <div className="flex w-[233px] flex-col gap-y-1">
+        <div className="flex flex-row items-start justify-between">
+          {!isEditingTitle && (
+            <p className="text-lg font-bold text-gray-800">
+              {localTitle ? localTitle : "No title"}
+            </p>
+          )}
+          {isEditingTitle && (
+            <Input
+              className="h-[28px] w-10/12 rounded-none border-none outline-none selection:border-none selection:ring-0 selection:outline-none focus:border-none focus:shadow-none focus:ring-0 focus:outline-none"
+              ref={(element) => {
+                element?.focus();
+              }}
+              onBlur={(e) => {
+                setLocalTitle(e.target.value);
+                setIsEditingTitle(false);
+              }}
+            />
+          )}
+          <EditIcon
+            onClick={() => {
+              setIsEditingTitle(true);
+            }}
+          />
+        </div>
+
+        <div className="flex flex-row items-start justify-between">
+          {!isEditingDescription && (
+            <p className="w-10/12 text-xs font-light text-gray-800">
+              {localDescription ? localDescription : "No description"}
+            </p>
+          )}
+          {isEditingDescription && (
+            <Input
+              className="h-[28px] w-10/12 rounded-none border-none outline-none selection:border-none selection:ring-0 selection:outline-none focus:border-none focus:shadow-none focus:ring-0 focus:outline-none"
+              ref={(element) => {
+                element?.focus();
+              }}
+              onBlur={(e) => {
+                setLocalDescription(e.target.value);
+                setIsEditingDescription(false);
+              }}
+            />
+          )}
+          <EditIcon
+            onClick={() => {
+              setIsEditingDescription(true);
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CenterDiv() {
+  return (
+    <div className="inline-flex w-[271px] flex-row items-center justify-center rounded-md bg-gray-100 p-1 text-xs font-medium text-gray-800">
+      <div className="inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-white px-3 py-1">
+        Fields
+      </div>
+      <div className="inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1">
+        Workflow
+      </div>
+      <div className="inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1">
+        Permissions
+      </div>
+    </div>
+  );
+}
+
+function RightDiv({ savedAt }: { savedAt: Date }) {
+  return (
+    <div className="inline-flex flex-row items-center gap-x-2.5">
+      <p className="text-xs font-light text-gray-500">
+        Changes saved{" "}
+        {formatDistance(savedAt, Date(), {
+          // addSuffix: true,
+        })}
+      </p>
+      <div className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
+        <MdRemoveRedEye className="text-blue-500" />
+      </div>
+    </div>
+  );
+}
+
+export default BuilderTopNavbar;
