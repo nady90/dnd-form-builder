@@ -13,6 +13,9 @@ export async function GetAllFormsAction() {
   }
 
   const data = await prisma.form.findMany({
+    where: {
+      userId: user.id,
+    },
     select: {
       id: true,
       name: true,
@@ -22,7 +25,6 @@ export async function GetAllFormsAction() {
       published: true,
     },
   });
-  console.log("🚀 ~ GetAllFormsAction ~ data:", data);
   return data;
 }
 
