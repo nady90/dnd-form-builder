@@ -3,6 +3,7 @@ import { getRandomDate } from "@/lib/utils";
 import { IInfoCard } from "./InfoCard";
 
 const base: IInfoCard = {
+  id: 1,
   name: "employment form",
   description: "",
   createdAt: getRandomDate(90),
@@ -13,6 +14,7 @@ const base: IInfoCard = {
 };
 
 const draft: IInfoCard = {
+  id: 1,
   name: "employment form",
   description: "",
   createdAt: getRandomDate(90),
@@ -22,6 +24,7 @@ const draft: IInfoCard = {
 };
 
 const loading: IInfoCard = {
+  id: 1,
   name: "employment form",
   description: "",
   createdAt: getRandomDate(90),
