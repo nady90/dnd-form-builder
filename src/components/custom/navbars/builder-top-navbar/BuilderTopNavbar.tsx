@@ -12,22 +12,16 @@ export interface IBuilderTopNavbar {
   title: string;
   description: string;
   savedAt: Date;
-  closeBtnFn: () => void;
 }
 
 const BuilderTopNavbar: React.FC<IBuilderTopNavbar> = ({
   title,
   description,
   savedAt,
-  closeBtnFn,
 }) => {
   return (
     <div className="flex h-[88px] flex-row items-center justify-between border-b border-gray-100 px-5 py-4">
-      <LeftDiv
-        title={title}
-        description={description}
-        closeBtnFn={closeBtnFn}
-      />
+      <LeftDiv title={title} description={description} />
 
       <CenterDiv />
 
@@ -39,11 +33,9 @@ const BuilderTopNavbar: React.FC<IBuilderTopNavbar> = ({
 function LeftDiv({
   title,
   description,
-  closeBtnFn,
 }: {
   title: string;
   description: string;
-  closeBtnFn: () => void;
 }) {
   const [isEditingTitle, setIsEditingTitle] = useState<boolean>(false);
   const [isEditingDescription, setIsEditingDescription] =
@@ -53,10 +45,7 @@ function LeftDiv({
 
   return (
     <div className="flex flex-row items-center gap-x-4">
-      <IoMdClose
-        onClick={closeBtnFn}
-        className="h-[14px] w-[14px] cursor-pointer text-gray-800 transition-all duration-500 hover:scale-125"
-      />
+      <IoMdClose className="h-[14px] w-[14px] cursor-pointer text-gray-800 transition-all duration-500 hover:scale-125" />
       <div className="h-[46px] w-[1px] bg-gray-200"></div>
       <div className="flex w-[233px] flex-col gap-y-1">
         <div className="flex flex-row items-start justify-between">

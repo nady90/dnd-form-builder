@@ -9,17 +9,9 @@ import NavbarBtn from "../../buttons/navbar-button/NavbarBtn";
 
 export interface IBuilderBottomNavbar {
   link: string;
-  deleteFn: () => void;
-  previewFn: () => void;
-  saveFn: () => void;
 }
 
-const BuilderBottomNavbar: React.FC<IBuilderBottomNavbar> = ({
-  link,
-  deleteFn,
-  previewFn,
-  saveFn,
-}) => {
+const BuilderBottomNavbar: React.FC<IBuilderBottomNavbar> = ({ link }) => {
   return (
     <div className="flex h-[45px] flex-row justify-between border-b border-gray-200 px-5 py-2.5">
       <div className="flex flex-row items-center gap-x-2.5 text-base font-normal">
@@ -43,13 +35,13 @@ const BuilderBottomNavbar: React.FC<IBuilderBottomNavbar> = ({
       </div>
 
       <div className="flex flex-row gap-x-2.5">
-        <NavbarBtn onClick={deleteFn} loading={false} variety="delete">
+        <NavbarBtn loading={false} variety="delete">
           Delete
         </NavbarBtn>
-        <NavbarBtn onClick={previewFn} loading={false} variety="preview">
+        <NavbarBtn loading={false} variety="preview">
           Preview
         </NavbarBtn>
-        <NavbarBtn onClick={saveFn} loading={false} variety="save">
+        <NavbarBtn loading={false} variety="save">
           Save & Publish
         </NavbarBtn>
       </div>
