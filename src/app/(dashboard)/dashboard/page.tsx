@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 
-import DashboardNavbar from "@/components/custom/navbars/dashboard-navbar/DashboardNavbar";
 import AllFormsSection from "@/components/sections/all-forms-section/AllFormsSection";
 import AllFormsFetcher from "@/components/sections/all-forms-section/AllformsSection.fetcher";
 import { mockAllFormsSectionProps } from "@/components/sections/all-forms-section/AllFormsSection.mocks";
@@ -9,8 +8,6 @@ import CreatFormSectionFetcher from "@/components/sections/create-form-section/C
 export default function Dashboard() {
   return (
     <div>
-      <DashboardNavbar />
-
       <CreatFormSectionFetcher />
 
       <Suspense

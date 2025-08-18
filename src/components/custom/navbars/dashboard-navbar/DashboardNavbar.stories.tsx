@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 import { assertInterFontForAllText } from "@/test/test-utils";
@@ -28,7 +29,9 @@ export const Primary: Story = {
     (Story) => {
       return (
         <div className="">
-          <Story />
+          <ClerkProvider>
+            <Story />
+          </ClerkProvider>
         </div>
       );
     },
