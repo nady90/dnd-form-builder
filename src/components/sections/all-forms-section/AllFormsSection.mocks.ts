@@ -5,6 +5,7 @@ import { IAllFormsSection } from "./AllFormsSection";
 const base: IAllFormsSection = {
   data: [
     {
+      id: 1,
       name: "volunteer signup",
       description: "Join our volunteer program.",
       createdAt: getRandomDate(90),
@@ -12,6 +13,7 @@ const base: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "beta tester form",
       description: "",
       createdAt: getRandomDate(90),
@@ -19,6 +21,7 @@ const base: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "support request",
       description: "Request support from the team.",
       createdAt: getRandomDate(90),
@@ -26,6 +29,7 @@ const base: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "contact form",
       description: "Used to get in touch.",
       createdAt: getRandomDate(90),
@@ -33,6 +37,7 @@ const base: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "job application",
       description: "Apply for open roles.",
       createdAt: getRandomDate(90),
@@ -40,6 +45,7 @@ const base: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "internal review form",
       description: "",
       createdAt: getRandomDate(90),
@@ -47,6 +53,7 @@ const base: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "feedback form",
       description: "",
       createdAt: getRandomDate(90),
@@ -54,6 +61,7 @@ const base: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "newsletter signup",
       description: "Subscribe for upcreatedAts.",
       createdAt: getRandomDate(90),
@@ -68,6 +76,7 @@ const base: IAllFormsSection = {
 const oneRow: IAllFormsSection = {
   data: [
     {
+      id: 1,
       name: "registration form",
       description: "For event signups.",
       createdAt: getRandomDate(90),
@@ -75,6 +84,7 @@ const oneRow: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "feedback form",
       description: "",
       createdAt: getRandomDate(90),
@@ -82,6 +92,7 @@ const oneRow: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "survey form",
       description: "A quick survey.",
       createdAt: getRandomDate(90),
@@ -89,6 +100,7 @@ const oneRow: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "job application",
       description: "Used to apply for jobs.",
       createdAt: getRandomDate(90),
@@ -103,6 +115,7 @@ const oneRow: IAllFormsSection = {
 const threeRows: IAllFormsSection = {
   data: [
     {
+      id: 1,
       name: "feedback form",
       description: "Collects user feedback.",
       createdAt: getRandomDate(90),
@@ -110,6 +123,7 @@ const threeRows: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "employment form",
       description: "Used for job applications.",
       createdAt: getRandomDate(90),
@@ -117,6 +131,7 @@ const threeRows: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "survey form",
       description: "General opinion survey.",
       createdAt: getRandomDate(90),
@@ -124,6 +139,7 @@ const threeRows: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "registration form",
       description: "Event registration.",
       createdAt: getRandomDate(90),
@@ -131,6 +147,7 @@ const threeRows: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "feedback form",
       description: "",
       createdAt: getRandomDate(90),
@@ -138,6 +155,7 @@ const threeRows: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "newsletter signup",
       description: "Sign up for upcreatedAts.",
       createdAt: getRandomDate(90),
@@ -145,6 +163,7 @@ const threeRows: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "bug report",
       description: "",
       createdAt: getRandomDate(90),
@@ -152,6 +171,7 @@ const threeRows: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "survey form",
       description: "Quick survey.",
       createdAt: getRandomDate(90),
@@ -159,6 +179,7 @@ const threeRows: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "contact form",
       description: "Reach out to us.",
       createdAt: getRandomDate(90),
@@ -166,6 +187,7 @@ const threeRows: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "feedback form",
       description: "",
       createdAt: getRandomDate(90),
@@ -173,6 +195,7 @@ const threeRows: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "volunteer form",
       description: "Join as a volunteer.",
       createdAt: getRandomDate(90),
@@ -180,6 +203,7 @@ const threeRows: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "application form",
       description: "For internal use.",
       createdAt: getRandomDate(90),
@@ -195,6 +219,7 @@ const threeRows: IAllFormsSection = {
 const loading: IAllFormsSection = {
   data: [
     {
+      id: 1,
       name: "volunteer signup",
       description: "Join our volunteer program.",
       createdAt: getRandomDate(90),
@@ -202,6 +227,7 @@ const loading: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "beta tester form",
       description: "",
       createdAt: getRandomDate(90),
@@ -209,6 +235,7 @@ const loading: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "support request",
       description: "Request support from the team.",
       createdAt: getRandomDate(90),
@@ -216,6 +243,7 @@ const loading: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "contact form",
       description: "Used to get in touch.",
       createdAt: getRandomDate(90),
@@ -223,6 +251,7 @@ const loading: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "job application",
       description: "Apply for open roles.",
       createdAt: getRandomDate(90),
@@ -230,6 +259,7 @@ const loading: IAllFormsSection = {
       published: true,
     },
     {
+      id: 1,
       name: "internal review form",
       description: "",
       createdAt: getRandomDate(90),
@@ -237,6 +267,7 @@ const loading: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "feedback form",
       description: "",
       createdAt: getRandomDate(90),
@@ -244,6 +275,7 @@ const loading: IAllFormsSection = {
       published: false,
     },
     {
+      id: 1,
       name: "newsletter signup",
       description: "Subscribe for upcreatedAts.",
       createdAt: getRandomDate(90),

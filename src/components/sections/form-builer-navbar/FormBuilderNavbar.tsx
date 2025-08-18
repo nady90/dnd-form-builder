@@ -19,10 +19,6 @@ const FormBuilderNavbar: React.FC<IFormBuilderNavbar> = ({
   description,
   savedAt,
   link,
-  closeBtnFn,
-  deletFn,
-  previewFn,
-  saveFn,
 }) => {
   return (
     <div>
@@ -30,14 +26,8 @@ const FormBuilderNavbar: React.FC<IFormBuilderNavbar> = ({
         title={title}
         description={description}
         savedAt={savedAt}
-        closeBtnFn={closeBtnFn}
       />
-      <BuilderBottomNavbar
-        link={link}
-        deleteFn={deletFn}
-        previewFn={previewFn}
-        saveFn={saveFn}
-      />
+      <BuilderBottomNavbar link={link} />
     </div>
   );
 };
