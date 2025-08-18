@@ -1,5 +1,6 @@
 import { formatDistance } from "date-fns";
 import { EyeIcon } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 import { BsThreeDots } from "react-icons/bs";
 
@@ -10,6 +11,7 @@ import PrimaryButton from "../../buttons/primary-button/PrimaryButton";
 import Tag from "../../tags/tag/Tag";
 
 export interface IInfoCard {
+  id: number;
   name: string;
   description: string;
   createdAt: Date;
@@ -19,6 +21,7 @@ export interface IInfoCard {
 }
 
 const InfoCard: React.FC<IInfoCard> = ({
+  id,
   name,
   description,
   createdAt,
@@ -62,9 +65,14 @@ const InfoCard: React.FC<IInfoCard> = ({
             </div>
           </div>
 
-          <PrimaryButton>
-            {published ? "View submissions" : "Finish the form"}
-          </PrimaryButton>
+          <Link
+            className="wful"
+            href={published ? `/dashboard/form/${id}` : `/builder/${id}/fields`}
+          >
+            <PrimaryButton disabled={false}>
+              {published ? "View submissions" : "Finish the form"}
+            </PrimaryButton>
+          </Link>
         </div>
       )}
       {loading && (

@@ -14,6 +14,7 @@ export async function GetAllFormsAction() {
 
   const data = await prisma.form.findMany({
     select: {
+      id: true,
       name: true,
       description: true,
       createdAt: true,

@@ -43,6 +43,7 @@ const AllFormsSection: React.FC<IAllFormsSection> = ({
                   return (
                     <InfoCard
                       key={idx}
+                      id={0}
                       name={card.name}
                       description={card.description}
                       published={card.published}
@@ -87,6 +88,7 @@ const AllFormsSection: React.FC<IAllFormsSection> = ({
                   return (
                     <InfoCard
                       key={idx}
+                      id={card.id}
                       name={card.name}
                       description={card.description}
                       published={card.published}
