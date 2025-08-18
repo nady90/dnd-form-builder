@@ -66,10 +66,10 @@ const InfoCard: React.FC<IInfoCard> = ({
           </div>
 
           <Link
-            className="wful"
+            className="flex w-full justify-stretch"
             href={published ? `/dashboard/form/${id}` : `/builder/${id}/fields`}
           >
-            <PrimaryButton disabled={false}>
+            <PrimaryButton className="grow" disabled={false}>
               {published ? "View submissions" : "Finish the form"}
             </PrimaryButton>
           </Link>
