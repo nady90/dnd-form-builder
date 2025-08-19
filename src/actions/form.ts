@@ -52,3 +52,19 @@ export async function CreateFormAction(data: CreateFormSchemaType) {
     throw error;
   }
 }
+
+export async function GetFormByIdAction(id: number) {
+  const user = await currentUser();
+  if (!user) {
+    throw new UserNotFoundError();
+  }
+
+  const data = await prisma.form.findUnique({
+    where: {
+      id: id,
+      userId: user.id,
+    },
+  });
+
+  return data;
+}
