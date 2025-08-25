@@ -32,7 +32,7 @@ const Designer: React.FC = () => {
 
         const newElement =
           FormElements[type as AllElementsType].construct(getRandomIdString());
-        addElement(newElement, 0);
+        addElement(newElement, elements.length);
       }
     },
   });
