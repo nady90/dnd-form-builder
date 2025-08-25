@@ -1,6 +1,8 @@
 import React from "react";
 
 import { GetFormByIdAction } from "@/actions/form";
+import Builder from "@/components/custom/builder/Builder";
+import { PrismaFormNotFound } from "@/errors/prisma-errors";
 
 export default async function BuilderFieldsPage({
   params,
@@ -10,7 +12,13 @@ export default async function BuilderFieldsPage({
   const id = (await params).id;
 
   const form = await GetFormByIdAction(Number(id));
-  console.log("🚀 ~ BuilderFieldsPage ~ form:", form);
+  if (!form) {
+    throw new PrismaFormNotFound();
+  }
 
-  return <div className="grow bg-gray-50">builder page</div>;
+  return (
+    <div className="">
+      <Builder form={form} />
+    </div>
+  );
 }

@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 export type FormBuilderElementType =
   | "Sections"
   | "Tables"
-  | "Single Line"
+  | "TextField"
   | "Multiline"
   | "Number"
   | "date"
@@ -52,7 +52,7 @@ const QuestionTypeButton: React.FC<IQuestionTypeButton> = ({
     >
       {variant === "Sections" && <Sections />}
       {variant === "Tables" && <Table />}
-      {variant === "Single Line" && <Text />}
+      {variant === "TextField" && <Text />}
       {variant === "Multiline" && <MultiLine />}
       {variant === "Number" && <Number />}
       {variant === "date" && <DateIcon />}

@@ -13,6 +13,7 @@ export default async function BuilderLayout({
 }) {
   const id = (await params).id;
   const form = await GetFormByIdAction(Number(id));
+
   return (
     <div className="flex h-screen flex-col">
       <div>
@@ -29,6 +30,7 @@ export default async function BuilderLayout({
           }
         />
       </div>
+
       {children}
     </div>
   );

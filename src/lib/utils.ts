@@ -25,3 +25,7 @@ export function getRandomDate(daysBack: number) {
   past.setDate(now.getDate() - Math.floor(Math.random() * daysBack));
   return past;
 }
+
+export function getRandomIdString(): string {
+  return Math.floor(Math.random() * 100000).toString();
+}

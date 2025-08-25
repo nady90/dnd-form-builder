@@ -10,7 +10,7 @@ export interface ISearchBar {
 
 const SearchBar: React.FC<ISearchBar> = ({ className }) => {
   return (
-    <div className={cn("relative h-full w-full max-w-[239px]", className)}>
+    <div className={cn("relative w-full max-w-[239px]", className)}>
       <Input
         placeholder="Search Components"
         className="h-[36px] pr-10 pl-3 placeholder:text-gray-500"

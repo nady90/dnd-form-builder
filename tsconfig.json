@@ -27,7 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/components/icons"
+    "src/components/icons",
+    "src/components/custom/designer/.stories.tsx"
   ],
   "exclude": ["node_modules"]
 }

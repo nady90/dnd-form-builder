@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 
 import QuestionTypeButton, {
   FormBuilderElementType,
 } from "@/components/custom/buttons/question-type-button/base/QuestionTypeButton";
 import SearchBar from "@/components/custom/search-bar/base/SearchBar";
+import SidebarBtnWrapper from "@/components/custom/SidebarBtnWrapper/SidebarBtnWrapper";
 import { cn } from "@/lib/utils";
 
 interface ElementsSection {
@@ -18,7 +20,7 @@ const elementsSections: ElementsSection[] = [
   },
   {
     title: "Text Elements",
-    elements: ["Single Line", "Multiline", "Number"],
+    elements: ["TextField", "Multiline", "Number"],
   },
   {
     title: "Date Elements",
@@ -44,13 +46,14 @@ const ElementsBuilder: React.FC<IElementsBuilder> = ({ className }) => {
       {elementsSections.map((section) => (
         <div key={section.title} className="my-5">
           <h2 className="mb-2.5 text-sm text-gray-500">{section.title}</h2>
-          <div className="grid grid-cols-2 gap-2.5">
+          <div className="grid grid-cols-2 gap-2.5 overflow-y-scroll">
             {section.elements.map((element) => (
-              <QuestionTypeButton
-                key={element}
-                variant={element}
-                className="w-full cursor-grab"
-              />
+              <SidebarBtnWrapper type={element} key={element}>
+                <QuestionTypeButton
+                  variant={element}
+                  className="w-full cursor-grab"
+                />
+              </SidebarBtnWrapper>
             ))}
           </div>
         </div>
