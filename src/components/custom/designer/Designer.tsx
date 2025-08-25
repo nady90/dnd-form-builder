@@ -8,6 +8,7 @@ import {
   AllElementsType,
   FormElements,
 } from "../all-elements-folder/_CentralPlace";
+import DesignerComponentWrapper from "../designer-component-wrapper/DesignerComponentWrapper";
 
 const Designer: React.FC = () => {
   const { elements, addElement } = useFormContext();
@@ -40,7 +41,7 @@ const Designer: React.FC = () => {
     <div
       ref={droppable.setNodeRef}
       className={cn(
-        "flex grow flex-col gap-y-5 bg-white px-5 py-3",
+        "flex grow flex-col gap-y-5 bg-white px-2 py-3",
         droppable.isOver && "outline-2 outline-blue-500",
       )}
     >
@@ -50,8 +51,7 @@ const Designer: React.FC = () => {
         </div>
       )}
       {elements.map((el, idx) => {
-        const DesignerComponent = FormElements[el.type].designerComponent;
-        return <DesignerComponent key={idx} elementInstance={el} />;
+        return <DesignerComponentWrapper el={el} key={idx} />;
       })}
     </div>
   );

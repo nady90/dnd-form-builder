@@ -1,7 +1,18 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
 
+import useFormContext from "@/hooks/useFormContext";
+
+import { FormElements } from "../all-elements-folder/_CentralPlace";
+
 export default function PropertiesSidebar() {
+  const { selectedElement } = useFormContext();
+
+  let Form;
+  if (selectedElement) {
+    Form = FormElements[selectedElement.type].propertiesComponent;
+  }
+
   return (
     <div className="flex w-full max-w-[279px] flex-col gap-x-5 bg-white px-5 py-[36px]">
       <div className="flow-row flex justify-between">
@@ -9,6 +20,10 @@ export default function PropertiesSidebar() {
           Edit the fields
         </span>
         <IoMdClose />
+      </div>
+      <div>{!selectedElement && "Click on an element to select"}</div>
+      <div>
+        {selectedElement && Form && <Form elementInstance={selectedElement} />}
       </div>
     </div>
   );

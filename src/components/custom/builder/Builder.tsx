@@ -1,5 +1,11 @@
 "use client";
-import { DndContext } from "@dnd-kit/core";
+import {
+  DndContext,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import React from "react";
 
 import ElementsBuilder from "@/components/sections/elements-builder-section/base/ElementsBuilder";
@@ -13,10 +19,25 @@ export interface IBuilder {
   form: Form;
 }
 
-const Builder: React.FC<IBuilder> = ({ form }) => {
-  console.log("1:", form);
+const Builder: React.FC<IBuilder> = () => {
+  const mouseSensor = useSensor(MouseSensor, {
+    // Require the mouse to move by 10 pixels before activating
+    activationConstraint: {
+      distance: 10,
+    },
+  });
+  const touchSensor = useSensor(TouchSensor, {
+    // Press delay of 250ms, with tolerance of 5px of movement
+    activationConstraint: {
+      delay: 250,
+      tolerance: 5,
+    },
+  });
+
+  const sensors = useSensors(mouseSensor, touchSensor);
+
   return (
-    <DndContext>
+    <DndContext sensors={sensors}>
       <div className="flex grow flex-row gap-x-5 bg-gray-50">
         <ElementsBuilder className="" />
         <Designer />

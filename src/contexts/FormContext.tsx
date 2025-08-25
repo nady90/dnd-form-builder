@@ -6,6 +6,11 @@ import { FormElementInstance } from "@/components/custom/all-elements-folder/_Ce
 type FormContextType = {
   elements: FormElementInstance[];
   addElement: (element: FormElementInstance, index: number) => void;
+  setSelectedElement: React.Dispatch<
+    React.SetStateAction<FormElementInstance | null>
+  >;
+  selectedElement: FormElementInstance | null;
+  updateElement: (id: string, element: FormElementInstance) => void;
 };
 
 export const FormContext = React.createContext<FormContextType | null>(null);
@@ -16,7 +21,10 @@ export default function FormContextProvider({
   children: React.ReactNode;
 }) {
   const [elements, setElements] = useState<FormElementInstance[]>([]);
+  const [selectedElement, setSelectedElement] =
+    useState<null | FormElementInstance>(null);
   console.log("🚀 ~ FormContextProvider ~ elements:", elements);
+  console.log("🚀 ~ FormContextProvider ~ selectedElement:", selectedElement);
 
   function addElement(element: FormElementInstance, index: number) {
     setElements((prev) => {
@@ -26,8 +34,25 @@ export default function FormContextProvider({
     });
   }
 
+  function updateElement(id: string, element: FormElementInstance) {
+    setElements(() => {
+      const newElements = [...elements];
+      const index = newElements.findIndex((el) => el.id === id);
+      newElements[index] = element;
+      return newElements;
+    });
+  }
+
   return (
-    <FormContext.Provider value={{ elements, addElement }}>
+    <FormContext.Provider
+      value={{
+        elements,
+        addElement,
+        selectedElement,
+        setSelectedElement,
+        updateElement,
+      }}
+    >
       {children}
     </FormContext.Provider>
   );
