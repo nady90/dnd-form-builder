@@ -50,6 +50,9 @@ const Designer: React.FC = () => {
           Drag elements from the sidebar to add
         </div>
       )}
+      {elements.length === 0 && droppable.isOver && (
+        <div className="flex h-[120px] w-full items-center justify-center bg-blue-200 p-8 text-xl"></div>
+      )}
       {elements.map((el, idx) => {
         return <DesignerComponentWrapper el={el} key={idx} />;
       })}
