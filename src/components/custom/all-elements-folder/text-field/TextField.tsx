@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FaStarOfLife } from "react-icons/fa";
 
@@ -75,6 +75,8 @@ export function TextFieldPropertiesComponent({
 }: {
   elementInstance: FormElementInstance;
 }) {
+  const { selectedElement } = useFormContext();
+
   const { updateElement } = useFormContext();
 
   const form = useForm<TextFieldSchemaType>({
@@ -94,6 +96,10 @@ export function TextFieldPropertiesComponent({
       },
     });
   }
+
+  useEffect(() => {
+    form.reset(elementInstance.attributes);
+  }, [elementInstance, selectedElement, form]);
 
   return (
     <Form {...form}>
