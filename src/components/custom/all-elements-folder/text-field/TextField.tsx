@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 import useFormContext from "@/hooks/useFormContext";
 import {
   TextFieldSchema,
@@ -113,6 +114,24 @@ export function TextFieldPropertiesComponent({
                 <FormLabel>Label</FormLabel>
                 <FormControl>
                   <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
+        <FormField
+          control={form.control}
+          name="required"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Label</FormLabel>
+                <FormControl>
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
