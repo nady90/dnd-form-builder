@@ -24,6 +24,10 @@ export default function DesignerComponentWrapper({
     },
   });
 
+  if (draggable.isDragging) {
+    return null;
+  }
+
   const DesignerComponent = FormElements[el.type].designerComponent;
   return (
     <div
