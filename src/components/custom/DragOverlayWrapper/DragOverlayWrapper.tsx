@@ -33,7 +33,7 @@ export default function DragOverlayWrapper() {
   let node;
   if (isSidebarBtn) {
     node = (
-      <div className="-rotate-12 rounded-md outline outline-blue-500">
+      <div className="-rotate-12 cursor-grabbing rounded-md outline outline-blue-500">
         <QuestionTypeButton variant={activeItem?.data?.current?.type} />
       </div>
     );
