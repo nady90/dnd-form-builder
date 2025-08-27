@@ -67,6 +67,11 @@ export function TextFieldDesignerComponent({
           elementInstance.attributes.defaultValue || "No default value"
         }
       />
+      {elementInstance.attributes.helperText && (
+        <p className="text-xs font-light text-gray-500">
+          {elementInstance.attributes.helperText}
+        </p>
+      )}
     </div>
   );
 }
@@ -84,7 +89,8 @@ export function TextFieldPropertiesComponent({
     resolver: zodResolver(TextFieldSchema),
     defaultValues: {
       label: elementInstance?.attributes?.label || "No label",
-      required: elementInstance?.attributes?.required || true,
+      required: elementInstance?.attributes?.required ?? false,
+      helperText: elementInstance?.attributes?.helperText || "helper text here",
     },
   });
 
@@ -126,12 +132,27 @@ export function TextFieldPropertiesComponent({
           render={({ field }) => {
             return (
               <FormItem>
-                <FormLabel>Label</FormLabel>
+                <FormLabel>Required</FormLabel>
                 <FormControl>
                   <Switch
                     checked={field.value}
                     onCheckedChange={field.onChange}
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
+        <FormField
+          control={form.control}
+          name="helperText"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Helper Text</FormLabel>
+                <FormControl>
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
