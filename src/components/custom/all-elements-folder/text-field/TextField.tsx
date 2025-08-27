@@ -110,7 +110,7 @@ export function TextFieldPropertiesComponent({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form onBlur={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="label"
