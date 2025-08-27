@@ -30,7 +30,7 @@ export default function DesignerComponentWrapper({
       onClick={() => {
         setSelectedElement(el);
       }}
-      className="cursor-grab rounded-xs p-1 px-2 py-2 hover:bg-blue-200"
+      className="cursor-grab rounded-sm px-2 py-2 hover:bg-blue-200"
       ref={draggable.setNodeRef}
       {...draggable.attributes}
       {...draggable.listeners}

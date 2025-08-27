@@ -59,9 +59,10 @@ export function TextFieldDesignerComponent({
         )}
       </Label>
       <Input
+        readOnly
         name={elementInstance.id}
         id={elementInstance.id}
-        className="w-full gap-x-1 rounded-none border border-gray-200 px-2 py-1.5 text-xs font-light text-gray-400"
+        className="pointer-events-none w-full gap-x-1 rounded-none border border-gray-200 px-2 py-1.5 text-xs font-light text-gray-400"
         defaultValue={
           elementInstance.attributes.defaultValue || "No default value"
         }

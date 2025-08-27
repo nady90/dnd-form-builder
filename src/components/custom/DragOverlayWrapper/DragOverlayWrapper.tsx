@@ -5,7 +5,6 @@ import useFormContext from "@/hooks/useFormContext";
 
 import {
   AllElementsType,
-  FormElementInstance,
   FormElements,
 } from "../all-elements-folder/_CentralPlace";
 import QuestionTypeButton from "../buttons/question-type-button/base/QuestionTypeButton";
@@ -53,7 +52,7 @@ export default function DragOverlayWrapper() {
       );
     } else {
       node = (
-        <div className="">
+        <div className="bg-blue-200 p-5">
           <Element elementInstance={elementInsace} />
         </div>
       );
