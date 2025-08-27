@@ -40,7 +40,6 @@ const TextField: FormElement = {
   designerComponent: TextFieldDesignerComponent,
   sidebarComponent: "TextField",
   propertiesComponent: TextFieldPropertiesComponent,
-  draggedComponent: TextFieldDraggedComponent,
 };
 
 export function TextFieldDesignerComponent({
@@ -140,20 +139,6 @@ export function TextFieldPropertiesComponent({
         />
       </form>
     </Form>
-  );
-}
-
-export function TextFieldDraggedComponent() {
-  return (
-    <div className="flex w-full flex-col items-start gap-y-1">
-      <Label className="relative text-sm font-medium text-gray-800">
-        <FaStarOfLife className="absolute top-0 -right-2 h-[7.5px] w-[7.5px] text-red-500" />
-      </Label>
-      <Input
-        className="w-full gap-x-1 rounded-none border border-gray-200 px-2 py-1.5 text-xs font-light text-gray-400"
-        defaultValue={"default value"}
-      />
-    </div>
   );
 }
 

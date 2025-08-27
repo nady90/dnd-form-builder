@@ -1,18 +1,22 @@
 import { Active, DragOverlay, useDndMonitor } from "@dnd-kit/core";
 import React, { useState } from "react";
 
+import useFormContext from "@/hooks/useFormContext";
+
 import {
   AllElementsType,
+  FormElementInstance,
   FormElements,
 } from "../all-elements-folder/_CentralPlace";
 import QuestionTypeButton from "../buttons/question-type-button/base/QuestionTypeButton";
 
 export default function DragOverlayWrapper() {
+  const { elements } = useFormContext();
   const [activeItem, setActiveItem] = useState<null | Active>(null);
 
   useDndMonitor({
     onDragStart: ({ active }) => {
-      console.log(active);
+      console.log("active:", active);
       setActiveItem(active);
     },
     onDragEnd: () => {
@@ -35,9 +39,25 @@ export default function DragOverlayWrapper() {
   if (isDesignerComponent) {
     const Element =
       FormElements[activeItem?.data?.current?.type as AllElementsType]
-        .draggedComponent;
+        .designerComponent;
 
-    node = <Element />;
+    const elementId = activeItem?.data?.current?.id;
+
+    const elementInsace = elements.find((el) => el.id === elementId);
+
+    if (!elementInsace) {
+      node = (
+        <div className="rounded-md bg-red-500 p-4 text-black">
+          Element Not Found
+        </div>
+      );
+    } else {
+      node = (
+        <div className="">
+          <Element elementInstance={elementInsace} />
+        </div>
+      );
+    }
   }
 
   return <DragOverlay>{node}</DragOverlay>;

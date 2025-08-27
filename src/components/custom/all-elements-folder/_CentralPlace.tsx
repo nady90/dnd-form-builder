@@ -8,7 +8,6 @@ export type FormElement = {
   designerComponent: React.FC<{ elementInstance: FormElementInstance }>;
   sidebarComponent: FormBuilderElementType;
   propertiesComponent: React.FC<{ elementInstance: FormElementInstance }>;
-  draggedComponent: React.FC;
   construct: (id: string) => FormElementInstance;
 };
 

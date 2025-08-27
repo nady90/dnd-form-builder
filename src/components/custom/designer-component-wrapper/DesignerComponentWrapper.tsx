@@ -16,7 +16,7 @@ export default function DesignerComponentWrapper({
   const { setSelectedElement } = useFormContext();
 
   const draggable = useDraggable({
-    id: "",
+    id: "designer-component-" + el.id,
     data: {
       id: el.id,
       type: el.type,
