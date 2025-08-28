@@ -95,7 +95,6 @@ export function TextFieldPropertiesComponent({
   });
 
   function onSubmit(values: TextFieldSchemaType) {
-    console.log("values:", values);
     updateElement(elementInstance.id, {
       ...elementInstance,
       attributes: {

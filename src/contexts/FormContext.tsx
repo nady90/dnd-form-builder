@@ -24,8 +24,6 @@ export default function FormContextProvider({
   const [elements, setElements] = useState<FormElementInstance[]>([]);
   const [selectedElement, setSelectedElement] =
     useState<null | FormElementInstance>(null);
-  console.log("🚀 ~ FormContextProvider ~ elements:", elements);
-  console.log("🚀 ~ FormContextProvider ~ selectedElement:", selectedElement);
 
   function addElement(element: FormElementInstance, index: number) {
     setElements((prev) => {
@@ -45,7 +43,6 @@ export default function FormContextProvider({
   }
 
   function removeElement(id: string) {
-    console.log("=========", id);
     setElements((prev) => {
       const newElements = prev.filter((el) => el.id !== id);
       return newElements;
