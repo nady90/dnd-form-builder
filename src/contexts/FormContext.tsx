@@ -11,6 +11,7 @@ type FormContextType = {
   >;
   selectedElement: FormElementInstance | null;
   updateElement: (id: string, element: FormElementInstance) => void;
+  removeElement: (id: string) => void;
 };
 
 export const FormContext = React.createContext<FormContextType | null>(null);
@@ -43,6 +44,14 @@ export default function FormContextProvider({
     });
   }
 
+  function removeElement(id: string) {
+    console.log("=========", id);
+    setElements((prev) => {
+      const newElements = prev.filter((el) => el.id !== id);
+      return newElements;
+    });
+  }
+
   return (
     <FormContext.Provider
       value={{
@@ -51,6 +60,7 @@ export default function FormContextProvider({
         selectedElement,
         setSelectedElement,
         updateElement,
+        removeElement,
       }}
     >
       {children}

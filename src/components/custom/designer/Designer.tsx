@@ -1,7 +1,10 @@
 import { DragEndEvent, useDndMonitor, useDroppable } from "@dnd-kit/core";
 import React from "react";
 
-import { OverElementNotFound } from "@/errors/dnd-errors";
+import {
+  DraggedElementNotFound,
+  OverElementNotFound,
+} from "@/errors/dnd-errors";
 import useFormContext from "@/hooks/useFormContext";
 import { cn, getRandomIdString } from "@/lib/utils";
 
@@ -12,7 +15,7 @@ import {
 import DesignerComponentWrapper from "../designer-component-wrapper/DesignerComponentWrapper";
 
 const Designer: React.FC = () => {
-  const { elements, addElement } = useFormContext();
+  const { elements, addElement, removeElement } = useFormContext();
   const droppable = useDroppable({
     id: "designer-area",
     data: {
@@ -42,6 +45,9 @@ const Designer: React.FC = () => {
       const droppingSidebarButtonOverBuilderComponent =
         isSidebarBtn && droppingOverADesignerComponent;
 
+      const droppingADesignerElementOverAnoterDesignerElement =
+        isDesignerComponent && droppingOverADesignerComponent;
+
       // Scenario 1: Dragging from the sidebar to the designer area
       if (droppingSidebarButtonOverDesignerDropArea) {
         const type = active?.data?.current?.type;
@@ -53,7 +59,6 @@ const Designer: React.FC = () => {
 
       // Scenario 1: Dragging from the sidebar on an already existing component
       if (droppingSidebarButtonOverBuilderComponent) {
-        console.log("first");
         let finalIndexToDropOn;
         const newElementType = active?.data?.current?.type as AllElementsType;
         const newElementInstance =
@@ -73,7 +78,25 @@ const Designer: React.FC = () => {
       }
 
       // Scenario 3: Dragging a component over another component
-      if (isDesignerComponent) {
+      if (droppingADesignerElementOverAnoterDesignerElement) {
+        let finalIndexToDropOn;
+        const oldElement = elements.find(
+          (el) => el.id === active?.data?.current?.id,
+        );
+        if (!oldElement) throw new DraggedElementNotFound();
+
+        finalIndexToDropOn = elements.findIndex(
+          (el) => el.id === over?.data?.current?.elementId,
+        );
+
+        if (finalIndexToDropOn === -1) throw new OverElementNotFound();
+
+        if (droppingOverBottomHalf) {
+          finalIndexToDropOn++;
+        }
+
+        removeElement(oldElement.id);
+        addElement(oldElement, finalIndexToDropOn);
       }
     },
   });
