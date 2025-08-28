@@ -1,6 +1,7 @@
 import { DragEndEvent, useDndMonitor, useDroppable } from "@dnd-kit/core";
 import React from "react";
 
+import { OverElementNotFound } from "@/errors/dnd-errors";
 import useFormContext from "@/hooks/useFormContext";
 import { cn, getRandomIdString } from "@/lib/utils";
 
@@ -25,14 +26,54 @@ const Designer: React.FC = () => {
       if (!over || !active) return;
 
       const isSidebarBtn = active?.data?.current?.isSidebarBtn;
+      const isDroppingOverDesignerDropArea =
+        over?.data?.current?.isDesignerArea;
+
+      const droppingOverTopHalf = over?.data?.current?.isTopHalf;
+      const droppingOverBottomHalf = over?.data?.current?.isBottomHalf;
+
+      const isDesignerComponent = active?.data?.current?.isDesignerComponent;
+      const droppingOverADesignerComponent =
+        droppingOverTopHalf || droppingOverBottomHalf;
+
+      const droppingSidebarButtonOverDesignerDropArea =
+        isSidebarBtn && isDroppingOverDesignerDropArea;
+
+      const droppingSidebarButtonOverBuilderComponent =
+        isSidebarBtn && droppingOverADesignerComponent;
 
       // Scenario 1: Dragging from the sidebar to the designer area
-      if (isSidebarBtn) {
+      if (droppingSidebarButtonOverDesignerDropArea) {
         const type = active?.data?.current?.type;
 
         const newElement =
           FormElements[type as AllElementsType].construct(getRandomIdString());
         addElement(newElement, elements.length);
+      }
+
+      // Scenario 1: Dragging from the sidebar on an already existing component
+      if (droppingSidebarButtonOverBuilderComponent) {
+        console.log("first");
+        let finalIndexToDropOn;
+        const newElementType = active?.data?.current?.type as AllElementsType;
+        const newElementInstance =
+          FormElements[newElementType].construct(getRandomIdString());
+
+        finalIndexToDropOn = elements.findIndex(
+          (el) => el.id === over?.data?.current?.elementId,
+        );
+
+        if (finalIndexToDropOn === -1) throw new OverElementNotFound();
+
+        if (droppingOverBottomHalf) {
+          finalIndexToDropOn++;
+        }
+
+        addElement(newElementInstance, finalIndexToDropOn);
+      }
+
+      // Scenario 3: Dragging a component over another component
+      if (isDesignerComponent) {
       }
     },
   });

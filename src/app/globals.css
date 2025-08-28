@@ -41,6 +41,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --animate-up-arrow: up-arrow 1s ease-in-out infinite;
+  --animate-down-arrow: down-arrow 1s ease-in-out infinite;
 }
 
 :root {
@@ -124,4 +126,32 @@
 
 .font-inter {
   font-family: var(--font-inter);
+}
+
+@keyframes up-arrow {
+  0% {
+    transform: translateY(5px);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+@keyframes down-arrow {
+  0% {
+    transform: translateY(-5px);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
 }

@@ -56,7 +56,7 @@ export default function DragOverlayWrapper() {
       );
     } else {
       node = (
-        <div className="bg-blue-200 p-5">
+        <div className="bg-gray-200 p-5 opacity-70">
           <Element elementInstance={elementInsace} />
         </div>
       );
