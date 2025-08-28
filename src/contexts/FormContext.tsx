@@ -2,6 +2,10 @@
 import React, { useState } from "react";
 
 import { FormElementInstance } from "@/components/custom/all-elements-folder/_CentralPlace";
+import {
+  DraggedElementNotFound,
+  OverElementNotFound,
+} from "@/errors/dnd-errors";
 
 type FormContextType = {
   elements: FormElementInstance[];
@@ -12,6 +16,11 @@ type FormContextType = {
   selectedElement: FormElementInstance | null;
   updateElement: (id: string, element: FormElementInstance) => void;
   removeElement: (id: string) => void;
+  changeElementPosition: (
+    activeId: string,
+    overId: string,
+    droppingOverBottomHalf: boolean,
+  ) => void;
 };
 
 export const FormContext = React.createContext<FormContextType | null>(null);
@@ -49,6 +58,38 @@ export default function FormContextProvider({
     });
   }
 
+  function changeElementPosition(
+    activeId: string,
+    overId: string,
+    droppingOverBottomHalf: boolean,
+  ) {
+    setElements((prev) => {
+      // Copy the elements
+      let newElements = [...prev];
+
+      // Get the dragged element
+      const draggedElement = newElements.find((el) => el.id === activeId);
+      if (!draggedElement) throw new DraggedElementNotFound();
+
+      // Remove the dragged element
+      newElements = newElements.filter((el) => el.id !== activeId);
+
+      // Find where to drop the dragged element
+      const overElementIndex = newElements.findIndex((el) => el.id === overId);
+      if (overElementIndex === -1) throw new OverElementNotFound();
+
+      let indexWhereToDrop;
+      indexWhereToDrop = overElementIndex;
+      if (droppingOverBottomHalf) {
+        indexWhereToDrop++;
+      }
+
+      // Drop the new element
+      newElements.splice(indexWhereToDrop, 0, draggedElement);
+      return newElements;
+    });
+  }
+
   return (
     <FormContext.Provider
       value={{
@@ -58,6 +99,7 @@ export default function FormContextProvider({
         setSelectedElement,
         updateElement,
         removeElement,
+        changeElementPosition,
       }}
     >
       {children}

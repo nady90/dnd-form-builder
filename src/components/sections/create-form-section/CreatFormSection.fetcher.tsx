@@ -12,6 +12,7 @@ export default function CreatFormSectionFetcher() {
       title={"Create Form"}
       submitHandler={async (values: CreateFormSchemaType) => {
         const id = await CreateFormAction(values);
+        console.log("🚀 ~ CreatFormSectionFetcher ~ id:", id);
       }}
     />
   );

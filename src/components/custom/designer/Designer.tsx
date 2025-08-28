@@ -1,10 +1,7 @@
 import { DragEndEvent, useDndMonitor, useDroppable } from "@dnd-kit/core";
 import React from "react";
 
-import {
-  DraggedElementNotFound,
-  OverElementNotFound,
-} from "@/errors/dnd-errors";
+import { OverElementNotFound } from "@/errors/dnd-errors";
 import useFormContext from "@/hooks/useFormContext";
 import { cn, getRandomIdString } from "@/lib/utils";
 
@@ -15,7 +12,7 @@ import {
 import DesignerComponentWrapper from "../designer-component-wrapper/DesignerComponentWrapper";
 
 const Designer: React.FC = () => {
-  const { elements, addElement, removeElement } = useFormContext();
+  const { elements, addElement, changeElementPosition } = useFormContext();
   const droppable = useDroppable({
     id: "designer-area",
     data: {
@@ -79,24 +76,11 @@ const Designer: React.FC = () => {
 
       // Scenario 3: Dragging a component over another component
       if (droppingADesignerElementOverAnoterDesignerElement) {
-        let finalIndexToDropOn;
-        const oldElement = elements.find(
-          (el) => el.id === active?.data?.current?.id,
+        changeElementPosition(
+          active?.data?.current?.id,
+          over?.data?.current?.elementId,
+          droppingOverBottomHalf,
         );
-        if (!oldElement) throw new DraggedElementNotFound();
-
-        finalIndexToDropOn = elements.findIndex(
-          (el) => el.id === over?.data?.current?.elementId,
-        );
-
-        if (finalIndexToDropOn === -1) throw new OverElementNotFound();
-
-        if (droppingOverBottomHalf) {
-          finalIndexToDropOn++;
-        }
-
-        removeElement(oldElement.id);
-        addElement(oldElement, finalIndexToDropOn);
       }
     },
   });
