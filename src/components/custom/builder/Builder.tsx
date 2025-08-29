@@ -6,7 +6,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import React from "react";
+import React, { useId } from "react";
 
 import ElementsBuilder from "@/components/sections/elements-builder-section/base/ElementsBuilder";
 import { Form } from "@/generated/prisma";
@@ -20,6 +20,8 @@ export interface IBuilder {
 }
 
 const Builder: React.FC<IBuilder> = () => {
+  const id = useId();
+
   const mouseSensor = useSensor(MouseSensor, {
     // Require the mouse to move by 10 pixels before activating
     activationConstraint: {
@@ -37,7 +39,7 @@ const Builder: React.FC<IBuilder> = () => {
   const sensors = useSensors(mouseSensor, touchSensor);
 
   return (
-    <DndContext sensors={sensors}>
+    <DndContext id={id} sensors={sensors}>
       <div className="flex grow flex-row gap-x-5 bg-gray-50">
         <ElementsBuilder className="" />
         <Designer />
