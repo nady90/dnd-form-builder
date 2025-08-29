@@ -59,7 +59,12 @@ export default function DesignerComponentWrapper({
       {...draggable.listeners}
     >
       {/* Hovered Div */}
-      <div className="absolute top-0 right-0 z-[99999] flex h-full w-full items-center justify-center bg-gray-800/70 text-center opacity-0 group-hover:opacity-100">
+      <div
+        className={cn(
+          "absolute top-0 right-0 z-[99999] flex h-full w-full items-center justify-center bg-gray-800/70 text-center opacity-0",
+          !bottomHalf.isOver && !topHalf.isOver && "group-hover:opacity-100",
+        )}
+      >
         <span className="text-base text-white">
           Click for properties or drag to move
         </span>
