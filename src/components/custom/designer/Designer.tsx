@@ -89,7 +89,7 @@ const Designer: React.FC = () => {
     <div
       ref={droppable.setNodeRef}
       className={cn(
-        "flex grow flex-col gap-y-5 bg-white px-2 py-3",
+        "flex grow flex-col gap-y-5 bg-white px-5 py-3",
         droppable.isOver && "outline-2 outline-blue-500",
       )}
     >

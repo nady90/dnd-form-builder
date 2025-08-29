@@ -53,11 +53,18 @@ export default function DesignerComponentWrapper({
       onClick={() => {
         setSelectedElement(el);
       }}
-      className="relative cursor-grab rounded-sm px-2 py-2 hover:bg-blue-200"
+      className="group relative cursor-grab"
       ref={draggable.setNodeRef}
       {...draggable.attributes}
       {...draggable.listeners}
     >
+      {/* Hovered Div */}
+      <div className="absolute top-0 right-0 z-[99999] flex h-full w-full items-center justify-center bg-gray-800/70 text-center opacity-0 group-hover:opacity-100">
+        <span className="text-base text-white">
+          Click for properties or drag to move
+        </span>
+      </div>
+      {/* Top droppable */}
       <div
         ref={topHalf.setNodeRef}
         className={cn(
@@ -68,6 +75,7 @@ export default function DesignerComponentWrapper({
         <span className="animate-up-arrow">↑</span>
       </div>
       <DesignerComponent elementInstance={el} />
+      {/* Bottom droppable */}
       <div
         ref={bottomHalf.setNodeRef}
         className={cn(
