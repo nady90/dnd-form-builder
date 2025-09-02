@@ -9,6 +9,9 @@ jobs:
     environment: default
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env: # 👈 job-level env
+      CLERK_PUBLISHABLE_KEY: ${{ vars.CLERK_PUBLISHABLE_KEY }}
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ vars.CLERK_PUBLISHABLE_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -17,16 +20,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
-        run:
-          npx playwright install --with-deps
-
-          # 👇 Add debug step here
-      - name: Debug env vars
-        run: |
-          echo "CLERK_PUBLISHABLE_KEY=$CLERK_PUBLISHABLE_KEY"
-          echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
-          printenv | sort | grep CLERK
-
+        run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v4
