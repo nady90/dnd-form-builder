@@ -6,7 +6,7 @@ import useFormContext from "@/hooks/useFormContext";
 import { FormElements } from "../all-elements-folder/_CentralPlace";
 
 export default function PropertiesSidebar() {
-  const { selectedElement, elements } = useFormContext();
+  const { selectedElement, elements, setSelectedElement } = useFormContext();
 
   let Form;
   if (selectedElement) {
@@ -19,7 +19,11 @@ export default function PropertiesSidebar() {
         <span className="text-base font-medium text-gray-800">
           Edit the fields
         </span>
-        <IoMdClose />
+        <IoMdClose
+          onClick={() => setSelectedElement(null)}
+          className="cursor-pointer hover:scale-150"
+          role="button"
+        />
       </div>
       {elements.length === 0 ? (
         <div className="">Drag an element to start</div>
