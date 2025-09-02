@@ -12,7 +12,8 @@ import {
 import DesignerComponentWrapper from "../designer-component-wrapper/DesignerComponentWrapper";
 
 const Designer: React.FC = () => {
-  const { elements, addElement, changeElementPosition } = useFormContext();
+  const { elements, addElement, changeElementPosition, setSelectedElement } =
+    useFormContext();
   const droppable = useDroppable({
     id: "designer-area",
     data: {
@@ -104,6 +105,7 @@ const Designer: React.FC = () => {
       {elements.map((el, idx) => {
         return <DesignerComponentWrapper el={el} key={idx} />;
       })}
+      <div className="h-full" onClick={() => setSelectedElement(null)}></div>
     </div>
   );
 };
