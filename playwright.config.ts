@@ -49,13 +49,19 @@ export default defineConfig({
 
     {
       name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
+      use: {
+        ...devices["Desktop Firefox"],
+        storageState: "./src/e2e/.clerk/user.json",
+      },
       dependencies: ["global setup"],
     },
 
     {
       name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      use: {
+        ...devices["Desktop Safari"],
+        storageState: "./src/e2e/.clerk/user.json",
+      },
       dependencies: ["global setup"],
     },
 
