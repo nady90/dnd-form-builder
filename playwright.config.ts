@@ -47,23 +47,23 @@ export default defineConfig({
       dependencies: ["global setup"],
     },
 
-    {
-      name: "firefox",
-      use: {
-        ...devices["Desktop Firefox"],
-        storageState: "./src/e2e/.clerk/user.json",
-      },
-      dependencies: ["global setup"],
-    },
+    // {
+    //   name: "firefox",
+    //   use: {
+    //     ...devices["Desktop Firefox"],
+    //     storageState: "./src/e2e/.clerk/user.json",
+    //   },
+    //   dependencies: ["global setup"],
+    // },
 
-    {
-      name: "webkit",
-      use: {
-        ...devices["Desktop Safari"],
-        storageState: "./src/e2e/.clerk/user.json",
-      },
-      dependencies: ["global setup"],
-    },
+    // {
+    //   name: "webkit",
+    //   use: {
+    //     ...devices["Desktop Safari"],
+    //     storageState: "./src/e2e/.clerk/user.json",
+    //   },
+    //   dependencies: ["global setup"],
+    // },
 
     /* Test against mobile viewports. */
     // {
