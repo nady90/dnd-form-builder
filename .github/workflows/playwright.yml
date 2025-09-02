@@ -44,10 +44,10 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-          
+
       - name: Upload Playwright artifacts
-        uses: actions/upload-artifact@v3
-        if: ${{ always() }} # <-- ensures upload even if tests fail/cancel
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
         with:
           name: playwright-artifacts
           path: test-results/
