@@ -6,5 +6,5 @@ test("sign up", async ({ page }) => {
 
   await page.goto("http://localhost:3000/dashboard");
   const createFormHeading = page.getByText(/all forms/i);
-  expect(createFormHeading).toBeVisible();
+  await expect(createFormHeading).toBeVisible();
 });
