@@ -5,13 +5,10 @@ import path from "path";
 // Setup must be run serially, this is necessary if Playwright is configured to run fully parallel: https://playwright.dev/docs/test-parallel
 setup.describe.configure({ mode: "serial" });
 
-setup("global setup", async ({}) => {
-  await clerkSetup();
-});
-
 const authFile = path.join(__dirname, "../e2e/.clerk/user.json");
 
-setup("authenticate", async ({ page }) => {
+setup("global setup", async ({ page }) => {
+  await clerkSetup();
   await page.goto("localhost:3000");
   await clerk.signIn({
     page,
