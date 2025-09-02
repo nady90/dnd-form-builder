@@ -17,7 +17,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run:
+          npx playwright install --with-deps
+
+          # 👇 Add debug step here
+      - name: Debug env vars
+        run: |
+          echo "CLERK_PUBLISHABLE_KEY=$CLERK_PUBLISHABLE_KEY"
+          echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
+          printenv | sort | grep CLERK
+
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v4
