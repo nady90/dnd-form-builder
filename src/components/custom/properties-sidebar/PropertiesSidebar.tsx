@@ -6,7 +6,7 @@ import useFormContext from "@/hooks/useFormContext";
 import { FormElements } from "../all-elements-folder/_CentralPlace";
 
 export default function PropertiesSidebar() {
-  const { selectedElement } = useFormContext();
+  const { selectedElement, elements } = useFormContext();
 
   let Form;
   if (selectedElement) {
@@ -21,7 +21,11 @@ export default function PropertiesSidebar() {
         </span>
         <IoMdClose />
       </div>
-      <div>{!selectedElement && "Click on an element to select"}</div>
+      {elements.length === 0 ? (
+        <div className="">Drag an element to start</div>
+      ) : (
+        <div>{!selectedElement && "Click on an element to select"}</div>
+      )}
       <div>
         {selectedElement && Form && <Form elementInstance={selectedElement} />}
       </div>
