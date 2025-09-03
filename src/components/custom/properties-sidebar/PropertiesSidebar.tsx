@@ -20,6 +20,7 @@ export default function PropertiesSidebar() {
           Edit the fields
         </span>
         <IoMdClose
+          data-testid="sidebar-close-svg"
           onClick={() => setSelectedElement(null)}
           className="cursor-pointer transition-all duration-500 hover:scale-150"
           role="button"
