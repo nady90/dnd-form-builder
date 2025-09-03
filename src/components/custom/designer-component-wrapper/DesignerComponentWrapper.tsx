@@ -60,6 +60,7 @@ export default function DesignerComponentWrapper({
     >
       {/* Hovered Div */}
       <div
+        data-testId="top-half-div"
         className={cn(
           "absolute top-0 right-0 z-[99999] flex h-full w-full items-center justify-center bg-gray-800/70 text-center opacity-0",
           !bottomHalf.isOver && !topHalf.isOver && "group-hover:opacity-100",
@@ -82,6 +83,7 @@ export default function DesignerComponentWrapper({
       <DesignerComponent elementInstance={el} />
       {/* Bottom droppable */}
       <div
+        data-testId="bottom-half-div"
         ref={bottomHalf.setNodeRef}
         className={cn(
           "absolute right-0 bottom-0 flex h-1/2 w-full items-center justify-center bg-blue-500/20 text-2xl opacity-0 outline outline-gray-800 outline-dashed",
