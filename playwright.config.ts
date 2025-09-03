@@ -37,6 +37,11 @@ export default defineConfig({
     {
       name: "global setup",
       testMatch: /global\.setup\.ts/,
+      teardown: "db cleanup",
+    },
+    {
+      name: "db cleanup",
+      testMatch: /global\.teardown\.ts/,
     },
     {
       name: "chromium",

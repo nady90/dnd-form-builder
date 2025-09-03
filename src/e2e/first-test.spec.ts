@@ -1,6 +1,5 @@
 import { setupClerkTestingToken } from "@clerk/testing/playwright";
 import { expect, test } from "@playwright/test";
-import { getByTestId } from "storybook/internal/test";
 
 test("sign up", async ({ page }) => {
   await setupClerkTestingToken({ page });
