@@ -128,6 +128,12 @@ test.describe("Dnd functionality", () => {
 
     const fieldsTab = page.getByText(/fields/i).first();
     await expect(fieldsTab).toBeVisible();
+
+    const dragInstruction = page.getByText(
+      /Drag elements from the sidebar to add/i,
+    );
+    await expect(dragInstruction).toBeVisible();
+
     const textField = page.getByRole("button", { name: /textfield/i });
     await expect(textField).toBeVisible();
 
@@ -145,5 +151,7 @@ test.describe("Dnd functionality", () => {
 
     await builder.hover();
     await page.mouse.up();
+
+    await expect(dragInstruction).not.toBeVisible();
   });
 });
