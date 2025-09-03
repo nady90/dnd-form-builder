@@ -88,6 +88,7 @@ const Designer: React.FC = () => {
 
   return (
     <div
+      data-testid="builder"
       ref={droppable.setNodeRef}
       className={cn(
         "flex grow flex-col gap-y-5 bg-white px-5 py-3",
