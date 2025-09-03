@@ -50,7 +50,8 @@ export default function DesignerComponentWrapper({
   const DesignerComponent = FormElements[el.type].designerComponent;
   return (
     <div
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation();
         setSelectedElement(el);
       }}
       className="group relative cursor-grab"

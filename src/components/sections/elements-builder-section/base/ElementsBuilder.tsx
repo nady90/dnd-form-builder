@@ -6,6 +6,7 @@ import QuestionTypeButton, {
 } from "@/components/custom/buttons/question-type-button/base/QuestionTypeButton";
 import SearchBar from "@/components/custom/search-bar/base/SearchBar";
 import SidebarBtnWrapper from "@/components/custom/SidebarBtnWrapper/SidebarBtnWrapper";
+import useFormContext from "@/hooks/useFormContext";
 import { cn } from "@/lib/utils";
 
 interface ElementsSection {
@@ -40,8 +41,15 @@ export interface IElementsBuilder {
 }
 
 const ElementsBuilder: React.FC<IElementsBuilder> = ({ className }) => {
+  const { setSelectedElement, selectedElement } = useFormContext();
+
   return (
-    <div className={cn("max-w-[279px] bg-white px-5 py-9", className)}>
+    <div
+      className={cn("max-w-[279px] bg-white px-5 py-9", className)}
+      onClick={() => {
+        if (selectedElement) setSelectedElement(null);
+      }}
+    >
       <SearchBar className="mb-9.5" />
       {elementsSections.map((section) => (
         <div key={section.title} className="my-5">

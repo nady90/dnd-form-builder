@@ -12,8 +12,13 @@ import {
 import DesignerComponentWrapper from "../designer-component-wrapper/DesignerComponentWrapper";
 
 const Designer: React.FC = () => {
-  const { elements, addElement, changeElementPosition, setSelectedElement } =
-    useFormContext();
+  const {
+    elements,
+    addElement,
+    changeElementPosition,
+    setSelectedElement,
+    selectedElement,
+  } = useFormContext();
   const droppable = useDroppable({
     id: "designer-area",
     data: {
@@ -94,6 +99,11 @@ const Designer: React.FC = () => {
         "flex grow flex-col gap-y-5 bg-white px-5 py-3",
         droppable.isOver && "outline-2 outline-blue-500",
       )}
+      onClick={() => {
+        if (selectedElement) {
+          setSelectedElement(null);
+        }
+      }}
     >
       {elements.length === 0 && !droppable.isOver && (
         <div className="flex h-full w-full items-center justify-center p-8 text-xl">
@@ -106,7 +116,6 @@ const Designer: React.FC = () => {
       {elements.map((el, idx) => {
         return <DesignerComponentWrapper el={el} key={idx} />;
       })}
-      <div className="h-full" onClick={() => setSelectedElement(null)}></div>
     </div>
   );
 };
