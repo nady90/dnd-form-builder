@@ -21,7 +21,7 @@ export default function PropertiesSidebar() {
         </span>
         <IoMdClose
           onClick={() => setSelectedElement(null)}
-          className="cursor-pointer hover:scale-150"
+          className="cursor-pointer transition-all duration-500 hover:scale-150"
           role="button"
         />
       </div>
