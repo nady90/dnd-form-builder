@@ -54,7 +54,7 @@ const ElementsBuilder: React.FC<IElementsBuilder> = ({ className }) => {
       {elementsSections.map((section) => (
         <div key={section.title} className="my-5">
           <h2 className="mb-2.5 text-sm text-gray-500">{section.title}</h2>
-          <div className="grid grid-cols-2 gap-2.5 overflow-y-scroll">
+          <div className="grid grid-cols-2 gap-2.5">
             {section.elements.map((element) => (
               <SidebarBtnWrapper type={element} key={element}>
                 <QuestionTypeButton
