@@ -1,7 +1,7 @@
 import { useDraggable } from "@dnd-kit/core";
 import React from "react";
 
-import { FormBuilderElementType } from "../buttons/question-type-button/base/QuestionTypeButton";
+import { FormBuilderElementType } from "../buttons/question-type-button/QuestionTypeButton";
 
 export default function SidebarBtnWrapper({
   children,

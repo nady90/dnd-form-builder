@@ -7,7 +7,7 @@ import {
   AllElementsType,
   FormElements,
 } from "../all-elements-folder/_CentralPlace";
-import QuestionTypeButton from "../buttons/question-type-button/base/QuestionTypeButton";
+import QuestionTypeButton from "../buttons/question-type-button/QuestionTypeButton";
 
 export default function DragOverlayWrapper() {
   const { elements } = useFormContext();
