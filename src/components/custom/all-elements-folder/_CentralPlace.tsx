@@ -1,4 +1,4 @@
-import { FormBuilderElementType } from "../buttons/question-type-button/base/QuestionTypeButton";
+import { FormBuilderElementType } from "../buttons/question-type-button/QuestionTypeButton";
 import TextField from "./text-field/TextField";
 
 export type AllElementsType = "TextField";
