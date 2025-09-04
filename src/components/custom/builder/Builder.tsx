@@ -8,7 +8,7 @@ import {
 } from "@dnd-kit/core";
 import React, { useId } from "react";
 
-import ElementsBuilder from "@/components/sections/elements-builder-section/base/ElementsBuilder";
+import ElementsBuilder from "@/components/sections/elements-builder-section/ElementsBuilder";
 import { Form } from "@/generated/prisma";
 
 import Designer from "../designer/Designer";
