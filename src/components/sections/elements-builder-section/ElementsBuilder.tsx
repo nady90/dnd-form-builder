@@ -3,7 +3,7 @@ import React from "react";
 
 import QuestionTypeButton, {
   FormBuilderElementType,
-} from "@/components/custom/buttons/question-type-button/base/QuestionTypeButton";
+} from "@/components/custom/buttons/question-type-button/QuestionTypeButton";
 import SearchBar from "@/components/custom/search-bar/base/SearchBar";
 import SidebarBtnWrapper from "@/components/custom/SidebarBtnWrapper/SidebarBtnWrapper";
 import useFormContext from "@/hooks/useFormContext";
