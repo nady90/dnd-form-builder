@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
+import FormContextProvider from "@/contexts/FormContext";
 import { assertInterFontForAllText } from "@/test/test-utils";
 
 import ElementsBuilder from "./ElementsBuilder";
@@ -9,6 +10,14 @@ import { mockElementsBuilderProps } from "./ElementsBuilder.mocks";
 const meta = {
   title: "Sections/ Builder/ Elements Builder",
   component: ElementsBuilder,
+  decorators: [
+    (Story) => (
+      <FormContextProvider>
+        {/* 👇 Decorators in Storybook also accept a function. Replace <Story/> with Story() to enable it  */}
+        <Story />
+      </FormContextProvider>
+    ),
+  ],
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     // layout: "centered",
