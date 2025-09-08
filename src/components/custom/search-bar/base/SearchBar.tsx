@@ -14,7 +14,7 @@ const SearchBar: React.FC<ISearchBar> = ({ className, filterElements }) => {
     <div className={cn("relative w-full max-w-[239px]", className)}>
       <Input
         onChange={(e) => {
-          filterElements(e.target.value.trim());
+          filterElements(e.target.value);
         }}
         placeholder="Search Components"
         className="h-[36px] pr-10 pl-3 placeholder:text-gray-500"
