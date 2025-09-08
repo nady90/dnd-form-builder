@@ -6,12 +6,16 @@ import { cn } from "@/lib/utils";
 
 export interface ISearchBar {
   className?: string;
+  filterElements: (searchVal: string) => void;
 }
 
-const SearchBar: React.FC<ISearchBar> = ({ className }) => {
+const SearchBar: React.FC<ISearchBar> = ({ className, filterElements }) => {
   return (
     <div className={cn("relative w-full max-w-[239px]", className)}>
       <Input
+        onChange={(e) => {
+          filterElements(e.target.value.trim());
+        }}
         placeholder="Search Components"
         className="h-[36px] pr-10 pl-3 placeholder:text-gray-500"
       />

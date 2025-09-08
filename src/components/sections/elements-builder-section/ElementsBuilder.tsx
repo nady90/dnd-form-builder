@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import QuestionTypeButton, {
   FormBuilderElementType,
@@ -36,12 +36,37 @@ const elementsSections: ElementsSection[] = [
     elements: ["Attachments", "Image", "Slider"],
   },
 ];
+
 export interface IElementsBuilder {
   className?: string;
 }
 
 const ElementsBuilder: React.FC<IElementsBuilder> = ({ className }) => {
+  const [currentSections, setCurrentSections] = useState(elementsSections);
   const { setSelectedElement, selectedElement } = useFormContext();
+
+  function filterElements(searchVal: string) {
+    searchVal = searchVal.trim();
+    searchVal = searchVal.toLowerCase();
+
+    if (!searchVal) {
+      setCurrentSections(elementsSections);
+      return;
+    }
+
+    const newSections = currentSections
+      .map((section) => ({
+        ...section,
+        elements: section.elements.filter(
+          (element) =>
+            element.toLocaleLowerCase().includes(searchVal) ||
+            section.title.toLocaleLowerCase().includes(searchVal),
+        ),
+      }))
+      .filter((section) => section.elements.length != 0);
+
+    setCurrentSections(newSections);
+  }
 
   return (
     <div
@@ -50,8 +75,8 @@ const ElementsBuilder: React.FC<IElementsBuilder> = ({ className }) => {
         if (selectedElement) setSelectedElement(null);
       }}
     >
-      <SearchBar className="mb-9.5" />
-      {elementsSections.map((section) => (
+      <SearchBar className="mb-9.5" filterElements={filterElements} />
+      {currentSections.map((section) => (
         <div key={section.title} className="my-5">
           <h2 className="mb-2.5 text-sm text-gray-500">{section.title}</h2>
           <div className="grid grid-cols-2 gap-2.5">
