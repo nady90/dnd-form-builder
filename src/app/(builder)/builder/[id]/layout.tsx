@@ -3,6 +3,7 @@ import React, { ReactNode } from "react";
 import { GetFormByIdAction } from "@/actions/form";
 import BuilderBottomNavbar from "@/components/custom/navbars/builder-bottom-navbar/BuilderBottomNavbar";
 import BuilderTopNavbar from "@/components/custom/navbars/builder-top-navbar/BuilderTopNavbar";
+import { PrismaFormNotFound } from "@/errors/prisma-errors";
 
 export default async function BuilderLayout({
   children,
@@ -13,11 +14,17 @@ export default async function BuilderLayout({
 }) {
   const id = (await params).id;
   const form = await GetFormByIdAction(Number(id));
+  console.log("🚀 ~ BuilderLayout ~ form:", form);
+
+  if (!form) {
+    throw new PrismaFormNotFound();
+  }
 
   return (
     <div className="flex h-screen flex-col">
       <div>
         <BuilderTopNavbar
+          formId={form.id}
           title={form?.name || "Form Builder"}
           description={
             form?.description || "Add and customize forms for your needs"

@@ -1,5 +1,6 @@
 "use client";
 import { formatDistance } from "date-fns";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { MdRemoveRedEye } from "react-icons/md";
@@ -12,18 +13,20 @@ export interface IBuilderTopNavbar {
   title: string;
   description: string;
   savedAt: Date;
+  formId: number;
 }
 
 const BuilderTopNavbar: React.FC<IBuilderTopNavbar> = ({
   title,
   description,
   savedAt,
+  formId,
 }) => {
   return (
     <div className="flex h-[88px] flex-row items-center justify-between border-b border-gray-100 px-5 py-4">
       <LeftDiv title={title} description={description} />
 
-      <CenterDiv />
+      <CenterDiv formId={formId} />
 
       <RightDiv savedAt={savedAt} />
     </div>
@@ -110,40 +113,47 @@ function LeftDiv({
   );
 }
 
-function CenterDiv() {
-  const [selectedIdx, setSelectedIdx] = useState<number>(0);
+function CenterDiv({ formId }: { formId: number }) {
+  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <div className="inline-flex w-[271px] flex-row items-center justify-center rounded-md bg-gray-100 p-1 text-xs font-medium text-gray-800">
       <div
         onClick={() => {
-          setSelectedIdx(0);
+          router.push(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/builder/${formId}/fields`,
+          );
         }}
         className={cn(
           "inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1",
-          [selectedIdx === 0 && "bg-white"],
+          [pathname.includes("fields") && "bg-white"],
         )}
       >
         Fields
       </div>
       <div
         onClick={() => {
-          setSelectedIdx(1);
+          router.push(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/builder/${formId}/workflow`,
+          );
         }}
         className={cn(
           "inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1",
-          [selectedIdx === 1 && "bg-white"],
+          [pathname.includes("workflow") && "bg-white"],
         )}
       >
         Workflow
       </div>
       <div
         onClick={() => {
-          setSelectedIdx(2);
+          router.push(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/builder/${formId}/permissions`,
+          );
         }}
         className={cn(
           "inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1",
-          [selectedIdx === 2 && "bg-white"],
+          [pathname.includes("permissions") && "bg-white"],
         )}
       >
         Permissions
