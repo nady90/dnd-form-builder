@@ -58,18 +58,25 @@ function LeftDiv({
             </p>
           )}
           {isEditingTitle && (
-            <Input
-              aria-label="change title"
-              className="h-[28px] w-10/12 rounded-none border-none outline-none selection:border-none selection:ring-0 selection:outline-none focus:border-none focus:shadow-none focus:ring-0 focus:outline-none"
-              ref={(element) => {
-                element?.focus();
-              }}
-              onBlur={(e) => {
-                setLocalTitle(e.target.value);
-                setIsEditingTitle(false);
-              }}
-              placeholder={localTitle}
-            />
+            <div className="relative h-[28px] w-10/12">
+              <Input
+                aria-label="change title"
+                className={cn(
+                  "full h-[28px] rounded-none text-lg font-bold text-gray-800",
+                  // To override shadcn defaults
+                  "focus-visible:ring-none focus-visible:border focus-visible:border-blue-500 focus-visible:ring-[0px]",
+                )}
+                ref={(element) => {
+                  element?.focus();
+                }}
+                onBlur={(e) => {
+                  setLocalTitle(e.target.value);
+                  setIsEditingTitle(false);
+                }}
+                placeholder={localTitle}
+              />
+              <InputDecorations />
+            </div>
           )}
           <EditIcon
             role="button"
@@ -175,6 +182,17 @@ function RightDiv({ savedAt }: { savedAt: Date }) {
         <MdRemoveRedEye className="text-blue-500" />
       </div>
     </div>
+  );
+}
+
+function InputDecorations() {
+  return (
+    <>
+      <div className="absolute top-[-2.0px] left-[-2.0px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
+      <div className="absolute top-[-2.0px] right-[-2.0px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
+      <div className="absolute right-[-2.0px] bottom-[-2.0px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
+      <div className="absolute bottom-[-2.0px] left-[-2.0px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
+    </>
   );
 }
 
