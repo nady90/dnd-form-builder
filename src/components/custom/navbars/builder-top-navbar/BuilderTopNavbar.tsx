@@ -1,7 +1,7 @@
 "use client";
 import { formatDistance } from "date-fns";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import { IoMdClose } from "react-icons/io";
 import { MdRemoveRedEye } from "react-icons/md";
 
@@ -133,45 +133,9 @@ function CenterDiv({ formId }: { formId: number }) {
 
   return (
     <div className="inline-flex w-[271px] flex-row items-center justify-center rounded-md bg-gray-100 p-1 text-xs font-medium text-gray-800">
-      <div
-        onClick={() => {
-          router.push(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/builder/${formId}/fields`,
-          );
-        }}
-        className={cn(
-          "inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1",
-          [pathname.includes("fields") && "bg-white"],
-        )}
-      >
-        Fields
-      </div>
-      <div
-        onClick={() => {
-          router.push(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/builder/${formId}/workflow`,
-          );
-        }}
-        className={cn(
-          "inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1",
-          [pathname.includes("workflow") && "bg-white"],
-        )}
-      >
-        Workflow
-      </div>
-      <div
-        onClick={() => {
-          router.push(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/builder/${formId}/permissions`,
-          );
-        }}
-        className={cn(
-          "inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1",
-          [pathname.includes("permissions") && "bg-white"],
-        )}
-      >
-        Permissions
-      </div>
+      <FieldsTab formId={formId} />
+      <WorkflowTab formId={formId} />
+      <PermissionsTab formId={formId} />
     </div>
   );
 }
@@ -214,4 +178,82 @@ function InputDecorations({ type }: { type: "title" | "description" }) {
   }
 }
 
+function FieldsTab({ formId }: { formId: number }) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
+
+  function changeRoute() {
+    startTransition(() => {
+      router.push(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/builder/${formId}/fields`,
+      );
+    });
+  }
+
+  return (
+    <div
+      onClick={changeRoute}
+      className={cn(
+        "inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1 text-gray-800",
+        [pathname.includes("fields") && "bg-white"],
+        isPending && "cursor-wait",
+      )}
+    >
+      Fields
+    </div>
+  );
+}
+
+function WorkflowTab({ formId }: { formId: number }) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
+
+  function changeRoute() {
+    startTransition(() => {
+      router.push(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/builder/${formId}/workflow`,
+      );
+    });
+  }
+  return (
+    <div
+      onClick={changeRoute}
+      className={cn(
+        "inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1",
+        [pathname.includes("workflow") && "bg-white"],
+        isPending && "cursor-wait",
+      )}
+    >
+      Workflow
+    </div>
+  );
+}
+
+function PermissionsTab({ formId }: { formId: number }) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
+
+  function changeRoute() {
+    startTransition(() => {
+      router.push(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/builder/${formId}/permissions`,
+      );
+    });
+  }
+  return (
+    <div
+      onClick={changeRoute}
+      className={cn(
+        "inline-flex grow cursor-pointer items-center justify-center rounded-sm bg-transparent px-3 py-1",
+        [pathname.includes("permissions") && "bg-white"],
+        isPending && "cursor-wait",
+      )}
+    >
+      Permissions
+    </div>
+  );
+}
 export default BuilderTopNavbar;
