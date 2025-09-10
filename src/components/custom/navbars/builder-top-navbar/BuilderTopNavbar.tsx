@@ -53,7 +53,12 @@ function LeftDiv({
       <div className="flex w-[233px] flex-col gap-y-1">
         <div className="flex flex-row items-start justify-between">
           {!isEditingTitle && (
-            <p className="truncate text-lg font-bold text-gray-800">
+            <p
+              className="truncate text-lg font-bold text-gray-800"
+              onClick={() => {
+                setIsEditingTitle(true);
+              }}
+            >
               {localTitle ? localTitle : "No title"}
             </p>
           )}
@@ -69,11 +74,18 @@ function LeftDiv({
                 ref={(element) => {
                   element?.focus();
                 }}
-                onBlur={(e) => {
+                onChange={(e) => {
                   setLocalTitle(e.target.value);
+                }}
+                onBlur={() => {
                   setIsEditingTitle(false);
                 }}
                 placeholder={localTitle}
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") {
+                    setIsEditingTitle(false);
+                  }
+                }}
               />
               <InputDecorations type="title" />
             </div>
@@ -89,7 +101,12 @@ function LeftDiv({
 
         <div className="flex flex-row items-start justify-between">
           {!isEditingDescription && (
-            <p className="w-10/12 truncate text-xs font-light text-gray-800">
+            <p
+              className="w-10/12 truncate text-xs font-light text-gray-800"
+              onClick={() => {
+                setIsEditingDescription(true);
+              }}
+            >
               {localDescription ? localDescription : "No description"}
             </p>
           )}
@@ -105,9 +122,16 @@ function LeftDiv({
                 ref={(element) => {
                   element?.focus();
                 }}
-                onBlur={(e) => {
+                onChange={(e) => {
                   setLocalDescription(e.target.value);
+                }}
+                onBlur={() => {
                   setIsEditingDescription(false);
+                }}
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") {
+                    setIsEditingDescription(false);
+                  }
                 }}
                 placeholder={localDescription}
               />
