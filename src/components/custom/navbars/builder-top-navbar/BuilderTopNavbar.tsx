@@ -152,9 +152,6 @@ function LeftDiv({
 }
 
 function CenterDiv({ formId }: { formId: number }) {
-  const router = useRouter();
-  const pathname = usePathname();
-
   return (
     <div className="inline-flex w-[271px] flex-row items-center justify-center rounded-md bg-gray-100 p-1 text-xs font-medium text-gray-800">
       <FieldsTab formId={formId} />
