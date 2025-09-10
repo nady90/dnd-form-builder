@@ -75,7 +75,7 @@ function LeftDiv({
                 }}
                 placeholder={localTitle}
               />
-              <InputDecorations />
+              <InputDecorations type="title" />
             </div>
           )}
           <EditIcon
@@ -89,23 +89,30 @@ function LeftDiv({
 
         <div className="flex flex-row items-start justify-between">
           {!isEditingDescription && (
-            <p className="w-10/12 text-xs font-light text-gray-800">
+            <p className="w-10/12 truncate text-xs font-light text-gray-800">
               {localDescription ? localDescription : "No description"}
             </p>
           )}
           {isEditingDescription && (
-            <Input
-              aria-label="change description"
-              className="h-[32px] w-10/12 rounded-none border-none outline-none selection:border-none selection:ring-0 selection:outline-none focus:border-none focus:shadow-none focus:ring-0 focus:outline-none"
-              ref={(element) => {
-                element?.focus();
-              }}
-              onBlur={(e) => {
-                setLocalDescription(e.target.value);
-                setIsEditingDescription(false);
-              }}
-              placeholder={localDescription}
-            />
+            <div className="relative h-[16px] w-10/12 py-3">
+              <Input
+                aria-label="change description"
+                className={cn(
+                  "relative top-1/2 left-1/2 h-[16px] w-full -translate-x-1/2 -translate-y-1/2 rounded-none py-3 text-xs font-light text-gray-800",
+                  // To override shadcn defaults
+                  "focus-visible:ring-none focus-visible:border focus-visible:border-blue-500 focus-visible:ring-[0px]",
+                )}
+                ref={(element) => {
+                  element?.focus();
+                }}
+                onBlur={(e) => {
+                  setLocalDescription(e.target.value);
+                  setIsEditingDescription(false);
+                }}
+                placeholder={localDescription}
+              />
+              <InputDecorations type="description" />
+            </div>
           )}
           <EditIcon
             role="button"
@@ -185,15 +192,26 @@ function RightDiv({ savedAt }: { savedAt: Date }) {
   );
 }
 
-function InputDecorations() {
-  return (
-    <>
-      <div className="absolute top-[-2.0px] left-[-2.0px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
-      <div className="absolute top-[-2.0px] right-[-2.0px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
-      <div className="absolute right-[-2.0px] bottom-[-2.0px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
-      <div className="absolute bottom-[-2.0px] left-[-2.0px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
-    </>
-  );
+function InputDecorations({ type }: { type: "title" | "description" }) {
+  if (type === "title") {
+    return (
+      <>
+        <div className="absolute top-[-2.0px] left-[-2.0px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
+        <div className="absolute top-[-2.0px] right-[-2.0px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
+        <div className="absolute right-[-2.0px] bottom-[-2.0px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
+        <div className="absolute bottom-[-2.0px] left-[-2.0px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="absolute top-[-1px] left-[-1px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
+        <div className="absolute top-[-1px] right-[-1px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
+        <div className="absolute right-[-1px] bottom-[-1px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
+        <div className="absolute bottom-[-1px] left-[-1px] h-[5px] w-[5px] border border-blue-500 bg-white"></div>
+      </>
+    );
+  }
 }
 
 export default BuilderTopNavbar;
