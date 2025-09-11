@@ -20,6 +20,10 @@ export type FormElementInstance = {
     placeholder?: string;
     helperText?: string;
     defaultValue?: string;
+    styles: {
+      width: "half" | "full";
+      alignment: "left" | "center" | "right";
+    };
   };
 };
 

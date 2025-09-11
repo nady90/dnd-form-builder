@@ -21,6 +21,11 @@ type FormContextType = {
     overId: string,
     droppingOverBottomHalf: boolean,
   ) => void;
+  changeElementWidth: (width: "full" | "half", el: FormElementInstance) => void;
+  changeElementAlignment: (
+    alignment: "left" | "center" | "right",
+    el: FormElementInstance,
+  ) => void;
 };
 
 export const FormContext = React.createContext<FormContextType | null>(null);
@@ -90,6 +95,52 @@ export default function FormContextProvider({
     });
   }
 
+  function changeElementWidth(
+    width: "full" | "half",
+    element: FormElementInstance,
+  ) {
+    setElements(() => {
+      const newElements = [...elements];
+      const index = newElements.findIndex((el) => el.id === element.id);
+
+      newElements[index] = {
+        ...element,
+        attributes: {
+          ...element.attributes,
+          styles: {
+            ...element.attributes.styles,
+            width: width,
+          },
+        },
+      };
+
+      return newElements;
+    });
+  }
+
+  function changeElementAlignment(
+    alignment: "left" | "center" | "right",
+    element: FormElementInstance,
+  ) {
+    setElements(() => {
+      const newElements = [...elements];
+      const index = newElements.findIndex((el) => el.id === element.id);
+
+      newElements[index] = {
+        ...element,
+        attributes: {
+          ...element.attributes,
+          styles: {
+            ...element.attributes.styles,
+            alignment: alignment,
+          },
+        },
+      };
+
+      return newElements;
+    });
+  }
+
   return (
     <FormContext.Provider
       value={{
@@ -100,6 +151,8 @@ export default function FormContextProvider({
         updateElement,
         removeElement,
         changeElementPosition,
+        changeElementWidth,
+        changeElementAlignment,
       }}
     >
       {children}

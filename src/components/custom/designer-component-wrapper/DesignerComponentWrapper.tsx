@@ -78,6 +78,12 @@ export default function DesignerComponentWrapper({
       className={cn(
         "group relative cursor-grab",
         isSelected && "border border-blue-500 bg-blue-100 px-3 py-3",
+        el.attributes.styles.width === "full" ? "w-full" : "w-1/2",
+        el.attributes.styles.alignment === "left"
+          ? "mr-auto"
+          : el.attributes.styles.alignment === "center"
+            ? "mx-auto"
+            : "ml-auto",
       )}
       ref={draggable.setNodeRef}
       {...draggable.attributes}
@@ -174,6 +180,8 @@ function SelectedUIElements({ el }: { el: FormElementInstance }) {
 }
 
 function StylesSettingsContainer({ el }: { el: FormElementInstance }) {
+  const { changeElementWidth, changeElementAlignment } = useFormContext();
+
   return (
     <PopoverContent asChild>
       <div className="flex min-h-[119px] w-[196px] translate-y-2 flex-col gap-y-1.5 rounded-md border border-gray-200 bg-white px-2 py-1.5 text-xs font-medium text-gray-800">
@@ -186,7 +194,11 @@ function StylesSettingsContainer({ el }: { el: FormElementInstance }) {
             <span>Size</span>
             <div className="flex flex-row gap-x-4">
               <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger
+                  onClick={() => {
+                    changeElementWidth("half", el);
+                  }}
+                >
                   <div className="group flex h-6 w-6 cursor-pointer items-center justify-center">
                     <SmallSizeIcon className="cursor-pointer transition-all duration-300" />
                   </div>
@@ -195,7 +207,11 @@ function StylesSettingsContainer({ el }: { el: FormElementInstance }) {
               </Tooltip>
 
               <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger
+                  onClick={() => {
+                    changeElementWidth("full", el);
+                  }}
+                >
                   <div className="group flex h-6 w-6 cursor-pointer items-center justify-center">
                     <LargeSizeIcon className="cursor-pointer transition-all duration-300" />
                   </div>
@@ -209,21 +225,33 @@ function StylesSettingsContainer({ el }: { el: FormElementInstance }) {
             <span>Alignment</span>
             <div className="flex flex-row gap-x-1">
               <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger
+                  onClick={() => {
+                    changeElementAlignment("left", el);
+                  }}
+                >
                   <AlignLeftIcon className="cursor-pointer transition-all duration-300" />
                 </TooltipTrigger>
                 <TooltipContent>Align left</TooltipContent>
               </Tooltip>
 
               <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger
+                  onClick={() => {
+                    changeElementAlignment("center", el);
+                  }}
+                >
                   <AlignCenterIcon className="cursor-pointer transition-all duration-300" />
                 </TooltipTrigger>
                 <TooltipContent>Align center</TooltipContent>
               </Tooltip>
 
               <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger
+                  onClick={() => {
+                    changeElementAlignment("right", el);
+                  }}
+                >
                   <AlignRightIcon className="cursor-pointer transition-all duration-300" />
                 </TooltipTrigger>
                 <TooltipContent>Align right</TooltipContent>

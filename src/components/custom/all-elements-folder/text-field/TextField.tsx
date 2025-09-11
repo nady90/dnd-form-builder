@@ -34,6 +34,10 @@ const TextField: FormElement = {
         required: true,
         placeholder: "placeholder here",
         helperText: "helper text here",
+        styles: {
+          width: "full",
+          alignment: "left",
+        },
       },
     };
   },
