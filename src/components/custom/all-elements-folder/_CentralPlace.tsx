@@ -8,6 +8,7 @@ export type FormElement = {
   designerComponent: React.FC<{ elementInstance: FormElementInstance }>;
   sidebarComponent: FormBuilderElementType;
   propertiesComponent: React.FC<{ elementInstance: FormElementInstance }>;
+  previewComponent: React.FC<{ elementInstance: FormElementInstance }>;
   construct: (id: string) => FormElementInstance;
 };
 

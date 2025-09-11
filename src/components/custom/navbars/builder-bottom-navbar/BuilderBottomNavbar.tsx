@@ -4,8 +4,10 @@ import React from "react";
 import { toast } from "sonner";
 
 import ExportIcon from "@/components/icons/ExportIcon";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 
 import NavbarBtn from "../../buttons/navbar-button/NavbarBtn";
+import PreviewDialog from "../../dialogs/preview-dialog/PreviewDialog";
 
 export interface IBuilderBottomNavbar {
   link: string;
@@ -38,9 +40,16 @@ const BuilderBottomNavbar: React.FC<IBuilderBottomNavbar> = ({ link }) => {
         <NavbarBtn loading={false} variety="delete">
           Delete
         </NavbarBtn>
-        <NavbarBtn loading={false} variety="preview">
-          Preview
-        </NavbarBtn>
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <NavbarBtn loading={false} variety="preview">
+              Preview
+            </NavbarBtn>
+          </DialogTrigger>
+          <PreviewDialog />
+        </Dialog>
+
         <NavbarBtn loading={false} variety="save">
           Save & Publish
         </NavbarBtn>

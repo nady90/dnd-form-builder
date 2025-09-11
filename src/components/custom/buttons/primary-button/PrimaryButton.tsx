@@ -15,9 +15,11 @@ const PrimaryButton: React.FC<IPrimaryButton> = ({
   className,
   type,
   disabled = false,
+  ...props
 }) => {
   return (
     <Button
+      {...props}
       type={type}
       disabled={disabled}
       className={cn(
