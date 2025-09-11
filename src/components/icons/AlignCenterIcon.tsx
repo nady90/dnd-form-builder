@@ -14,9 +14,9 @@ export default function AlignCenterIcon({ className }: { className?: string }) {
         className="group-hover:stroke-blue-500"
         d="M1 1H19M4 6H16M8 11H12"
         stroke="#1E2939"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

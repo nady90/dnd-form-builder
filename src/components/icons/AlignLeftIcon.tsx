@@ -14,25 +14,25 @@ export default function AlignLeftIcon({ className }: { className?: string }) {
         className="group-hover:stroke-blue-500"
         d="M1 1H19"
         stroke="#1E2939"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         className="group-hover:stroke-blue-500"
         d="M1 6H13"
         stroke="#1E2939"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         className="group-hover:stroke-blue-500"
         d="M1 11H5"
         stroke="#1E2939"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

@@ -14,7 +14,6 @@ export default async function BuilderLayout({
 }) {
   const id = (await params).id;
   const form = await GetFormByIdAction(Number(id));
-  console.log("🚀 ~ BuilderLayout ~ form:", form);
 
   if (!form) {
     throw new PrismaFormNotFound();
