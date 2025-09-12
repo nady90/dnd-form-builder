@@ -114,14 +114,17 @@ export function TextFieldPropertiesComponent({
 
   return (
     <Form {...form}>
-      <form onBlur={form.handleSubmit(onSubmit)}>
+      <form
+        onBlur={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-y-5"
+      >
         <FormField
           control={form.control}
           name="label"
           render={({ field }) => {
             return (
-              <FormItem>
-                <FormLabel>Label</FormLabel>
+              <FormItem className="mt-5 flex flex-col gap-y-2.5">
+                <FormLabel>Field Label</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -135,7 +138,7 @@ export function TextFieldPropertiesComponent({
           name="required"
           render={({ field }) => {
             return (
-              <FormItem>
+              <FormItem className="flex flex-col gap-y-2.5">
                 <FormLabel>Required</FormLabel>
                 <FormControl>
                   <Switch
@@ -153,7 +156,7 @@ export function TextFieldPropertiesComponent({
           name="helperText"
           render={({ field }) => {
             return (
-              <FormItem>
+              <FormItem className="flex flex-col gap-y-2.5">
                 <FormLabel>Helper Text</FormLabel>
                 <FormControl>
                   <Input {...field} />
