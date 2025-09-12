@@ -111,11 +111,19 @@ const Designer: React.FC = () => {
         </div>
       )}
       {elements.length === 0 && droppable.isOver && (
-        <div className="flex h-[120px] w-full items-center justify-center bg-blue-200 p-8 text-xl"></div>
+        <div className="flex h-[120px] w-full items-end justify-end border-2 border-dashed border-blue-400 bg-blue-200 p-8 text-xl text-blue-400">
+          Drop here to add new element
+        </div>
       )}
       {elements.map((el, idx) => {
         return <DesignerComponentWrapper el={el} key={idx} />;
       })}
+
+      {elements.length > 0 && droppable.isOver && (
+        <div className="flex h-[120px] w-full items-end justify-end border-2 border-dashed border-blue-400 bg-blue-200 p-8 text-xl text-blue-400">
+          Drop here to add new element
+        </div>
+      )}
     </div>
   );
 };
