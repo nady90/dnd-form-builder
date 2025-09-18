@@ -3,12 +3,13 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import DeleteIcon from "@/components/icons/DeleteIcon";
 import PreviewIcon from "@/components/icons/PreviewIcon";
+import PublishIcon from "@/components/icons/PublishIcon";
 import SaveIcon from "@/components/icons/SaveIcon";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export type INavbarBtn = {
-  variety?: "save" | "preview" | "delete";
+  variety?: "save" | "preview" | "delete" | "publish";
   loading: boolean;
 } & React.ComponentProps<"button">;
 
@@ -25,11 +26,16 @@ const NavbarBtn: React.FC<INavbarBtn> = ({
         "inline-flex h-[25px] cursor-pointer items-center justify-center rounded-xs px-4 text-sm font-normal text-white",
         [variety === "save" && "bg-blue-500"],
         [variety === "save" && "text-xs"],
+
+        [variety === "publish" && "bg-blue-500"],
+        [variety === "publish" && "text-xs"],
+
         [variety === "preview" && "bg-white"],
         [variety === "preview" && "text-blue-500"],
         [variety === "delete" && "bg-red-500"],
         // Hover states
         [variety === "save" && "hover:bg-blue-700"],
+        [variety === "publish" && "hover:bg-blue-700"],
         [variety === "preview" && "hover:bg-gray-100"],
         [variety === "delete" && "hover:bg-red-700"],
         className,
@@ -41,6 +47,7 @@ const NavbarBtn: React.FC<INavbarBtn> = ({
           <AiOutlineLoading3Quarters className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-spin" />
           <div className="invisible">
             {variety === "save" && <SaveIcon />}
+            {variety === "publish" && <PublishIcon />}
             {variety === "preview" && <PreviewIcon />}
             {variety === "delete" && <DeleteIcon />}
             {children}
@@ -50,6 +57,7 @@ const NavbarBtn: React.FC<INavbarBtn> = ({
       {!loading && (
         <>
           {variety === "save" && <SaveIcon />}
+          {variety === "publish" && <PublishIcon />}
           {variety === "preview" && <PreviewIcon />}
           {variety === "delete" && <DeleteIcon />}
           {children}

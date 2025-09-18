@@ -4,3 +4,10 @@ export class FormCreationValidationError extends Error {
     this.name = "FormValidationError";
   }
 }
+
+export class FormSaveError extends Error {
+  constructor(message = "Could NOT save form") {
+    super(message);
+    this.name = "FormSaveError";
+  }
+}

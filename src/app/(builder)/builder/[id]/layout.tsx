@@ -34,6 +34,7 @@ export default async function BuilderLayout({
           link={
             "https://formcore.com/share/job/front-end/121FFb2d1CCR/new/long"
           }
+          formId={form.id}
         />
       </div>
 

@@ -7,13 +7,19 @@ import ExportIcon from "@/components/icons/ExportIcon";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 
 import NavbarBtn from "../../buttons/navbar-button/NavbarBtn";
+import PublishButton from "../../buttons/publish-button/PublishButton";
+import SaveButton from "../../buttons/save-button/SaveButton";
 import PreviewDialog from "../../dialogs/preview-dialog/PreviewDialog";
 
 export interface IBuilderBottomNavbar {
   link: string;
+  formId: number;
 }
 
-const BuilderBottomNavbar: React.FC<IBuilderBottomNavbar> = ({ link }) => {
+const BuilderBottomNavbar: React.FC<IBuilderBottomNavbar> = ({
+  link,
+  formId,
+}) => {
   return (
     <div className="flex h-[45px] flex-row justify-between border-b border-gray-200 px-5 py-2.5">
       <div className="flex flex-row items-center gap-x-2.5 text-base font-normal">
@@ -50,9 +56,9 @@ const BuilderBottomNavbar: React.FC<IBuilderBottomNavbar> = ({ link }) => {
           <PreviewDialog />
         </Dialog>
 
-        <NavbarBtn loading={false} variety="save">
-          Save & Publish
-        </NavbarBtn>
+        <SaveButton formId={formId} />
+
+        <PublishButton />
       </div>
     </div>
   );

@@ -26,6 +26,7 @@ type FormContextType = {
     alignment: "left" | "center" | "right",
     el: FormElementInstance,
   ) => void;
+  setElements: React.Dispatch<React.SetStateAction<FormElementInstance[]>>;
 };
 
 export const FormContext = React.createContext<FormContextType | null>(null);
@@ -153,6 +154,7 @@ export default function FormContextProvider({
         changeElementPosition,
         changeElementWidth,
         changeElementAlignment,
+        setElements,
       }}
     >
       {children}
