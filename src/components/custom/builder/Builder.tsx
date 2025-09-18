@@ -9,6 +9,7 @@ import {
 import React, { useEffect, useId, useState } from "react";
 
 import ElementsBuilder from "@/components/sections/elements-builder-section/ElementsBuilder";
+import PublishedSuccessSection from "@/components/sections/published-success-section/PublishedSuccessSection";
 import { Form } from "@/generated/prisma";
 import useFormContext from "@/hooks/useFormContext";
 
@@ -46,6 +47,10 @@ const Builder: React.FC<IBuilder> = ({ form }) => {
     setElements(JSON.parse(form.content));
     setIsReady(true);
   }, [form, setElements]);
+
+  if (form.published) {
+    return <PublishedSuccessSection form={form} />;
+  }
 
   return (
     <DndContext id={id} sensors={sensors}>

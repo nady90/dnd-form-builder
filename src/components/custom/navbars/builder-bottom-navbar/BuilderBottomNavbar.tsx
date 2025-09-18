@@ -58,7 +58,7 @@ const BuilderBottomNavbar: React.FC<IBuilderBottomNavbar> = ({
 
         <SaveButton formId={formId} />
 
-        <PublishButton />
+        <PublishButton formId={formId} />
       </div>
     </div>
   );

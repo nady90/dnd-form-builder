@@ -11,3 +11,10 @@ export class FormSaveError extends Error {
     this.name = "FormSaveError";
   }
 }
+
+export class FormPublishError extends Error {
+  constructor(message = "Could NOT publish form") {
+    super(message);
+    this.name = "FormPublishError";
+  }
+}

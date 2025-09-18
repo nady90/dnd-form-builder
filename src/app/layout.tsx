@@ -3,6 +3,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { type Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 
 import { Toaster } from "@/components/ui/sonner";
 import FormContextProvider from "@/contexts/FormContext";
@@ -39,6 +40,7 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased`}
         >
           <Toaster />
+          <NextTopLoader />
 
           <FormContextProvider>{children}</FormContextProvider>
         </body>
