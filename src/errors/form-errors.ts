@@ -18,3 +18,17 @@ export class FormPublishError extends Error {
     this.name = "FormPublishError";
   }
 }
+
+export class SubmitPageFormNotFound extends Error {
+  constructor(message = "Could NOT find form content") {
+    super(message);
+    this.name = "SubmitPageFormNotFound";
+  }
+}
+
+export class FormSubmitError extends Error {
+  constructor(message = "Could NOT submit form") {
+    super(message);
+    this.name = "FormSubmitError";
+  }
+}

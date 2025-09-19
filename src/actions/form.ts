@@ -105,3 +105,42 @@ export async function PublishFormContentAction(id: number) {
     },
   });
 }
+
+export async function GetFormContentByShareUrlAction(shareUrl: string) {
+  return await prisma.form.update({
+    where: {
+      shareURL: shareUrl,
+      published: true,
+    },
+    data: {
+      visits: {
+        increment: 1,
+      },
+    },
+  });
+}
+
+export async function SubmitFormAction(formId: number, jsContent: string) {
+  const user = await currentUser();
+  if (!user) {
+    throw new UserNotFoundError();
+  }
+
+  await prisma.form.update({
+    where: {
+      userId: user.id,
+      id: formId,
+      published: true,
+    },
+    data: {
+      submissions: {
+        increment: 1,
+      },
+      FormSubmissions: {
+        create: {
+          content: jsContent,
+        },
+      },
+    },
+  });
+}

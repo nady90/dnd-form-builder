@@ -45,6 +45,7 @@ const TextField: FormElement = {
   sidebarComponent: "TextField",
   propertiesComponent: TextFieldPropertiesComponent,
   previewComponent: TextFieldPreviewComponent,
+  submitComponent: TextFieldSubmitComponent,
 };
 
 export function TextFieldDesignerComponent({
@@ -188,6 +189,50 @@ export function TextFieldPreviewComponent({
         )}
       </Label>
       <Input
+        name={elementInstance.id}
+        id={elementInstance.id}
+        className="w-full gap-x-1 rounded-none border border-gray-200 bg-white px-2 py-1.5 text-xs font-light text-gray-400"
+        defaultValue={
+          elementInstance.attributes.defaultValue || "No default value"
+        }
+      />
+      {elementInstance.attributes.helperText && (
+        <p className="text-xs font-light text-gray-500">
+          {elementInstance.attributes.helperText}
+        </p>
+      )}
+    </div>
+  );
+}
+
+export function TextFieldSubmitComponent({
+  elementInstance,
+  setFormValues,
+}: {
+  elementInstance: FormElementInstance;
+  setFormValues: React.Dispatch<
+    React.SetStateAction<{ [key: string]: string }>
+  >;
+}) {
+  return (
+    <div className="flex w-full flex-col items-start gap-y-1">
+      <Label
+        htmlFor={elementInstance.id}
+        className="relative text-sm font-medium text-gray-800"
+      >
+        {elementInstance?.attributes?.label || "No label"}
+        {elementInstance?.attributes?.required && (
+          <FaStarOfLife className="absolute top-0 -right-2 h-[7.5px] w-[7.5px] text-red-500" />
+        )}
+      </Label>
+      <Input
+        onChange={(e) => {
+          setFormValues((prev) => {
+            const newFormValues = { ...prev };
+            prev[elementInstance.id] = e.target.value;
+            return newFormValues;
+          });
+        }}
         name={elementInstance.id}
         id={elementInstance.id}
         className="w-full gap-x-1 rounded-none border border-gray-200 bg-white px-2 py-1.5 text-xs font-light text-gray-400"

@@ -9,6 +9,12 @@ export type FormElement = {
   sidebarComponent: FormBuilderElementType;
   propertiesComponent: React.FC<{ elementInstance: FormElementInstance }>;
   previewComponent: React.FC<{ elementInstance: FormElementInstance }>;
+  submitComponent: React.FC<{
+    elementInstance: FormElementInstance;
+    setFormValues: React.Dispatch<
+      React.SetStateAction<{ [key: string]: string }>
+    >;
+  }>;
   construct: (id: string) => FormElementInstance;
 };
 

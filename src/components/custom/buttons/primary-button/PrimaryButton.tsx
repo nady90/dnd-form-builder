@@ -3,12 +3,12 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export interface IPrimaryButton {
+export type IPrimaryButton = {
   children: React.ReactNode;
   className?: string;
   type?: "button" | "submit" | "reset" | undefined;
   disabled?: boolean;
-}
+} & React.ComponentProps<"button">;
 
 const PrimaryButton: React.FC<IPrimaryButton> = ({
   children,
