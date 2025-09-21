@@ -2,7 +2,7 @@ import { ISearchBar } from "./SearchBar";
 
 const base: ISearchBar = {
   className: "",
-  filterElements: () => {},
+  onChange: () => {},
 };
 
 export const mockSearchBarProps = {
