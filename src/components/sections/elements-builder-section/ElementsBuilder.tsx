@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { useDebouncedCallback } from "use-debounce";
 
 import QuestionTypeButton, {
   FormBuilderElementType,
@@ -42,31 +43,27 @@ export interface IElementsBuilder {
 }
 
 const ElementsBuilder: React.FC<IElementsBuilder> = ({ className }) => {
-  const [currentSections, setCurrentSections] = useState(elementsSections);
+  const [searchTerm, setSearchTerm] = useState("");
   const { setSelectedElement, selectedElement } = useFormContext();
 
-  function filterElements(searchVal: string) {
-    searchVal = searchVal.trim();
-    searchVal = searchVal.toLowerCase();
+  const debouncedSearch = useDebouncedCallback((value: string) => {
+    setSearchTerm(value.trim().toLowerCase());
+  }, 300);
 
-    if (!searchVal) {
-      setCurrentSections(elementsSections);
-      return;
-    }
+  const filteredSections = useMemo(() => {
+    if (!searchTerm) return elementsSections;
 
-    const newSections = currentSections
+    return elementsSections
       .map((section) => ({
         ...section,
         elements: section.elements.filter(
           (element) =>
-            element.toLocaleLowerCase().includes(searchVal) ||
-            section.title.toLocaleLowerCase().includes(searchVal),
+            element.toLowerCase().includes(searchTerm) ||
+            section.title.toLowerCase().includes(searchTerm),
         ),
       }))
-      .filter((section) => section.elements.length != 0);
-
-    setCurrentSections(newSections);
-  }
+      .filter((section) => section.elements.length > 0);
+  }, [searchTerm]);
 
   return (
     <div
@@ -75,8 +72,13 @@ const ElementsBuilder: React.FC<IElementsBuilder> = ({ className }) => {
         if (selectedElement) setSelectedElement(null);
       }}
     >
-      <SearchBar className="mb-9.5" filterElements={filterElements} />
-      {currentSections.map((section) => (
+      <SearchBar className="mb-9.5" onChange={debouncedSearch} />
+      {!filteredSections.length && (
+        <div className="text-center text-sm text-gray-500">
+          No elements found
+        </div>
+      )}
+      {filteredSections.map((section) => (
         <div key={section.title} className="my-5">
           <h2 className="mb-2.5 text-sm text-gray-500">{section.title}</h2>
           <div className="grid grid-cols-2 gap-2.5">
