@@ -1,7 +1,18 @@
 import { FormBuilderElementType } from "../buttons/question-type-button/QuestionTypeButton";
+import ParagraphField from "./paragraph/Paragraph";
+import SeparatorField from "./separator/Separator";
+import SpacerField from "./spacer/Spacer";
+import SubTitleField from "./sub-title/SubTitle";
 import TextField from "./text-field/TextField";
+import TitleField from "./title/Title";
 
-export type AllElementsType = "TextField";
+export type AllElementsType =
+  | "TextField"
+  | "Title"
+  | "SubTitle"
+  | "Paragraph"
+  | "Separator"
+  | "Spacer";
 
 export type FormElement = {
   type: AllElementsType;
@@ -40,4 +51,9 @@ type FormElementsType = {
 
 export const FormElements: FormElementsType = {
   TextField: TextField,
+  Title: TitleField,
+  SubTitle: SubTitleField,
+  Paragraph: ParagraphField,
+  Separator: SeparatorField,
+  Spacer: SpacerField,
 };

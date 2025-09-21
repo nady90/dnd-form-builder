@@ -7,12 +7,17 @@ import Checklist from "@/components/icons/Checklist";
 import DateIcon from "@/components/icons/Date";
 import DateAndTime from "@/components/icons/DateAndTime";
 import Dropdown from "@/components/icons/Dropdown";
+import HeaderIcon from "@/components/icons/HeaderIcon";
 import ImageIcon from "@/components/icons/ImageIcon";
 import MultiLine from "@/components/icons/MultiLine";
 import Number from "@/components/icons/Number";
+import ParagraphIcon from "@/components/icons/ParagraphIcon";
 import Profile from "@/components/icons/Profile";
 import Sections from "@/components/icons/Sections";
+import SeparatorIcon from "@/components/icons/SeparatorIcon";
 import Slider from "@/components/icons/Slider";
+import SpacerIcon from "@/components/icons/SpacerIcon";
+import SubHeaderIcon from "@/components/icons/SubHeaderIcon";
 import Table from "@/components/icons/Table";
 import Text from "@/components/icons/Text";
 import { cn } from "@/lib/utils";
@@ -32,7 +37,12 @@ export type FormBuilderElementType =
   | "Checkbox"
   | "Attachments"
   | "Image"
-  | "Slider";
+  | "Slider"
+  | "Title"
+  | "SubTitle"
+  | "Paragraph"
+  | "Separator"
+  | "Spacer";
 
 export interface IQuestionTypeButton {
   className?: string;
@@ -65,6 +75,11 @@ const QuestionTypeButton: React.FC<IQuestionTypeButton> = ({
       {variant === "Attachments" && <Attachments />}
       {variant === "Image" && <ImageIcon />}
       {variant === "Slider" && <Slider />}
+      {variant === "Title" && <HeaderIcon />}
+      {variant === "SubTitle" && <SubHeaderIcon />}
+      {variant === "Paragraph" && <ParagraphIcon />}
+      {variant === "Separator" && <SeparatorIcon />}
+      {variant === "Spacer" && <SpacerIcon />}
       <div className="text-[12px] text-gray-800 capitalize">{variant}</div>
     </div>
   );
