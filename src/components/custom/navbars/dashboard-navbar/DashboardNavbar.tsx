@@ -17,7 +17,7 @@ import PrimaryButton from "../../buttons/primary-button/PrimaryButton";
 
 const DashboardNavbar: React.FC = () => {
   return (
-    <header className="sticky top-0 z-[99999] flex h-[60px] flex-col justify-center border-b border-gray-200 bg-white">
+    <header className="absolute top-0 z-[99999] flex h-[80px] w-full max-w-screen flex-col justify-center">
       <div className="flex h-full w-full flex-row items-center justify-between px-2 md:px-8">
         <Link href={"/"}>
           <Logo className="h-[35px] cursor-pointer md:h-[40px] md:w-[117px]" />
