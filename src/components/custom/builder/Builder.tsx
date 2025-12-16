@@ -10,9 +10,9 @@ import React, { useEffect, useId, useState } from "react";
 
 import ElementsBuilder from "@/components/sections/elements-builder-section/ElementsBuilder";
 import PublishedSuccessSection from "@/components/sections/published-success-section/PublishedSuccessSection";
-import { Form } from "@/generated/prisma";
 import useFormContext from "@/hooks/useFormContext";
 
+import { Form } from "../../../../node_modules/generated/prisma";
 import Designer from "../designer/Designer";
 import DragOverlayWrapper from "../DragOverlayWrapper/DragOverlayWrapper";
 import PropertiesSidebar from "../properties-sidebar/PropertiesSidebar";

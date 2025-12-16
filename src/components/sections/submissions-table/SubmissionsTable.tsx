@@ -2,7 +2,8 @@ import { formatDistance } from "date-fns";
 import React from "react";
 
 import { FormElementInstance } from "@/components/custom/all-elements-folder/_CentralPlace";
-import { FormSubmissions } from "@/generated/prisma";
+
+import { FormSubmissions } from "../../../../node_modules/generated/prisma";
 
 type SubmissionsTableProps = {
   formElements: FormElementInstance[];

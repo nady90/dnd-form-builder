@@ -8,7 +8,8 @@ import Logo from "@/components/icons/Logo";
 import SuccessIcon from "@/components/icons/SuccessIcon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Form } from "@/generated/prisma";
+
+import { Form } from "../../../../node_modules/generated/prisma";
 
 export default function PublishedSuccessSection({ form }: { form: Form }) {
   const shareUrl = window.location.origin + "/submit/" + form.shareURL;
