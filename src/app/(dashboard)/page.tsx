@@ -175,7 +175,7 @@ function FloatingIconsContainer({
           sectionRef={sectionRef}
           initial={{ opacity: 0, x: 1000 }}
           animate={{ opacity: 1, x: 0 }}
-          appearTransition={{ duration: 0.8, type: "spring" }}
+          appearTransition={{ duration: 0.4, type: "spring" }}
           rightValues={[13, 50]}
           topValues={[30, 110]}
           hoverAnimation={{
@@ -211,7 +211,7 @@ function FloatingIconsContainer({
           sectionRef={sectionRef}
           initial={{ opacity: 0, x: 400, top: "75%" }}
           animate={{ opacity: 100, x: 0, top: "55%" }}
-          appearTransition={{ duration: 0.8, type: "spring" }}
+          appearTransition={{ duration: 0.4, type: "spring" }}
           rightValues={[9, 45]}
           topValues={[55, 110]}
           hoverAnimation={{
@@ -248,7 +248,7 @@ function FloatingIconsContainer({
           sectionRef={sectionRef}
           initial={{ opacity: 0, x: 400, top: "100%" }}
           animate={{ opacity: 100, x: 0, top: "80%" }}
-          appearTransition={{ duration: 0.8, type: "spring" }}
+          appearTransition={{ duration: 0.4, type: "spring" }}
           rightValues={[13, 42]}
           topValues={[80, 110]}
           hoverAnimation={{
@@ -285,7 +285,7 @@ function FloatingIconsContainer({
           sectionRef={sectionRef}
           initial={{ opacity: 0, x: -500, top: "0%" }}
           animate={{ opacity: 100, x: 0, top: "30%" }}
-          appearTransition={{ duration: 0.8, type: "spring" }}
+          appearTransition={{ duration: 0.4, type: "spring" }}
           rightValues={[87, 42]}
           topValues={[30, 110]}
           hoverAnimation={{
@@ -322,7 +322,7 @@ function FloatingIconsContainer({
           sectionRef={sectionRef}
           initial={{ opacity: 0, x: -400, top: "75%" }}
           animate={{ opacity: 100, x: 0, top: "55%" }}
-          appearTransition={{ duration: 0.8, type: "spring" }}
+          appearTransition={{ duration: 0.4, type: "spring" }}
           rightValues={[91, 42]}
           topValues={[55, 110]}
           hoverAnimation={{
@@ -366,7 +366,7 @@ function FloatingIconsContainer({
           sectionRef={sectionRef}
           initial={{ opacity: 0, x: -400, top: "100%" }}
           animate={{ opacity: 100, x: 0, top: "80%" }}
-          appearTransition={{ duration: 0.8, type: "spring" }}
+          appearTransition={{ duration: 0.4, type: "spring" }}
           rightValues={[85, 38]}
           topValues={[80, 110]}
           hoverAnimation={{
