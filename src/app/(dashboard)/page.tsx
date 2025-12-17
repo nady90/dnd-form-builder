@@ -16,9 +16,9 @@ export default function Home() {
   return (
     <div className="max-w-screen overflow-hidden">
       <SectionOne />
-      <SectionTwo />
+      {/* <SectionTwo />
       <SectionThree />
-      <SectionFour />
+      <SectionFour /> */}
     </div>
   );
 }
@@ -56,7 +56,7 @@ function HeroText() {
         <br />
         <motion.span
           className="inline-block"
-          initial={{ y: -26, opacity: 0 }}
+          initial={{ y: -10, opacity: 0 }}
           animate={{
             y: 0,
             opacity: 100,
@@ -69,12 +69,12 @@ function HeroText() {
         </motion.span>
       </h1>
       <motion.div
-        initial={{ y: 26, opacity: 0 }}
+        initial={{ y: 50, opacity: 0 }}
         animate={{
           y: 0,
           opacity: 100,
           transition: {
-            delay: 0.4,
+            delay: 0.7,
           },
         }}
       >
