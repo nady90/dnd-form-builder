@@ -16,9 +16,9 @@ export default function Home() {
   return (
     <div className="max-w-screen overflow-hidden">
       <SectionOne />
-      {/* <SectionTwo />
+      <SectionTwo />
       <SectionThree />
-      <SectionFour /> */}
+      <SectionFour />
     </div>
   );
 }
