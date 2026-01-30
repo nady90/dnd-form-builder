@@ -8,6 +8,7 @@ import {
   useTransform,
 } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
 import { ReactNode, RefObject, useRef } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -84,9 +85,11 @@ function HeroText() {
           },
         }}
       >
-        <Button className="cursor-pointer rounded-sm bg-[#2B7FFF] px-4 py-2 text-base transition-all hover:bg-blue-600">
-          Try Now
-        </Button>
+        <Link href={"/dashboard"}>
+          <Button className="cursor-pointer rounded-sm bg-[#2B7FFF] px-4 py-2 text-base transition-all hover:-translate-y-0.5 hover:bg-blue-600 hover:shadow-md">
+            Try Now
+          </Button>
+        </Link>
       </motion.div>
     </div>
   );
