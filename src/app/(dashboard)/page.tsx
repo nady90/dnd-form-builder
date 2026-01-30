@@ -12,6 +12,12 @@ import { ReactNode, RefObject, useRef } from "react";
 
 import { Button } from "@/components/ui/button";
 
+import aiGif from "../../../public/images/ai.webp";
+import dndGif from "../../../public/images/dnd.webp";
+import inputsGif from "../../../public/images/inputs.webp";
+import layoutGif from "../../../public/images/layoutGif.webp";
+import rightGif from "../../../public/images/rightGif.webp";
+
 export default function Home() {
   return (
     <div className="max-w-screen overflow-hidden">
@@ -517,20 +523,22 @@ function SectionTwo() {
               </p>
             </div>
             <Image
-              src={"/images/topLeft.gif"}
+              src={inputsGif}
               width={300}
               height={300}
               alt="types of inputs"
+              unoptimized
             />
           </motion.div>
           <motion.div className="relative h-[237px] basis-2/3 rounded-[10px] border border-[#D9D9D9] bg-linear-180 from-[#3A52A1] to-[#FFFFFF]">
             <div className="absolute top-3 left-1/2 h-[70%] w-[70%] -translate-x-1/2 overflow-hidden rounded-[12px]">
               <Image
                 className="h-full w-full object-contain"
-                src={"/images/layout.gif"}
+                src={layoutGif}
                 width={600}
                 height={300}
                 alt="layout example"
+                unoptimized
               />
             </div>
             <div className="absolute bottom-3 left-6 max-w-[388px] text-left text-[0.7vw] leading-[1.2] font-light text-[#0A0A0A]">
@@ -551,10 +559,11 @@ function SectionTwo() {
             <div className="absolute top-3 left-1/2 h-[70%] w-[70%] -translate-x-1/2 overflow-hidden rounded-[12px]">
               <Image
                 className="h-full w-full object-contain"
-                src={"/images/dndGif.gif"}
+                src={dndGif}
                 width={600}
                 height={300}
                 alt="layout example"
+                unoptimized
               />
             </div>
             <div className="absolute bottom-3 left-6 max-w-[480px] text-left text-[0.7vw] leading-[1.2] font-light text-[#0A0A0A]">
@@ -575,12 +584,7 @@ function SectionTwo() {
                 tweak every property to perfect your design.
               </p>
             </div>
-            <Image
-              src={"/images/bottomRight.gif"}
-              width={300}
-              height={300}
-              alt="types of inputs"
-            />
+            <Image src={rightGif} alt="types of inputs" unoptimized />
           </motion.div>
         </motion.div>
       </motion.div>
@@ -759,9 +763,7 @@ function SectionFour() {
       <motion.div className="aspect-[1.83]">
         <Image
           className="h-full w-full object-contain"
-          src={"/images/aiGif1.gif"}
-          width={1000}
-          height={400}
+          src={aiGif}
           alt="main builder"
         />
       </motion.div>
