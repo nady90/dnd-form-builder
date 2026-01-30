@@ -12,7 +12,13 @@ import Link from "next/link";
 import { ReactNode, RefObject, useRef } from "react";
 
 import { Button } from "@/components/ui/button";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
+import {
+  Cursor,
+  MouseIcon,
+} from "../../../components/motion-primitives/cursor";
+import { InfiniteSlider } from "../../../components/motion-primitives/infinite-slider";
 import aiGif from "../../../public/images/ai.webp";
 import dndGif from "../../../public/images/dnd.webp";
 import inputsGif from "../../../public/images/inputs.webp";
@@ -34,22 +40,156 @@ function SectionOne() {
   const sectionOneRef = useRef(null);
 
   return (
-    <div
-      ref={sectionOneRef}
-      className="relative h-screen min-h-screen overflow-hidden"
-    >
-      <HeroText />
-      <BackgroundBlob />
-      <MainHeroImage sectionRef={sectionOneRef} />
-      <FloatingIconsContainer sectionRef={sectionOneRef} />
-    </div>
+    <>
+      {/* Tablet & PC layout */}
+      <div className="hidden md:block">
+        <div
+          ref={sectionOneRef}
+          className="relative h-screen min-h-screen overflow-hidden"
+        >
+          <HeroText />
+          <BackgroundBlob />
+          <MainHeroImage sectionRef={sectionOneRef} />
+          <FloatingIconsContainer sectionRef={sectionOneRef} />
+        </div>
+      </div>
+
+      {/* Mobile layout */}
+      <div className="relative mt-20 h-[500px] overflow-hidden bg-white opacity-100 md:hidden md:opacity-0">
+        <motion.div
+          animate={{
+            translateY: -200,
+            opacity: 100,
+            transition: {
+              delay: 0.1,
+              duration: 0.5,
+              ease: "easeOut",
+            },
+          }}
+          className="absolute left-1/2 h-[428px] w-[89%] -translate-x-1/2 translate-y-[200px] overflow-hidden bg-[#DEECFF] opacity-0 shadow-xl"
+        >
+          <div className="absolute top-[55%]">
+            <InfiniteSlider speedOnHover={60} gap={50} reverse>
+              <svg
+                width="32"
+                height="27"
+                viewBox="0 0 32 27"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M28.4525 17.0859C26.1662 10.8847 26.5385 7.70166 30.1418 2.68897C24.4311 5.03404 21.2484 4.65939 15.7448 0.999754C18.0311 7.20093 17.6589 10.384 14.0556 15.3967C19.7662 13.0516 22.949 13.4263 28.4525 17.0859ZM8.19766 13.4931C7.05345 10.3912 7.24011 8.80031 9.04227 6.29463C6.18749 7.46784 4.59662 7.28118 1.8438 5.45003C2.98801 8.55195 2.80135 10.1428 0.999193 12.6485C3.85397 11.4753 5.44483 11.6619 8.19766 13.4931ZM20.7982 25.3098C20.2261 23.7588 20.3193 22.9646 21.2205 21.7105C19.7919 22.297 18.9977 22.2038 17.6213 21.2882C18.1934 22.8392 18.1002 23.6334 17.199 24.8875C18.6275 24.301 19.4218 24.3942 20.7982 25.3098Z"
+                  stroke="#EF15D2"
+                  strokeWidth="2"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              <svg
+                width="33"
+                height="29"
+                viewBox="0 0 33 29"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 3.375L3.375 5.75L8.125 1M1 14.4583L3.375 16.8333L8.125 12.0833M1 25.5417L3.375 27.9167L8.125 23.1667M13.6667 14.4583L31.0833 14.4583M13.6667 25.5417L31.0833 25.5417M13.6667 3.375L31.0833 3.375"
+                  stroke="#05A347"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              <svg
+                width="33"
+                height="25"
+                viewBox="0 0 33 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.2163 11.9893C7.69964 11.2087 5.06516 12.2901 3.7344 14.4285L0.838829 13.5303L-0.000569545 16.2365L2.895 17.1346C2.782 19.6508 4.34204 22.0332 6.85875 22.8139C9.37546 23.5945 12.0099 22.5131 13.3407 20.3747L27.0608 24.6305L27.9002 21.9243L14.1801 17.6686C14.2931 15.1524 12.7331 12.77 10.2163 11.9893ZM7.69815 20.1077C6.20977 19.6461 5.36974 18.0506 5.83141 16.5622C6.29308 15.0738 7.88857 14.2338 9.37695 14.6955C10.8653 15.1571 11.7054 16.7526 11.2437 18.241C10.782 19.7294 9.18652 20.5694 7.69815 20.1077ZM29.2016 7.49547C29.3146 4.97933 27.7546 2.59686 25.2379 1.81622C22.7212 1.03558 20.0867 2.11698 18.7559 4.25539L5.03582 -0.000362128L4.19642 2.70578L17.9166 6.96153C17.8035 9.47767 19.3636 11.8601 21.8803 12.6408C24.397 13.4214 27.0315 12.34 28.3622 10.2016L31.2578 11.0998L32.0972 8.39363L29.2016 7.49547ZM22.7197 9.93464C21.2313 9.47297 20.3913 7.87748 20.853 6.3891C21.3146 4.90072 22.9101 4.06069 24.3985 4.52236C25.8869 4.98403 26.7269 6.57952 26.2652 8.0679C25.8036 9.55627 24.2081 10.3963 22.7197 9.93464Z"
+                  fill="black"
+                />
+              </svg>
+
+              <svg
+                width="33"
+                height="33"
+                viewBox="0 0 33 33"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.83613 20.0148L5.36066 19.854C6.54908 19.4865 7.54332 18.6593 8.1273 17.5567L11.9265 10.3537C12.4403 9.37701 13.2913 8.50275 14.3926 8.55349C16.0565 8.63223 17.5425 9.8376 16.3576 12.8712L15.5657 15.5427L28.2784 10.1562C30.72 9.45111 32.6287 12.9134 30.1048 14.6875L22.6227 17.8686C23.8009 20.0072 26.9049 30.3153 19.7142 31.0462C18.5892 31.3216 16.2449 31.3573 14.3778 31.0403C12.5969 30.7392 10.7771 31.9106 10.1112 32.0485M15.8434 2.07513C15.2372 3.25187 15.662 4.6782 16.7937 5.26112C17.924 5.84332 19.3333 5.36169 19.9394 4.18495C20.5455 3.00822 20.1194 1.58116 18.9891 0.998966C17.8574 0.416047 16.4495 0.898397 15.8434 2.07513ZM15.8434 2.07513L14.9369 1.60822L13.8008 1.1513M4.17396 5.73361C5.36085 6.32003 5.78327 7.70597 5.21357 8.85694C4.64315 10.0093 3.26016 10.5401 2.07187 9.95299C1.50805 9.66839 1.0787 9.17358 0.876436 8.57527C0.674168 7.97697 0.715193 7.32313 0.99066 6.75481C1.56036 5.60383 2.98566 5.14648 4.17396 5.73361ZM4.17396 5.73361L5.2671 3.92256M9.7962 0.983585L9.11334 1.17863L8.47821 1.40895"
+                  stroke="#B1873A"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              <svg
+                width="36"
+                height="37"
+                viewBox="0 0 36 37"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M6.94346 6.78423L18.3874 2.56187C19.6342 2.10183 20.7094 1.70514 21.612 1.49957C22.5782 1.27987 23.5638 1.22554 24.5376 1.65903C25.5127 2.09199 26.1098 2.84788 26.5643 3.69835C26.9886 4.49309 27.3743 5.53838 27.8215 6.75059L28.3344 8.14065C28.4683 8.50352 28.4484 8.90622 28.2792 9.26018C28.1099 9.61414 27.8052 9.89035 27.4319 10.0281C27.0587 10.1658 26.6476 10.1537 26.289 9.99448C25.9304 9.83527 25.6538 9.54197 25.5199 9.17911L25.0403 7.87934C24.5501 6.55084 24.2303 5.69266 23.9098 5.09276C23.6077 4.5296 23.4068 4.39234 23.2615 4.32782C23.1162 4.2633 22.8773 4.2053 22.2368 4.34993C21.5567 4.50446 20.6705 4.82832 19.3041 5.33249L15.0823 6.89017L23.664 30.1492C23.7978 30.512 23.778 30.9148 23.6087 31.2687C23.4395 31.6227 23.1347 31.8989 22.7615 32.0366C22.3883 32.1743 21.9771 32.1622 21.6186 32.003C21.26 31.8438 20.9833 31.5505 20.8494 31.1876L12.2678 7.92863L8.04595 9.48631C6.67949 9.99048 5.79674 10.3193 5.17788 10.644C4.59691 10.9501 4.45297 11.1493 4.38438 11.2927C4.31579 11.4362 4.25217 11.6711 4.38822 12.2955C4.53369 12.9584 4.84839 13.82 5.33856 15.1485L5.81812 16.4483C5.952 16.8112 5.93214 17.2139 5.76289 17.5678C5.59365 17.9218 5.28889 18.198 4.91566 18.3357C4.54243 18.4734 4.1313 18.4613 3.77272 18.3021C3.41413 18.1429 3.13747 17.8496 3.00359 17.4867L2.49071 16.0967C2.04345 14.8845 1.65778 13.8392 1.46423 12.9593C1.25743 12.0174 1.21995 11.0535 1.68071 10.0923C2.14097 9.12975 2.92428 8.5314 3.80161 8.07091C4.62147 7.64095 5.69662 7.24426 6.94346 6.78423Z"
+                  fill="black"
+                />
+                <path
+                  d="M15.2207 33.2641L29.2934 28.0718"
+                  stroke="black"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              <svg
+                width="33"
+                height="34"
+                viewBox="0 0 33 34"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M23.3445 13.0383C22.03 12.9707 20.7743 13.1668 19.5948 13.5696L18.8103 9.11165L24.7188 3.78138C25.5982 3.01553 25.6703 1.6143 24.8763 0.718898C24.0823 -0.176501 22.6952 -0.242068 21.8138 0.561344L15.9054 5.89162L2.77291 2.14541L0.631286 4.07746L11.0761 10.2346L5.16686 15.5793L1.61035 14.8894L0.000327646 16.3418L4.46325 19.1206L6.78306 23.8603L8.37864 22.4071L8.07328 18.7704L13.9803 13.469L15.3081 16.3762C14.0256 17.7965 13.1722 19.5513 12.8469 21.437C12.5215 23.3228 12.7376 25.2621 13.4701 27.03C14.2025 28.7979 15.4213 30.3218 16.9849 31.4249C18.5486 32.528 20.393 33.1651 22.3041 33.2623C27.8946 33.5499 32.6487 29.261 32.9363 23.6705C33.2239 18.08 28.935 13.3259 23.3445 13.0383ZM22.4527 30.3731C18.4657 30.168 15.3964 26.7657 15.6015 22.7787C15.8066 18.7917 19.2089 15.7223 23.1959 15.9275C27.1829 16.1326 30.2523 19.5349 30.0471 23.5219C29.842 27.5089 26.4397 30.5782 22.4527 30.3731ZM23.528 23.5486L23.8439 17.4092L21.677 17.2977L21.3054 24.5205L26.3598 27.9091L27.5339 26.2025L23.528 23.5486Z"
+                  fill="#2B7FFF"
+                />
+              </svg>
+            </InfiniteSlider>
+          </div>
+          <HeroText />
+
+          <motion.div
+            animate={{
+              filter: "blur(60px)",
+              width: "200px",
+              transition: {
+                duration: 1,
+                repeat: Infinity,
+                repeatType: "reverse",
+              },
+            }}
+            className="absolute bottom-[-100px] left-1/2 h-[214px] w-[291px] -translate-x-1/2 rounded-full bg-[#BE1CF4]/50 blur-[90px]"
+          ></motion.div>
+        </motion.div>
+      </div>
+    </>
   );
 }
 
 function HeroText() {
   return (
-    <div className="absolute top-2/12 left-1/2 z-[9999999] -translate-x-1/2 text-center text-[2.3vw] font-medium text-[#020618]">
-      <h1 className="leading-[1.2em]">
+    <div className="absolute top-2/12 left-1/2 z-[9999999] w-full -translate-x-1/2 text-center text-[28px] font-medium text-[#020618] md:text-[24px] lg:text-[2.3vw]">
+      <h1 className="mb-2 w-full leading-[1.2em] xl:mb-0">
         <motion.span
           className="inline-block"
           initial={{ y: -26, opacity: 0 }}
@@ -138,7 +278,7 @@ function MainHeroImage({ sectionRef }: { sectionRef: RefObject<null> }) {
 
       <motion.div
         style={{ y: inputY, scale: inputScale, opacity: inputOpacity }}
-        className="pointer-events-none absolute top-4/12 left-1/2 flex w-8/12 max-w-[940px] -translate-x-1/2 items-center gap-x-5 bg-[#F2F2F2] px-6 py-2 text-[1.5vw] font-medium shadow-2xl"
+        className="pointer-events-none absolute top-4/12 left-1/2 flex w-9/12 max-w-[940px] -translate-x-1/2 items-center gap-x-5 bg-[#F2F2F2] px-6 py-2 text-[16px] font-medium shadow-2xl xl:w-8/12 xl:text-[1.5vw]"
       >
         <svg
           width="16"
@@ -176,6 +316,9 @@ function FloatingIconsContainer({
 }: {
   sectionRef: RefObject<null>;
 }) {
+  const size = useMediaQuery();
+  console.log("🚀 ~ FloatingIconsContainer ~ size:", size);
+
   return (
     <div ref={sectionRef} className="absolute z-50 h-full w-full">
       {/* Right Icons */}
@@ -185,8 +328,8 @@ function FloatingIconsContainer({
           initial={{ opacity: 0, x: 1000 }}
           animate={{ opacity: 1, x: 0 }}
           appearTransition={{ duration: 0.4, type: "spring" }}
-          rightValues={[13, 50]}
-          topValues={[30, 110]}
+          rightValues={size === "xl" ? [10, 50] : [8, 50]}
+          topValues={size === "xl" ? [30, 110] : [30, 110]}
           hoverAnimation={{
             y: [null, -20, 10, -20],
             rotate: [null, 10, -5],
@@ -221,7 +364,7 @@ function FloatingIconsContainer({
           initial={{ opacity: 0, x: 400, top: "75%" }}
           animate={{ opacity: 100, x: 0, top: "55%" }}
           appearTransition={{ duration: 0.4, type: "spring" }}
-          rightValues={[9, 45]}
+          rightValues={size === "xl" ? [9, 45] : [6, 45]}
           topValues={[55, 110]}
           hoverAnimation={{
             y: [null, -18, 10, -20],
@@ -258,7 +401,7 @@ function FloatingIconsContainer({
           initial={{ opacity: 0, x: 400, top: "100%" }}
           animate={{ opacity: 100, x: 0, top: "80%" }}
           appearTransition={{ duration: 0.4, type: "spring" }}
-          rightValues={[13, 42]}
+          rightValues={size === "xl" ? [13, 42] : [5, 42]}
           topValues={[80, 110]}
           hoverAnimation={{
             y: [null, -11, 5, -10],
@@ -295,7 +438,7 @@ function FloatingIconsContainer({
           initial={{ opacity: 0, x: -500, top: "0%" }}
           animate={{ opacity: 100, x: 0, top: "30%" }}
           appearTransition={{ duration: 0.4, type: "spring" }}
-          rightValues={[87, 42]}
+          rightValues={size == "xl" ? [87, 42] : [80, 42]}
           topValues={[30, 110]}
           hoverAnimation={{
             y: [null, -11, 5, -10],
@@ -332,7 +475,7 @@ function FloatingIconsContainer({
           initial={{ opacity: 0, x: -400, top: "75%" }}
           animate={{ opacity: 100, x: 0, top: "55%" }}
           appearTransition={{ duration: 0.4, type: "spring" }}
-          rightValues={[91, 42]}
+          rightValues={size == "xl" ? [91, 42] : [86, 42]}
           topValues={[55, 110]}
           hoverAnimation={{
             y: [null, -11, 5, -10],
@@ -376,7 +519,7 @@ function FloatingIconsContainer({
           initial={{ opacity: 0, x: -400, top: "100%" }}
           animate={{ opacity: 100, x: 0, top: "80%" }}
           appearTransition={{ duration: 0.4, type: "spring" }}
-          rightValues={[85, 38]}
+          rightValues={size == "xl" ? [85, 38] : [82, 42]}
           topValues={[80, 110]}
           hoverAnimation={{
             y: [null, 11, -5, 10],
@@ -456,7 +599,7 @@ function FloatingIcon({
       initial={initial}
       animate={animate}
       transition={appearTransition}
-      className="absolute -translate-x-1/2"
+      className="absolute -translate-x-1/2 scale-75 md:scale-90 lg:scale-100"
       style={{
         right: rightPercentage,
         top: topPercentage,
@@ -466,7 +609,7 @@ function FloatingIcon({
       {/* Hover animation */}
       <motion.div
         animate={hoverAnimation}
-        className={`flex h-[60px] w-[60px] ${iconRotation} items-center justify-center rounded-[10px] bg-white shadow-2xl`}
+        className={`flex h-[60px] w-[60px] ${iconRotation} items-center justify-center rounded-[10px] bg-white shadow-2xl shadow-violet-300`}
       >
         {children}
       </motion.div>
@@ -476,11 +619,11 @@ function FloatingIcon({
 
 function SectionTwo() {
   return (
-    <div className="flex h-screen flex-col items-center overflow-x-hidden bg-[#F9FBFC] py-14 text-center">
+    <div className="flex h-screen flex-col items-center overflow-x-hidden bg-[#F9FBFC] py-10 text-center xl:py-14">
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.3 } }}
-        className="mb-[14px] inline-flex h-[28px] w-[28px] items-center justify-center rounded-[6px] bg-[#2B7FFF]"
+        className="mb-[14px] inline-flex min-h-[28px] w-[28px] items-center justify-center rounded-[6px] bg-[#2B7FFF]"
       >
         <svg
           width="14"
@@ -498,7 +641,7 @@ function SectionTwo() {
       <motion.h2
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 0.3 } }}
-        className="text-xl text-[2.4vw]"
+        className="text-[22px] xl:text-[2.4vw]"
       >
         Fully customizable forms.
       </motion.h2>
@@ -509,16 +652,16 @@ function SectionTwo() {
           y: 0,
           transition: { duration: 0.3, delay: 0.2 },
         }}
-        className="mb-[24px] max-w-[400px] text-[1.0vw] font-light"
+        className="mb-[24px] max-w-[400px] text-[16px] font-light xl:text-[1.0vw]"
       >
         Customize the functionlaity, appearance or structure of your forms.
       </motion.h3>
-      <motion.div className="flex w-[66%] max-w-[792px] flex-col gap-y-2">
+      <motion.div className="flex w-[80%] flex-col gap-y-2 xl:w-[66%] xl:max-w-[960px]">
         {/* TOP DIV */}
         <motion.div className="flex flex-row gap-x-4">
           <motion.div className="relative basis-1/3 overflow-hidden rounded-[10px] border border-[#D9D9D9]">
-            <div className="via8[#464646/30] absolute h-full w-full bg-linear-180 from-[#545454/0] via-50% to-black to-80%">
-              <p className="absolute bottom-3 left-4 w-11/12 text-left text-[0.7vw] text-white">
+            <div className="absolute h-full w-full bg-linear-180 from-[#545454/0] via-[#464646/30] via-50% to-black to-80%">
+              <p className="absolute bottom-3 left-4 w-11/12 text-left text-[14px] text-white lg:text-[clamp(14px,0.7vw,30px)]">
                 <span className="font-medium text-[#2266FF]">
                   Input variety.
                 </span>{" "}
@@ -527,13 +670,13 @@ function SectionTwo() {
             </div>
             <Image
               src={inputsGif}
-              width={300}
-              height={300}
+              width={200}
+              height={200}
               alt="types of inputs"
               unoptimized
             />
           </motion.div>
-          <motion.div className="relative h-[237px] basis-2/3 rounded-[10px] border border-[#D9D9D9] bg-linear-180 from-[#3A52A1] to-[#FFFFFF]">
+          <motion.div className="relative h-[200px] basis-2/3 rounded-[10px] border border-[#D9D9D9] bg-linear-180 from-[#3A52A1] to-[#FFFFFF] md:h-[220px] lg:h-[250px]">
             <div className="absolute top-3 left-1/2 h-[70%] w-[70%] -translate-x-1/2 overflow-hidden rounded-[12px]">
               <Image
                 className="h-full w-full object-contain"
@@ -544,7 +687,7 @@ function SectionTwo() {
                 unoptimized
               />
             </div>
-            <div className="absolute bottom-3 left-6 max-w-[388px] text-left text-[0.7vw] leading-[1.2] font-light text-[#0A0A0A]">
+            <div className="absolute bottom-3 left-6 max-w-[388px] text-left text-[14px] leading-[1.2] font-light text-[#0A0A0A] lg:text-[clamp(14px,0.7vw,30px)]">
               <p>
                 <span className="font-medium text-[#2266FF]">
                   Layout control.
@@ -558,7 +701,7 @@ function SectionTwo() {
 
         {/* BOTTOM DIV */}
         <motion.div className="flex flex-row gap-x-4">
-          <motion.div className="relative h-[237px] basis-2/3 rounded-[10px] border border-[#D9D9D9] bg-linear-180 from-[#653AA1] to-[#FFFFFF]">
+          <motion.div className="relative h-[200px] basis-2/3 rounded-[10px] border border-[#D9D9D9] bg-linear-180 from-[#653AA1] to-[#FFFFFF] md:h-[220px] lg:h-[250px]">
             <div className="absolute top-3 left-1/2 h-[70%] w-[70%] -translate-x-1/2 overflow-hidden rounded-[12px]">
               <Image
                 className="h-full w-full object-contain"
@@ -569,7 +712,7 @@ function SectionTwo() {
                 unoptimized
               />
             </div>
-            <div className="absolute bottom-3 left-6 max-w-[480px] text-left text-[0.7vw] leading-[1.2] font-light text-[#0A0A0A]">
+            <div className="absolute bottom-3 left-6 max-w-[480px] text-left text-[14px] leading-[1.2] font-light text-[#0A0A0A] lg:text-[clamp(14px,0.7vw,30px)]">
               <p>
                 <span className="font-medium text-[#2266FF]">Drag & Drop.</span>{" "}
                 Seamlessly place, move, and organize your elements across the
@@ -579,7 +722,7 @@ function SectionTwo() {
           </motion.div>
           <motion.div className="relative basis-1/3 overflow-hidden rounded-[10px] border border-[#D9D9D9]">
             <div className="via8[#464646/30] absolute h-full w-full bg-linear-180 from-[#545454/0] via-50% to-black to-80%">
-              <p className="absolute bottom-3 left-4 w-11/12 text-left text-[0.7vw] text-white">
+              <p className="absolute bottom-3 left-4 w-11/12 text-left text-[14px] text-white lg:text-[clamp(14px,0.7vw,30px)]">
                 <span className="font-medium text-[#2266FF]">
                   Edit everything.
                 </span>{" "}
@@ -597,6 +740,7 @@ function SectionTwo() {
 
 function SectionThree() {
   const sectionThreeRef = useRef(null);
+  const size = useMediaQuery();
 
   const { scrollYProgress } = useScroll({
     target: sectionThreeRef,
@@ -609,8 +753,29 @@ function SectionThree() {
   return (
     <div
       ref={sectionThreeRef}
-      className="flex h-screen w-full flex-col items-center overflow-hidden bg-linear-180 from-black via-[#3B79C4] to-[#3A71C4] pt-14 text-center text-white perspective-distant transform-3d"
+      className="flex w-full flex-col items-center overflow-hidden bg-linear-180 from-black via-[#3B79C4] to-[#3A71C4] px-10 pt-14 text-center text-white perspective-distant transform-3d md:h-screen md:px-0"
     >
+      <Cursor
+        attachToParent
+        variants={{
+          initial: { scale: 0.3, opacity: 0 },
+          animate: { scale: 1, opacity: 1 },
+          exit: { scale: 0.3, opacity: 0 },
+        }}
+        transition={{
+          ease: "easeInOut",
+          duration: 0.15,
+        }}
+        className="top-4 left-12"
+      >
+        <div>
+          <MouseIcon className="h-6 w-6" />
+          <div className="mt-1 ml-4 rounded-[4px] bg-green-500 px-2 py-0.5 text-neutral-50">
+            Admin
+          </div>
+        </div>
+      </Cursor>
+
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.3 } }}
@@ -632,7 +797,7 @@ function SectionThree() {
       <motion.h2
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 0.3 } }}
-        className="text-xl text-[2.4vw]"
+        className="text-[22px] xl:text-[2.4vw]"
       >
         Collaborative work.
       </motion.h2>
@@ -643,22 +808,35 @@ function SectionThree() {
           y: 0,
           transition: { duration: 0.3, delay: 0.2 },
         }}
-        className="mb-[38px] max-w-[400px] text-[1.0vw] font-light"
+        className="mb-[38px] max-w-[400px] text-[16px] font-light xl:text-[1.0vw]"
       >
         Real-time teamwork with live cursors for every team member.
       </motion.h3>
-      <motion.div className="relative aspect-[1.83]" style={{ rotateX, y }}>
+      <motion.div className="relative flex-grow px-[5%]" style={{ rotateX, y }}>
         <motion.div
-          animate={{
-            y: [null, 200, 100, 200],
-            x: [100, 0, -200, 400],
-            transition: {
-              ease: easeInOut,
-              repeat: Infinity,
-              duration: 10,
-              repeatType: "reverse",
-            },
-          }}
+          animate={
+            size !== "sm"
+              ? {
+                  y: [null, 200, 100, 200],
+                  x: [100, 0, -200, 400],
+                  transition: {
+                    ease: easeInOut,
+                    repeat: Infinity,
+                    duration: 10,
+                    repeatType: "reverse",
+                  },
+                }
+              : {
+                  y: [null, 100, 50, -10],
+                  x: [null, "0vw", "30vw", "-10vw"],
+                  transition: {
+                    ease: easeInOut,
+                    repeat: Infinity,
+                    duration: 10,
+                    repeatType: "reverse",
+                  },
+                }
+          }
           className="absolute top-[20%] left-[40%]"
         >
           <Image
@@ -671,8 +849,8 @@ function SectionThree() {
 
         <motion.div
           animate={{
-            y: [null, -100, 10, 200],
-            x: [100, 0, -200, 400],
+            y: [null, -100, 10, 110],
+            x: [100, 0, -100, 200],
             transition: {
               ease: easeInOut,
               repeat: Infinity,
@@ -693,8 +871,8 @@ function SectionThree() {
 
         <motion.div
           animate={{
-            y: [null, 100, -100, 200],
-            // x: [50, 0, -00, 70],
+            y: [null, 70, -50, 89],
+            x: [null, 70, -20, 40],
             transition: {
               ease: easeInOut,
               repeat: Infinity,
@@ -726,50 +904,83 @@ function SectionThree() {
 
 function SectionFour() {
   return (
-    <div className="flex h-screen w-full flex-col items-center overflow-hidden bg-linear-180 from-black via-[#3B79C4] to-[#3A71C4] pt-14 text-center text-white perspective-distant transform-3d">
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.3 } }}
-        className="mb-[14px] inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-[6px] bg-[#2B7FFF]"
-      >
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M9.95905 9.13722L10.845 6.03822C11.177 4.87822 12.821 4.87822 13.153 6.03822L14.038 9.13722C14.0941 9.33326 14.1991 9.51179 14.3433 9.65596C14.4875 9.80013 14.666 9.90519 14.862 9.96122L17.961 10.8462C19.121 11.1782 19.121 12.8222 17.961 13.1542L14.862 14.0392C14.666 14.0953 14.4875 14.2003 14.3433 14.3445C14.1991 14.4887 14.0941 14.6672 14.038 14.8632L13.153 17.9622C12.821 19.1222 11.177 19.1222 10.845 17.9622L9.96005 14.8632C9.90401 14.6672 9.79895 14.4887 9.65478 14.3445C9.51061 14.2003 9.33208 14.0953 9.13605 14.0392L6.03705 13.1542C4.87705 12.8222 4.87705 11.1782 6.03705 10.8462L9.13605 9.96122C9.33208 9.90519 9.51061 9.80013 9.65478 9.65596C9.79895 9.51179 9.90401 9.33326 9.96005 9.13722M18.103 16.5072C18.392 15.6642 19.607 15.6632 19.895 16.5072L19.921 16.5942L20.217 17.7822L21.405 18.0792C22.365 18.3192 22.365 19.6812 21.405 19.9212L20.217 20.2182L19.921 21.4062C19.681 22.3652 18.318 22.3652 18.078 21.4062L17.781 20.2182L16.593 19.9212C15.633 19.6812 15.633 18.3182 16.593 18.0792L17.781 17.7822L18.078 16.5942L18.103 16.5072ZM18.999 18.7972C18.9415 18.8743 18.8731 18.9427 18.796 19.0002C18.8731 19.0578 18.9415 19.1261 18.999 19.2032C19.0566 19.1261 19.125 19.0578 19.202 19.0002C19.1249 18.9424 19.0565 18.8737 18.999 18.7962M4.10305 2.50622C4.40105 1.63522 5.68805 1.66422 5.92105 2.59322L6.21705 3.78122L7.40505 4.07822C8.36505 4.31822 8.36505 5.68022 7.40505 5.92022L6.21705 6.21722L5.92105 7.40522C5.68105 8.36422 4.31805 8.36422 4.07805 7.40522L3.78105 6.21722L2.59305 5.92022C1.63305 5.68022 1.63305 4.31722 2.59305 4.07822L3.78105 3.78122L4.07805 2.59322L4.10305 2.50622ZM4.99905 4.79722C4.94142 4.87395 4.87305 4.94198 4.79605 4.99922C4.8732 5.05708 4.94157 5.12579 4.99905 5.20322C5.05652 5.12579 5.1249 5.05708 5.20205 4.99922C5.12497 4.94167 5.0566 4.8743 4.99905 4.79722Z"
-            fill="white"
-          />
+    <div className="relative flex w-full flex-col items-center overflow-hidden px-10 pt-14 text-center text-white perspective-distant transform-3d md:h-screen md:px-0">
+      <div className="absolute inset-0 z-20"></div>d{" "}
+      <div className="absolute inset-0 z-10 bg-linear-180 from-black via-[#3B79C4] to-[#3A71C4]">
+        <svg className="h-full w-full">
+          <defs>
+            <pattern
+              id="grid-pattern"
+              width="80"
+              height="80"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                xmlns="http://www.w3.org/2000/svg"
+                d="M0 4H4M4 4V0M4 4H8M4 4V8"
+                stroke="currentColor"
+                strokeOpacity="0.3"
+                className="stroke-white dark:stroke-black"
+              />
+              <rect
+                x="3"
+                y="3"
+                width="2"
+                height="2"
+                fill="currentColor"
+                fillOpacity="0.25"
+                className="fill-white dark:fill-black"
+              />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid-pattern)" />
         </svg>
-      </motion.div>
-      <motion.h2
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.3 } }}
-        className="text-xl text-[2.4vw]"
-      >
-        AI-powered form creation.
-      </motion.h2>
-      <motion.h3
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.3, delay: 0.2 },
-        }}
-        className="mb-[38px] max-w-[400px] text-[1.0vw] font-light"
-      >
-        Generate complete forms instantly from a simple description.
-      </motion.h3>
-      <motion.div className="aspect-[1.83]">
-        <Image
-          className="h-full w-full object-contain"
-          src={aiGif}
-          alt="main builder"
-        />
-      </motion.div>
+      </div>
+      <div className="z-30">
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.3 } }}
+          className="mb-[14px] inline-flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-[6px] bg-[#2B7FFF]"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.95905 9.13722L10.845 6.03822C11.177 4.87822 12.821 4.87822 13.153 6.03822L14.038 9.13722C14.0941 9.33326 14.1991 9.51179 14.3433 9.65596C14.4875 9.80013 14.666 9.90519 14.862 9.96122L17.961 10.8462C19.121 11.1782 19.121 12.8222 17.961 13.1542L14.862 14.0392C14.666 14.0953 14.4875 14.2003 14.3433 14.3445C14.1991 14.4887 14.0941 14.6672 14.038 14.8632L13.153 17.9622C12.821 19.1222 11.177 19.1222 10.845 17.9622L9.96005 14.8632C9.90401 14.6672 9.79895 14.4887 9.65478 14.3445C9.51061 14.2003 9.33208 14.0953 9.13605 14.0392L6.03705 13.1542C4.87705 12.8222 4.87705 11.1782 6.03705 10.8462L9.13605 9.96122C9.33208 9.90519 9.51061 9.80013 9.65478 9.65596C9.79895 9.51179 9.90401 9.33326 9.96005 9.13722M18.103 16.5072C18.392 15.6642 19.607 15.6632 19.895 16.5072L19.921 16.5942L20.217 17.7822L21.405 18.0792C22.365 18.3192 22.365 19.6812 21.405 19.9212L20.217 20.2182L19.921 21.4062C19.681 22.3652 18.318 22.3652 18.078 21.4062L17.781 20.2182L16.593 19.9212C15.633 19.6812 15.633 18.3182 16.593 18.0792L17.781 17.7822L18.078 16.5942L18.103 16.5072ZM18.999 18.7972C18.9415 18.8743 18.8731 18.9427 18.796 19.0002C18.8731 19.0578 18.9415 19.1261 18.999 19.2032C19.0566 19.1261 19.125 19.0578 19.202 19.0002C19.1249 18.9424 19.0565 18.8737 18.999 18.7962M4.10305 2.50622C4.40105 1.63522 5.68805 1.66422 5.92105 2.59322L6.21705 3.78122L7.40505 4.07822C8.36505 4.31822 8.36505 5.68022 7.40505 5.92022L6.21705 6.21722L5.92105 7.40522C5.68105 8.36422 4.31805 8.36422 4.07805 7.40522L3.78105 6.21722L2.59305 5.92022C1.63305 5.68022 1.63305 4.31722 2.59305 4.07822L3.78105 3.78122L4.07805 2.59322L4.10305 2.50622ZM4.99905 4.79722C4.94142 4.87395 4.87305 4.94198 4.79605 4.99922C4.8732 5.05708 4.94157 5.12579 4.99905 5.20322C5.05652 5.12579 5.1249 5.05708 5.20205 4.99922C5.12497 4.94167 5.0566 4.8743 4.99905 4.79722Z"
+              fill="white"
+            />
+          </svg>
+        </motion.div>
+        <motion.h2
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0, transition: { duration: 0.3 } }}
+          className="text-[22px] xl:text-[2.4vw]"
+        >
+          AI-powered form creation.
+        </motion.h2>
+        <motion.h3
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.3, delay: 0.2 },
+          }}
+          className="mx-auto mb-[38px] max-w-[400px] text-[16px] font-light xl:text-[1.0vw]"
+        >
+          Generate complete forms instantly from a simple description.
+        </motion.h3>
+        <motion.div className="mt-auto flex-grow">
+          <Image
+            className="h-full w-full object-contain"
+            src={aiGif}
+            alt="main builder"
+          />
+        </motion.div>
+      </div>
     </div>
   );
 }
