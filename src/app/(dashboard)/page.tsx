@@ -619,7 +619,7 @@ function FloatingIcon({
 
 function SectionTwo() {
   return (
-    <div className="flex h-screen flex-col items-center overflow-x-hidden bg-[#F9FBFC] py-10 text-center xl:py-14">
+    <div className="flex flex-col items-center overflow-x-hidden bg-[#F9FBFC] py-10 text-center md:h-screen xl:py-14">
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.3 } }}
@@ -656,7 +656,7 @@ function SectionTwo() {
       >
         Customize the functionlaity, appearance or structure of your forms.
       </motion.h3>
-      <motion.div className="flex w-[80%] flex-col gap-y-2 xl:w-[66%] xl:max-w-[960px]">
+      <motion.div className="flex w-[95%] flex-col gap-y-2 md:w-[80%] xl:w-[66%] xl:max-w-[960px]">
         {/* TOP DIV */}
         <motion.div className="flex flex-row gap-x-4">
           <motion.div className="relative basis-1/3 overflow-hidden rounded-[10px] border border-[#D9D9D9]">
@@ -665,7 +665,9 @@ function SectionTwo() {
                 <span className="font-medium text-[#2266FF]">
                   Input variety.
                 </span>{" "}
-                More than 15 different types of inputs.
+                <span className="hidden md:inline-block">
+                  More than 15 different types of inputs.
+                </span>
               </p>
             </div>
             <Image
@@ -692,8 +694,10 @@ function SectionTwo() {
                 <span className="font-medium text-[#2266FF]">
                   Layout control.
                 </span>{" "}
-                Easily decide the size and alignment of your elements in just a
-                few clicks.
+                <span className="hidden md:inline-block">
+                  Easily decide the size and alignment of your elements in just
+                  a few clicks.
+                </span>
               </p>
             </div>
           </motion.div>
@@ -715,8 +719,10 @@ function SectionTwo() {
             <div className="absolute bottom-3 left-6 max-w-[480px] text-left text-[14px] leading-[1.2] font-light text-[#0A0A0A] lg:text-[clamp(14px,0.7vw,30px)]">
               <p>
                 <span className="font-medium text-[#2266FF]">Drag & Drop.</span>{" "}
-                Seamlessly place, move, and organize your elements across the
-                layout with simple, natural gestures.
+                <span className="hidden md:inline-block">
+                  Seamlessly place, move, and organize your elements across the
+                  layout with simple, natural gestures.
+                </span>
               </p>
             </div>
           </motion.div>
@@ -726,8 +732,10 @@ function SectionTwo() {
                 <span className="font-medium text-[#2266FF]">
                   Edit everything.
                 </span>{" "}
-                Change the field type, update values, apply custom CSS, and
-                tweak every property to perfect your design.
+                <span className="hidden md:inline-block">
+                  Change the field type, update values, apply custom CSS, and
+                  tweak every property to perfect your design.
+                </span>
               </p>
             </div>
             <Image src={rightGif} alt="types of inputs" unoptimized />
