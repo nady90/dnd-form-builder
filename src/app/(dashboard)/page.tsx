@@ -21,7 +21,7 @@ import rightGif from "../../../public/images/rightGif.webp";
 
 export default function Home() {
   return (
-    <div className="max-w-screen overflow-hidden">
+    <div className="max-w-screen overflow-x-hidden">
       <SectionOne />
       <SectionTwo />
       <SectionThree />
@@ -476,7 +476,7 @@ function FloatingIcon({
 
 function SectionTwo() {
   return (
-    <div className="flex h-screen w-full flex-col items-center bg-[#F9FBFC] py-14 text-center">
+    <div className="flex h-screen flex-col items-center overflow-x-hidden bg-[#F9FBFC] py-14 text-center">
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.3 } }}

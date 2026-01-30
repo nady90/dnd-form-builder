@@ -6,7 +6,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="relative w-screen">
+    <div className="relative w-full">
       <DashboardNavbar />
       {children}
     </div>
