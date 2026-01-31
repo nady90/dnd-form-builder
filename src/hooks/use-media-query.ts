@@ -17,7 +17,7 @@ export function useMediaQuery() {
     } else {
       setSize("xl");
     }
-  });
+  }, [setSize]);
 
   return size;
 }
