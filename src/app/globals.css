@@ -155,3 +155,8 @@
     opacity: 1;
   }
 }
+
+.ai-input-shadows {
+  filter: drop-shadow(10 0 10 #2b7fffa0) drop-shadow(-10 0 10 #2b7fffa0)
+    drop-shadow(50 0 30 #ec83bba0) drop-shadow(-50 0 30 #ec83bba0);
+}
