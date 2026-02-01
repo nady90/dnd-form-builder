@@ -27,6 +27,8 @@ type FormContextType = {
     el: FormElementInstance,
   ) => void;
   setElements: React.Dispatch<React.SetStateAction<FormElementInstance[]>>;
+  isAiLoading: boolean;
+  setIsAiLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const FormContext = React.createContext<FormContextType | null>(null);
@@ -39,6 +41,7 @@ export default function FormContextProvider({
   const [elements, setElements] = useState<FormElementInstance[]>([]);
   const [selectedElement, setSelectedElement] =
     useState<null | FormElementInstance>(null);
+  const [isAiLoading, setIsAiLoading] = useState<boolean>(false);
 
   function addElement(element: FormElementInstance, index: number) {
     setElements((prev) => {
@@ -155,6 +158,8 @@ export default function FormContextProvider({
         changeElementWidth,
         changeElementAlignment,
         setElements,
+        isAiLoading,
+        setIsAiLoading,
       }}
     >
       {children}

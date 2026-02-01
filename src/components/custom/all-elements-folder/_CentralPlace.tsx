@@ -32,6 +32,7 @@ export type FormElement = {
 export type FormElementInstance = {
   id: string;
   type: AllElementsType;
+  isAiGenerated?: boolean;
   attributes: {
     label?: string;
     required?: boolean;

@@ -1,6 +1,6 @@
 import { useDraggable, useDroppable } from "@dnd-kit/core";
-import React from "react";
 
+import AIGeneratedIcon from "@/components/icons/AiGeneratedIcon";
 import AlignCenterIcon from "@/components/icons/AlignCenterIcon";
 import AlignLeftIcon from "@/components/icons/AlignLeftIcon";
 import AlignRightIcon from "@/components/icons/AlignRightIcon";
@@ -10,6 +10,7 @@ import GearIcon from "@/components/icons/GearIcon";
 import LargeSizeIcon from "@/components/icons/LargeSizeIcon";
 import SmallSizeIcon from "@/components/icons/SmallSizeIcon";
 import StyleIcon from "@/components/icons/StyleIcon";
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
@@ -36,6 +37,7 @@ export default function DesignerComponentWrapper({
   const { selectedElement, setSelectedElement } = useFormContext();
 
   const isSelected = !selectedElement ? false : el.id === selectedElement.id;
+  const isAiGenerated = el.isAiGenerated;
 
   const topHalf = useDroppable({
     id: "topHalf-" + el.id,
@@ -69,64 +71,74 @@ export default function DesignerComponentWrapper({
   }
 
   const DesignerComponent = FormElements[el.type].designerComponent;
+
   return (
     <div
-      onClick={(e) => {
-        e.stopPropagation();
-        setSelectedElement(el);
-      }}
-      className={cn(
-        "group relative cursor-grab",
-        isSelected && "border border-blue-500 bg-blue-100 px-3 py-3",
-        el.attributes.styles.width === "full" ? "w-full" : "w-1/2",
-        el.attributes.styles.alignment === "left"
-          ? "mr-auto"
-          : el.attributes.styles.alignment === "center"
-            ? "mx-auto"
-            : "ml-auto",
-      )}
-      ref={draggable.setNodeRef}
-      {...draggable.attributes}
-      {...draggable.listeners}
+      className={cn("relative", {
+        "mb-1 border border-[#CC0BD9] p-1": isAiGenerated,
+      })}
     >
-      {isSelected && <SelectedUIElements el={el} />}
-      {/* Hovered Div */}
       <div
-        data-testId="top-half-div"
+        onClick={(e) => {
+          e.stopPropagation();
+          setSelectedElement(el);
+        }}
         className={cn(
-          "absolute top-0 right-0 z-[99999] flex h-full w-full items-center justify-center bg-gray-800/70 text-center opacity-0",
-          !isSelected &&
-            !bottomHalf.isOver &&
-            !topHalf.isOver &&
-            "group-hover:opacity-100",
+          "group relative cursor-grab",
+          isSelected && "border border-blue-500 bg-blue-100 px-3 py-3",
+          el.attributes.styles.width === "full" ? "w-full" : "w-1/2",
+          el.attributes.styles.alignment === "left"
+            ? "mr-auto"
+            : el.attributes.styles.alignment === "center"
+              ? "mx-auto"
+              : "ml-auto",
         )}
+        ref={draggable.setNodeRef}
+        {...draggable.attributes}
+        {...draggable.listeners}
       >
-        <span className="text-base text-white">
-          Click for properties or drag to move
-        </span>
+        {isSelected && <SelectedUIElements el={el} />}
+        {/* Hovered Div */}
+        <div
+          data-testId="top-half-div"
+          className={cn(
+            "absolute top-0 right-0 z-[99999] flex h-full w-full items-center justify-center bg-gray-800/70 text-center opacity-0",
+            !isSelected &&
+              !bottomHalf.isOver &&
+              !topHalf.isOver &&
+              !isAiGenerated &&
+              "group-hover:opacity-100",
+          )}
+        >
+          <span className="text-base text-white">
+            Click for properties or drag to move
+          </span>
+        </div>
+        {/* Top droppable */}
+        <div
+          ref={topHalf.setNodeRef}
+          className={cn(
+            "absolute top-0 right-0 flex h-1/2 w-full items-center justify-center bg-red-500/20 text-2xl opacity-0 outline outline-gray-800 outline-dashed",
+            topHalf.isOver && "opacity-100",
+          )}
+        >
+          <span className="animate-up-arrow">↑</span>
+        </div>
+        <DesignerComponent elementInstance={el} />
+        {/* Bottom droppable */}
+        <div
+          data-testId="bottom-half-div"
+          ref={bottomHalf.setNodeRef}
+          className={cn(
+            "absolute right-0 bottom-0 flex h-1/2 w-full items-center justify-center bg-blue-500/20 text-2xl opacity-0 outline outline-gray-800 outline-dashed",
+            bottomHalf.isOver && "opacity-100",
+          )}
+        >
+          <span className="animate-down-arrow">↓</span>
+        </div>
       </div>
-      {/* Top droppable */}
-      <div
-        ref={topHalf.setNodeRef}
-        className={cn(
-          "absolute top-0 right-0 flex h-1/2 w-full items-center justify-center bg-red-500/20 text-2xl opacity-0 outline outline-gray-800 outline-dashed",
-          topHalf.isOver && "opacity-100",
-        )}
-      >
-        <span className="animate-up-arrow">↑</span>
-      </div>
-      <DesignerComponent elementInstance={el} />
-      {/* Bottom droppable */}
-      <div
-        data-testId="bottom-half-div"
-        ref={bottomHalf.setNodeRef}
-        className={cn(
-          "absolute right-0 bottom-0 flex h-1/2 w-full items-center justify-center bg-blue-500/20 text-2xl opacity-0 outline outline-gray-800 outline-dashed",
-          bottomHalf.isOver && "opacity-100",
-        )}
-      >
-        <span className="animate-down-arrow">↓</span>
-      </div>
+      {/* AI ACCEPT/ REFUSE */}
+      {isAiGenerated && <AiGeneratedElements el={el} />}
     </div>
   );
 }
@@ -271,6 +283,36 @@ function DotsDecoration() {
       <div className="absolute top-[-4.0px] right-[-4.0px] h-[9px] w-[9px] rounded-full bg-blue-500"></div>
       <div className="absolute right-[-4.0px] bottom-[-4.0px] h-[9px] w-[9px] rounded-full bg-blue-500"></div>
       <div className="absolute bottom-[-4.0px] left-[-4.0px] h-[9px] w-[9px] rounded-full bg-blue-500"></div>
+    </>
+  );
+}
+
+function AiGeneratedElements({ el }: { el: FormElementInstance }) {
+  const { updateElement, removeElement } = useFormContext();
+
+  return (
+    <>
+      <AIGeneratedIcon className="absolute -top-3 -left-[14px]" />
+      <div className="absolute right-2 -bottom-4 flex flex-row gap-x-1">
+        <Button
+          className="cursor-pointer rounded-md bg-[#C302C7] hover:bg-[#A608A9] active:scale-95"
+          size="sm"
+          onClick={() => {
+            updateElement(el.id, { ...el, isAiGenerated: false });
+          }}
+        >
+          Accept
+        </Button>
+        <Button
+          className="cursor-pointer rounded-md bg-[#F90000] hover:bg-[#DB0C0C] active:scale-95"
+          size="sm"
+          onClick={() => {
+            removeElement(el.id);
+          }}
+        >
+          Reject
+        </Button>
+      </div>
     </>
   );
 }
