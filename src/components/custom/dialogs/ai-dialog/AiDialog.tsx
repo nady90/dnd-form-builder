@@ -40,7 +40,7 @@ export default function AiDialog({
             setSelectedElement(null);
           }}
         >
-          <AiButton className="fixed right-3.5 bottom-8 z-50" />
+          <AiButton className="fixed right-3.5 bottom-8 z-50 shadow-xl hover:shadow-2xl" />
         </span>
       </Dialog.Trigger>
       <AnimatePresence>
