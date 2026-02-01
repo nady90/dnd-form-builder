@@ -1,4 +1,5 @@
 import { useDraggable, useDroppable } from "@dnd-kit/core";
+import { toast } from "sonner";
 
 import AIGeneratedIcon from "@/components/icons/AiGeneratedIcon";
 import AlignCenterIcon from "@/components/icons/AlignCenterIcon";
@@ -179,6 +180,9 @@ function SelectedUIElements({ el }: { el: FormElementInstance }) {
           <TooltipTrigger
             onClick={() => {
               removeElement(el.id);
+              toast.success("Question deleted", {
+                position: "top-center",
+              });
             }}
           >
             <BuilderDeleteIcon className="cursor-pointer transition-all duration-300 hover:scale-110" />
@@ -299,6 +303,9 @@ function AiGeneratedElements({ el }: { el: FormElementInstance }) {
           size="sm"
           onClick={() => {
             updateElement(el.id, { ...el, isAiGenerated: false });
+            toast.success("Question added to your survey", {
+              position: "top-center",
+            });
           }}
         >
           Accept
@@ -308,6 +315,9 @@ function AiGeneratedElements({ el }: { el: FormElementInstance }) {
           size="sm"
           onClick={() => {
             removeElement(el.id);
+            toast.success("Question deleted", {
+              position: "top-center",
+            });
           }}
         >
           Reject
