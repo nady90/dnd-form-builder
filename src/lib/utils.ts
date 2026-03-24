@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import z from "zod";
 
 import { FormElementInstance } from "@/components/custom/all-elements-folder/_CentralPlace";
+import { ELEMENTS_THAT_DONT_REQUIRE_VALIDATION } from "@/constants/form-elements";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -36,7 +37,7 @@ export function getRandomIdString(): string {
 export function getZodObjectFromElementsArray(elements: FormElementInstance[]) {
   return Object.fromEntries(
     elements
-      .filter((el) => el.type !== "Separator")
+      .filter((el) => !elementDoesntRequireValidation(el))
       .map((el) => [
         el.attributes.label,
         el.attributes.required
@@ -51,7 +52,11 @@ export function getDefaultValuesFromElementsArray(
 ) {
   return Object.fromEntries(
     elements
-      .filter((el) => el.type !== "Separator")
+      .filter((el) => !elementDoesntRequireValidation(el))
       .map((el) => [el.attributes.label, el.attributes.defaultValue || ""]),
   );
+}
+
+export function elementDoesntRequireValidation(el: FormElementInstance) {
+  return ELEMENTS_THAT_DONT_REQUIRE_VALIDATION.includes(el.type);
 }

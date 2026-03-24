@@ -22,6 +22,7 @@ import {
 import useFormContext from "@/hooks/useFormContext";
 import {
   cn,
+  elementDoesntRequireValidation,
   getDefaultValuesFromElementsArray,
   getZodObjectFromElementsArray,
 } from "@/lib/utils";
@@ -86,7 +87,10 @@ const PreviewDialog = () => {
             {elements.map((el) => {
               const PreviewComponent = FormElements[el.type].previewComponent;
 
-              if (el.type === "Separator") {
+              // If the element doesn't require validation, just show it as is
+              console.log("works?", elementDoesntRequireValidation(el));
+
+              if (elementDoesntRequireValidation(el)) {
                 return <PreviewComponent key={el.id} elementInstance={el} />;
               }
 
