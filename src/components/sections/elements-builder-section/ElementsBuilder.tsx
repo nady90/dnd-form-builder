@@ -18,14 +18,7 @@ interface ElementsSection {
 const elementsSections: ElementsSection[] = [
   {
     title: "Layout Elements",
-    elements: [
-      "Tables",
-      "Title",
-      "SubTitle",
-      "Paragraph",
-      "Separator",
-      "Spacer",
-    ],
+    elements: ["Title", "SubTitle", "Paragraph", "Separator", "Spacer"],
   },
   {
     title: "Text Elements",
