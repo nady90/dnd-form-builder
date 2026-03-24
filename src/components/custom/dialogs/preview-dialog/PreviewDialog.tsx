@@ -1,6 +1,9 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogClose } from "@radix-ui/react-dialog";
 import React from "react";
+import { useForm } from "react-hook-form";
 import { IoMdClose } from "react-icons/io";
+import * as z from "zod";
 
 import BackArrow from "@/components/icons/BackArrow";
 import {
@@ -9,14 +12,37 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import useFormContext from "@/hooks/useFormContext";
-import { cn } from "@/lib/utils";
+import {
+  cn,
+  getDefaultValuesFromElementsArray,
+  getZodObjectFromElementsArray,
+} from "@/lib/utils";
 
 import { FormElements } from "../../all-elements-folder/_CentralPlace";
 import PrimaryButton from "../../buttons/primary-button/PrimaryButton";
 
 const PreviewDialog = () => {
   const { elements } = useFormContext();
+
+  const previewPageSchema = z.object(getZodObjectFromElementsArray(elements));
+  type PreviewPageType = z.infer<typeof previewPageSchema>;
+
+  const form = useForm<PreviewPageType>({
+    resolver: zodResolver(previewPageSchema),
+    defaultValues: getDefaultValuesFromElementsArray(elements),
+  });
+
+  function onSubmit(data: PreviewPageType) {
+    console.log("🚀 ~ onSubmit ~ data:", data);
+  }
 
   return (
     <DialogContent
@@ -47,23 +73,44 @@ const PreviewDialog = () => {
           </PrimaryButton>
         </DialogClose>
       </DialogHeader>
-      <div className="flex grow flex-col items-center justify-center overflow-hidden">
-        <div className="flex h-10/12 w-6/12 flex-col gap-y-3 overflow-y-auto bg-white px-4 py-3">
-          <div className="gap-y-1 border-b border-gray-200 pb-3 text-gray-800">
-            <h3 className="text-lg font-medium">Employment form</h3>
-            <p className="text-sm font-light">This is to apply for a job</p>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex grow flex-col items-center justify-center overflow-hidden"
+        >
+          <div className="flex h-10/12 w-6/12 flex-col gap-y-3 overflow-y-auto bg-white px-4 py-3">
+            <div className="gap-y-1 border-b border-gray-200 pb-3 text-gray-800">
+              <h3 className="text-lg font-medium">Employment form</h3>
+              <p className="text-sm font-light">This is to apply for a job</p>
+            </div>
+            {elements.map((el) => {
+              const PreviewComponent = FormElements[el.type].previewComponent;
+              return (
+                <div key={el.id}>
+                  <FormField
+                    control={form.control}
+                    // eslint-disable-next-line
+                    name={el.attributes.label!!}
+                    render={({ field, fieldState }) => {
+                      return (
+                        <PreviewComponent
+                          fieldState={fieldState}
+                          // @ts-expect-error React Hook Form error
+                          field={field}
+                          elementInstance={el}
+                        />
+                      );
+                    }}
+                  />
+                </div>
+              );
+            })}
+            <PrimaryButton type="submit" className="rounded-none">
+              Submit
+            </PrimaryButton>
           </div>
-          {elements.map((el) => {
-            const PreviewComponent = FormElements[el.type].previewComponent;
-            return (
-              <div key={el.id}>
-                <PreviewComponent elementInstance={el} />
-              </div>
-            );
-          })}
-          <PrimaryButton className="rounded-none">Submit</PrimaryButton>
-        </div>
-      </div>
+        </form>
+      </Form>
     </DialogContent>
   );
 };

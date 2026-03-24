@@ -8,14 +8,21 @@
 ~~1. Make the navbar responsive.~~
 
 ~~1. Make all your buttons take children not text props.~~
+~~1. Tailwind brakpoints to storybook.~~
+~~3. Re-write all the Inter Family tests in the metas to use a step function.~~
 
-1. Tailwind brakpoints to storybook.
-2. Remove the min-width of the info cards.
-3. Internationalization.
-4. Re-write all the Inter Family tests in the metas to use a step function.
-5. Find out why the dialog overlay is too dark.
-6. Toast when creating a new form.
-7. Loading indicator when creating a new form..
-8. Dialog form: Border of input when active
-9. Change Action cards dialogs for the create template, import and ai.
-10. Empty all forms section => Make the create form button popup a dialog.
+1. Remove the min-width of the info cards.
+2. Internationalization. i18n + json (en, fr and ar).
+3. Find out why the dialog overlay is too dark.
+4. Toast when creating a new form.
+5. Loading indicator when creating a new form..
+6. Dialog form: Border of input when active
+7. Change Action cards dialogs for the create template, import and ai.
+8. Empty all forms section => Make the create form button popup a dialog.
+
+---
+
+1. Implement the rest of the components
+2. Implement the two other tabs:
+   a. Workflow: Email so and so when you are done.
+   b. Permissions: Who can edit this survey? enter email.

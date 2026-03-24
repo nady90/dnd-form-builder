@@ -1,6 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import {
+  ControllerFieldState,
+  ControllerRenderProps,
+  useForm,
+  UseFormReturn,
+} from "react-hook-form";
 import { FaStarOfLife } from "react-icons/fa";
 
 import {
@@ -15,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import useFormContext from "@/hooks/useFormContext";
+import { cn } from "@/lib/utils";
 import {
   TextFieldSchema,
   TextFieldSchemaType,
@@ -98,6 +104,7 @@ export function TextFieldPropertiesComponent({
       required: elementInstance?.attributes?.required ?? false,
       helperText: elementInstance?.attributes?.helperText || "helper text here",
     },
+    mode: "all",
   });
 
   function onSubmit(values: TextFieldSchemaType) {
@@ -174,9 +181,15 @@ export function TextFieldPropertiesComponent({
 
 export function TextFieldPreviewComponent({
   elementInstance,
+  field,
+  fieldState,
 }: {
   elementInstance: FormElementInstance;
+  field: ControllerRenderProps<Record<string, string>, string>;
+  fieldState: ControllerFieldState;
 }) {
+  console.log("fieldState: ", fieldState);
+
   return (
     <div className="flex w-full flex-col items-start gap-y-1">
       <Label
@@ -189,12 +202,8 @@ export function TextFieldPreviewComponent({
         )}
       </Label>
       <Input
-        name={elementInstance.id}
-        id={elementInstance.id}
+        {...field}
         className="w-full gap-x-1 rounded-none border border-gray-200 bg-white px-2 py-1.5 text-xs font-light text-gray-400"
-        defaultValue={
-          elementInstance.attributes.defaultValue || "No default value"
-        }
       />
       {elementInstance.attributes.helperText && (
         <p className="text-xs font-light text-gray-500">

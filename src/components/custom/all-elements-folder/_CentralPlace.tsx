@@ -1,3 +1,9 @@
+import {
+  ControllerFieldState,
+  ControllerRenderProps,
+  UseFormReturn,
+} from "react-hook-form";
+
 import { FormBuilderElementType } from "../buttons/question-type-button/QuestionTypeButton";
 import ParagraphField from "./paragraph/Paragraph";
 import SeparatorField from "./separator/Separator";
@@ -18,8 +24,14 @@ export type FormElement = {
   type: AllElementsType;
   designerComponent: React.FC<{ elementInstance: FormElementInstance }>;
   sidebarComponent: FormBuilderElementType;
-  propertiesComponent: React.FC<{ elementInstance: FormElementInstance }>;
-  previewComponent: React.FC<{ elementInstance: FormElementInstance }>;
+  propertiesComponent: React.FC<{
+    elementInstance: FormElementInstance;
+  }>;
+  previewComponent: React.FC<{
+    elementInstance: FormElementInstance;
+    field: ControllerRenderProps<Record<string, string>, string>;
+    fieldState: ControllerFieldState;
+  }>;
   submitComponent: React.FC<{
     elementInstance: FormElementInstance;
     setFormValues: React.Dispatch<

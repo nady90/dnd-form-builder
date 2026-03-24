@@ -1,5 +1,8 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import z from "zod";
+
+import { FormElementInstance } from "@/components/custom/all-elements-folder/_CentralPlace";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -28,4 +31,26 @@ export function getRandomDate(daysBack: number) {
 
 export function getRandomIdString(): string {
   return Math.floor(Math.random() * 100000).toString();
+}
+
+export function getZodObjectFromElementsArray(elements: FormElementInstance[]) {
+  return Object.fromEntries(
+    elements.map((el) => [
+      el.attributes.label,
+      el.attributes.required
+        ? z.string().min(1, "This field is required")
+        : z.string().optional(),
+    ]),
+  );
+}
+
+export function getDefaultValuesFromElementsArray(
+  elements: FormElementInstance[],
+) {
+  return Object.fromEntries(
+    elements.map((el) => [
+      el.attributes.label,
+      el.attributes.defaultValue || "",
+    ]),
+  );
 }
