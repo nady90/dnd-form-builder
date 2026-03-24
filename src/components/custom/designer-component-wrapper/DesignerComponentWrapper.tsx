@@ -103,7 +103,7 @@ export default function DesignerComponentWrapper({
         <div
           data-testid="top-half-div"
           className={cn(
-            "absolute top-0 right-0 z-[99999] flex h-full w-full items-center justify-center bg-gray-800/70 text-center opacity-0",
+            "absolute top-0 right-0 z-[9] flex h-full w-full items-center justify-center bg-gray-800/70 text-center opacity-0",
             !isSelected &&
               !bottomHalf.isOver &&
               !topHalf.isOver &&
@@ -149,7 +149,7 @@ function SelectedUIElements({ el }: { el: FormElementInstance }) {
 
   return (
     <>
-      <div className="absolute right-[11px] bottom-[-20px] z-50 flex cursor-auto flex-row items-center gap-x-4 rounded-md border border-gray-200 bg-white px-2 py-1.5">
+      <div className="absolute right-[11px] bottom-[-20px] z-[999] flex cursor-auto flex-row items-center gap-x-4 rounded-md border border-gray-200 bg-white px-2 py-1.5">
         <Tooltip>
           <TooltipTrigger>
             <DuplicateIcon className="cursor-pointer transition-all duration-300 hover:scale-110" />

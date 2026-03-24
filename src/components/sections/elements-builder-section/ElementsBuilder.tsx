@@ -54,9 +54,9 @@ const ElementsBuilder: React.FC<IElementsBuilder> = ({ className }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const { setSelectedElement, selectedElement } = useFormContext();
 
-  const debouncedSearch = useDebouncedCallback((value: string) => {
+  const debouncedSearch = (value: string) => {
     setSearchTerm(value.trim().toLowerCase());
-  }, 300);
+  };
 
   const filteredSections = useMemo(() => {
     if (!searchTerm) return elementsSections;
