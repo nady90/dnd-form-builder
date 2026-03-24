@@ -19,7 +19,6 @@ const elementsSections: ElementsSection[] = [
   {
     title: "Layout Elements",
     elements: [
-      "Sections",
       "Tables",
       "Title",
       "SubTitle",
