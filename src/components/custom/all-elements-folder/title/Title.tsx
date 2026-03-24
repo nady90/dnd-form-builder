@@ -80,6 +80,7 @@ export function TitlePropertiesComponent({
   return (
     <Form {...form}>
       <form
+        onSubmit={form.handleSubmit(onSubmit)}
         onBlur={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-y-5"
       >

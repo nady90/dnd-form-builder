@@ -196,11 +196,12 @@ function SelectedUIElements({ el }: { el: FormElementInstance }) {
 }
 
 function StylesSettingsContainer({ el }: { el: FormElementInstance }) {
+  console.log("🚀 ~ StylesSettingsContainer ~ el:", el);
   const { changeElementWidth, changeElementAlignment } = useFormContext();
 
   return (
     <PopoverContent asChild>
-      <div className="flex min-h-[119px] w-[196px] translate-y-2 flex-col gap-y-1.5 rounded-md border border-gray-200 bg-white px-2 py-1.5 text-xs font-medium text-gray-800">
+      <div className="flex w-[196px] translate-y-2 flex-col gap-y-1.5 rounded-md border border-gray-200 bg-white px-2 py-1.5 text-xs font-medium text-gray-800">
         <div className="flex flex-col gap-y-0.5">
           <h3 className="text-sm">Styles</h3>
           <p className="font-extralight">Customize the way the element looks</p>
@@ -216,7 +217,15 @@ function StylesSettingsContainer({ el }: { el: FormElementInstance }) {
                   }}
                 >
                   <div className="group flex h-6 w-6 cursor-pointer items-center justify-center">
-                    <SmallSizeIcon className="cursor-pointer transition-all duration-300" />
+                    <SmallSizeIcon
+                      className={cn(
+                        "cursor-pointer transition-all duration-300",
+                        {
+                          "[&>path]:fill-blue-500":
+                            el.attributes.styles.width === "half",
+                        },
+                      )}
+                    />
                   </div>
                 </TooltipTrigger>
                 <TooltipContent>Half width</TooltipContent>
@@ -229,7 +238,15 @@ function StylesSettingsContainer({ el }: { el: FormElementInstance }) {
                   }}
                 >
                   <div className="group flex h-6 w-6 cursor-pointer items-center justify-center">
-                    <LargeSizeIcon className="cursor-pointer transition-all duration-300" />
+                    <LargeSizeIcon
+                      className={cn(
+                        "cursor-pointer transition-all duration-300",
+                        {
+                          "[&>path]:fill-blue-500":
+                            el.attributes.styles.width === "full",
+                        },
+                      )}
+                    />
                   </div>
                 </TooltipTrigger>
                 <TooltipContent>Full width</TooltipContent>
@@ -237,43 +254,69 @@ function StylesSettingsContainer({ el }: { el: FormElementInstance }) {
             </div>
           </div>
 
-          <div className="flex flex-row items-center justify-between">
-            <span>Alignment</span>
-            <div className="flex flex-row gap-x-1">
-              <Tooltip>
-                <TooltipTrigger
-                  onClick={() => {
-                    changeElementAlignment("left", el);
-                  }}
-                >
-                  <AlignLeftIcon className="cursor-pointer transition-all duration-300" />
-                </TooltipTrigger>
-                <TooltipContent>Align left</TooltipContent>
-              </Tooltip>
+          {el.attributes.styles.width === "half" && (
+            <div className="flex flex-row items-center justify-between">
+              <span>Alignment</span>
+              <div className="flex flex-row gap-x-1">
+                <Tooltip>
+                  <TooltipTrigger
+                    onClick={() => {
+                      changeElementAlignment("left", el);
+                    }}
+                  >
+                    <AlignLeftIcon
+                      className={cn(
+                        "cursor-pointer transition-all duration-300",
+                        {
+                          "[&>path]:stroke-blue-500":
+                            el.attributes.styles.alignment === "left",
+                        },
+                      )}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>Align left</TooltipContent>
+                </Tooltip>
 
-              <Tooltip>
-                <TooltipTrigger
-                  onClick={() => {
-                    changeElementAlignment("center", el);
-                  }}
-                >
-                  <AlignCenterIcon className="cursor-pointer transition-all duration-300" />
-                </TooltipTrigger>
-                <TooltipContent>Align center</TooltipContent>
-              </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger
+                    onClick={() => {
+                      changeElementAlignment("center", el);
+                    }}
+                  >
+                    <AlignCenterIcon
+                      className={cn(
+                        "cursor-pointer transition-all duration-300",
+                        {
+                          "[&>path]:stroke-blue-500":
+                            el.attributes.styles.alignment === "center",
+                        },
+                      )}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>Align center</TooltipContent>
+                </Tooltip>
 
-              <Tooltip>
-                <TooltipTrigger
-                  onClick={() => {
-                    changeElementAlignment("right", el);
-                  }}
-                >
-                  <AlignRightIcon className="cursor-pointer transition-all duration-300" />
-                </TooltipTrigger>
-                <TooltipContent>Align right</TooltipContent>
-              </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger
+                    onClick={() => {
+                      changeElementAlignment("right", el);
+                    }}
+                  >
+                    <AlignRightIcon
+                      className={cn(
+                        "cursor-pointer transition-all duration-300",
+                        {
+                          "[&>path]:stroke-blue-500":
+                            el.attributes.styles.alignment === "right",
+                        },
+                      )}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>Align right</TooltipContent>
+                </Tooltip>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </PopoverContent>

@@ -62,6 +62,7 @@ export function SubTitlePropertiesComponent({
     defaultValues: {
       label: elementInstance?.attributes?.label || "No label",
     },
+    mode: "all",
   });
 
   function onSubmit(values: SubTitleSchemaType) {
@@ -80,6 +81,7 @@ export function SubTitlePropertiesComponent({
   return (
     <Form {...form}>
       <form
+        onSubmit={form.handleSubmit(onSubmit)}
         onBlur={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-y-5"
       >
