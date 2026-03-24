@@ -47,6 +47,7 @@ export type FormElementInstance = {
   isAiGenerated?: boolean;
   attributes: {
     label?: string;
+    content?: string;
     required?: boolean;
     placeholder?: string;
     helperText?: string;

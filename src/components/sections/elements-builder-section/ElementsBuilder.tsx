@@ -10,7 +10,7 @@ import SidebarBtnWrapper from "@/components/custom/SidebarBtnWrapper/SidebarBtnW
 import useFormContext from "@/hooks/useFormContext";
 import { cn } from "@/lib/utils";
 
-interface ElementsSection {
+export interface ElementsSection {
   title: string;
   elements: FormBuilderElementType[];
 }
@@ -30,7 +30,7 @@ const elementsSections: ElementsSection[] = [
   },
   {
     title: "Multi Elements",
-    elements: ["Dropdown", "Profiles", "Checklist", "Yes/No", "Checkbox"],
+    elements: ["Dropdown", "Yes/No", "Checkbox"],
   },
   {
     title: "Media Elements",
@@ -67,7 +67,7 @@ const ElementsBuilder: React.FC<IElementsBuilder> = ({ className }) => {
 
   return (
     <div
-      className={cn("max-w-[279px] bg-white px-5 py-9", className)}
+      className={cn("max-w-[279px] shrink-0 bg-white px-5 py-9", className)}
       onClick={() => {
         if (selectedElement) setSelectedElement(null);
       }}

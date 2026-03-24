@@ -42,7 +42,7 @@ export const SubTitleSchema = z.object({
 export type SubTitleSchemaType = z.infer<typeof SubTitleSchema>;
 
 export const ParagraphSchema = z.object({
-  label: z
+  content: z
     .string()
     .min(1, { error: "Label is required" })
     .min(3, { error: "Label must have at least three characters" }),
