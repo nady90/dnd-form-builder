@@ -91,7 +91,11 @@ const PreviewDialog = () => {
                     control={form.control}
                     // eslint-disable-next-line
                     name={el.attributes.label!!}
-                    render={({ field, fieldState }) => {
+                    render={({ field, fieldState, formState }) => {
+                      // Accessing formState.errors subscribes this component
+                      // to re-render when validation errors change, ensuring
+                      // fieldState.error is populated after a failed submit.
+                      void formState.errors;
                       return (
                         <PreviewComponent
                           fieldState={fieldState}

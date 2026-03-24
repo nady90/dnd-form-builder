@@ -188,13 +188,14 @@ export function TextFieldPreviewComponent({
   field: ControllerRenderProps<Record<string, string>, string>;
   fieldState: ControllerFieldState;
 }) {
-  console.log("fieldState: ", fieldState);
-
   return (
     <div className="flex w-full flex-col items-start gap-y-1">
       <Label
         htmlFor={elementInstance.id}
-        className="relative text-sm font-medium text-gray-800"
+        className={cn(
+          "relative text-sm font-medium text-gray-800",
+          fieldState.error && "text-red-500",
+        )}
       >
         {elementInstance?.attributes?.label || "No label"}
         {elementInstance?.attributes?.required && (
@@ -203,11 +204,19 @@ export function TextFieldPreviewComponent({
       </Label>
       <Input
         {...field}
-        className="w-full gap-x-1 rounded-none border border-gray-200 bg-white px-2 py-1.5 text-xs font-light text-gray-400"
+        className={cn(
+          "w-full gap-x-1 rounded-none border border-gray-200 bg-white px-2 py-1.5 text-xs font-light text-gray-400",
+          fieldState.error && "border-red-500",
+        )}
       />
       {elementInstance.attributes.helperText && (
         <p className="text-xs font-light text-gray-500">
           {elementInstance.attributes.helperText}
+        </p>
+      )}
+      {fieldState.error?.message && (
+        <p className="text-xs font-medium text-red-500">
+          {fieldState.error.message}
         </p>
       )}
     </div>
