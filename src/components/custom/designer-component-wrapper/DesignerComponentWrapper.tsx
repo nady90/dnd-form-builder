@@ -196,7 +196,6 @@ function SelectedUIElements({ el }: { el: FormElementInstance }) {
 }
 
 function StylesSettingsContainer({ el }: { el: FormElementInstance }) {
-  console.log("🚀 ~ StylesSettingsContainer ~ el:", el);
   const { changeElementWidth, changeElementAlignment } = useFormContext();
 
   return (

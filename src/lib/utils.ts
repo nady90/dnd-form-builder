@@ -35,12 +35,14 @@ export function getRandomIdString(): string {
 
 export function getZodObjectFromElementsArray(elements: FormElementInstance[]) {
   return Object.fromEntries(
-    elements.map((el) => [
-      el.attributes.label,
-      el.attributes.required
-        ? z.string().min(1, "This field is required")
-        : z.string().optional(),
-    ]),
+    elements
+      .filter((el) => el.type !== "Separator")
+      .map((el) => [
+        el.attributes.label,
+        el.attributes.required
+          ? z.string().min(1, "This field is required")
+          : z.string().optional(),
+      ]),
   );
 }
 
@@ -48,9 +50,8 @@ export function getDefaultValuesFromElementsArray(
   elements: FormElementInstance[],
 ) {
   return Object.fromEntries(
-    elements.map((el) => [
-      el.attributes.label,
-      el.attributes.defaultValue || "",
-    ]),
+    elements
+      .filter((el) => el.type !== "Separator")
+      .map((el) => [el.attributes.label, el.attributes.defaultValue || ""]),
   );
 }

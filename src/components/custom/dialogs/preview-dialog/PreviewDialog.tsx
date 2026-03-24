@@ -85,6 +85,11 @@ const PreviewDialog = () => {
             </div>
             {elements.map((el) => {
               const PreviewComponent = FormElements[el.type].previewComponent;
+
+              if (el.type === "Separator") {
+                return <PreviewComponent key={el.id} elementInstance={el} />;
+              }
+
               return (
                 <div key={el.id}>
                   <FormField

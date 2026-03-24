@@ -29,8 +29,8 @@ export type FormElement = {
   }>;
   previewComponent: React.FC<{
     elementInstance: FormElementInstance;
-    field: ControllerRenderProps<Record<string, string>, string>;
-    fieldState: ControllerFieldState;
+    field?: ControllerRenderProps<Record<string, string>, string>;
+    fieldState?: ControllerFieldState;
   }>;
   submitComponent: React.FC<{
     elementInstance: FormElementInstance;
@@ -51,6 +51,7 @@ export type FormElementInstance = {
     placeholder?: string;
     helperText?: string;
     defaultValue?: string;
+    height?: number;
     styles: {
       width: "half" | "full";
       alignment: "left" | "center" | "right";

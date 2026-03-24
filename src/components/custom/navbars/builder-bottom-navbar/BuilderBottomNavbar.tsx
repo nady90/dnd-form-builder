@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 import ExportIcon from "@/components/icons/ExportIcon";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import useFormContext from "@/hooks/useFormContext";
 
 import NavbarBtn from "../../buttons/navbar-button/NavbarBtn";
 import PublishButton from "../../buttons/publish-button/PublishButton";
@@ -20,6 +21,8 @@ const BuilderBottomNavbar: React.FC<IBuilderBottomNavbar> = ({
   link,
   formId,
 }) => {
+  const { setSelectedElement } = useFormContext();
+
   return (
     <div className="flex h-[45px] flex-row justify-between border-b border-gray-200 px-5 py-2.5">
       <div className="flex flex-row items-center gap-x-2.5 text-base font-normal">
@@ -49,7 +52,13 @@ const BuilderBottomNavbar: React.FC<IBuilderBottomNavbar> = ({
 
         <Dialog>
           <DialogTrigger asChild>
-            <NavbarBtn loading={false} variety="preview">
+            <NavbarBtn
+              onClick={() => {
+                setSelectedElement(null);
+              }}
+              loading={false}
+              variety="preview"
+            >
               Preview
             </NavbarBtn>
           </DialogTrigger>

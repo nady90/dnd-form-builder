@@ -185,8 +185,8 @@ export function TextFieldPreviewComponent({
   fieldState,
 }: {
   elementInstance: FormElementInstance;
-  field: ControllerRenderProps<Record<string, string>, string>;
-  fieldState: ControllerFieldState;
+  field?: ControllerRenderProps<Record<string, string>, string>;
+  fieldState?: ControllerFieldState;
 }) {
   return (
     <div className="flex w-full flex-col items-start gap-y-1">
@@ -194,7 +194,7 @@ export function TextFieldPreviewComponent({
         htmlFor={elementInstance.id}
         className={cn(
           "relative text-sm font-medium text-gray-800",
-          fieldState.error && "text-red-500",
+          fieldState?.error && "text-red-500",
         )}
       >
         {elementInstance?.attributes?.label || "No label"}
@@ -206,7 +206,7 @@ export function TextFieldPreviewComponent({
         {...field}
         className={cn(
           "w-full gap-x-1 rounded-none border border-gray-200 bg-white px-2 py-1.5 text-xs font-light text-gray-400",
-          fieldState.error && "border-red-500",
+          fieldState?.error && "border-red-500",
         )}
       />
       {elementInstance.attributes.helperText && (
@@ -214,7 +214,7 @@ export function TextFieldPreviewComponent({
           {elementInstance.attributes.helperText}
         </p>
       )}
-      {fieldState.error?.message && (
+      {fieldState?.error?.message && (
         <p className="text-xs font-medium text-red-500">
           {fieldState.error.message}
         </p>

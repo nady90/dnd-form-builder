@@ -66,3 +66,13 @@ export const SpacerSchema = z.object({
 });
 
 export type SpacerSchemaType = z.infer<typeof SpacerSchema>;
+
+export const SeparatorSchema = z.object({
+  height: z.number(),
+  styles: z.object({
+    width: z.enum(["half", "full"]),
+    alignment: z.enum(["left", "center", "right"]),
+  }),
+});
+
+export type SperatorSchemaType = z.infer<typeof SeparatorSchema>;
