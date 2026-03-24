@@ -36,6 +36,9 @@ const PreviewDialog = () => {
   const previewPageSchema = z.object(getZodObjectFromElementsArray(elements));
   type PreviewPageType = z.infer<typeof previewPageSchema>;
 
+  // console.log("element: ", elements[0]);
+  // console.log("schema: ", previewPageSchema);
+  // console.log("default values: ", getDefaultValuesFromElementsArray(elements));
   const form = useForm<PreviewPageType>({
     resolver: zodResolver(previewPageSchema),
     defaultValues: getDefaultValuesFromElementsArray(elements),

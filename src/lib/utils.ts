@@ -53,7 +53,10 @@ export function getDefaultValuesFromElementsArray(
   return Object.fromEntries(
     elements
       .filter((el) => !elementDoesntRequireValidation(el))
-      .map((el) => [el.attributes.label, el.attributes.defaultValue || ""]),
+      .map((el) => [
+        el.attributes.label,
+        el.attributes.defaultValue || el.attributes.placeholder || "",
+      ]),
   );
 }
 

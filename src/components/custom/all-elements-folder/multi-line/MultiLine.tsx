@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import {
   ControllerFieldState,
   ControllerRenderProps,
@@ -18,26 +18,29 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
 import useFormContext from "@/hooks/useFormContext";
 import { cn } from "@/lib/utils";
 import {
-  TextFieldSchema,
-  TextFieldSchemaType,
+  MultiLineSchema,
+  MultiLineSchemaType,
 } from "@/schemas/input-properties";
 
-import { FormElement, FormElementInstance } from "../_CentralPlace";
+import { FormElement } from "../_CentralPlace";
+import { FormElementInstance } from "../_CentralPlace";
 
-const TextField: FormElement = {
-  type: "TextField",
+const MultiLine: FormElement = {
+  type: "Multiline",
   construct: (id) => {
     return {
       id: id,
-      type: "TextField",
+      type: "Multiline",
       attributes: {
-        label: "label here",
+        label: "Label for large text area",
         defaultValue: "default value here",
         required: true,
-        placeholder: "placeholder here",
+        placeholder:
+          "This gives users the ability to enter or handle text that spans more than a single line, ideal for detailed information, comments, or descriptions. It enables free-form text input that spans across lines, unlike the standard input field.",
         helperText: "helper text here",
         styles: {
           width: "full",
@@ -46,14 +49,14 @@ const TextField: FormElement = {
       },
     };
   },
-  designerComponent: TextFieldDesignerComponent,
-  sidebarComponent: "TextField",
-  propertiesComponent: TextFieldPropertiesComponent,
-  previewComponent: TextFieldPreviewComponent,
-  submitComponent: TextFieldSubmitComponent,
+  sidebarComponent: "Multiline",
+  designerComponent: MultiLineDesignerComponent,
+  propertiesComponent: MultiLinePropertiesComponent,
+  previewComponent: MultiLinePreviewComponent,
+  submitComponent: MultiLineSubmitComponent,
 };
 
-export function TextFieldDesignerComponent({
+export function MultiLineDesignerComponent({
   elementInstance,
 }: {
   elementInstance: FormElementInstance;
@@ -69,14 +72,13 @@ export function TextFieldDesignerComponent({
           <FaStarOfLife className="absolute top-0 -right-2 h-[7.5px] w-[7.5px] text-red-500" />
         )}
       </Label>
-      <Input
+      <Textarea
+        rows={30}
         readOnly
         name={elementInstance.id}
         id={elementInstance.id}
-        className="pointer-events-none w-full gap-x-1 rounded-none border border-gray-200 bg-white px-2 py-1.5 text-xs font-light text-gray-400"
-        defaultValue={
-          elementInstance.attributes.defaultValue || "No default value"
-        }
+        className="pointer-events-none min-h-[110px] w-full gap-x-1 rounded-none border border-gray-200 bg-white px-2 py-1.5 text-xs font-light text-gray-400"
+        placeholder={elementInstance.attributes.placeholder || "No placeholder"}
       />
       {elementInstance.attributes.helperText && (
         <p className="text-xs font-light text-gray-500">
@@ -87,7 +89,7 @@ export function TextFieldDesignerComponent({
   );
 }
 
-export function TextFieldPropertiesComponent({
+export function MultiLinePropertiesComponent({
   elementInstance,
 }: {
   elementInstance: FormElementInstance;
@@ -96,17 +98,18 @@ export function TextFieldPropertiesComponent({
 
   const { updateElement } = useFormContext();
 
-  const form = useForm<TextFieldSchemaType>({
-    resolver: zodResolver(TextFieldSchema),
+  const form = useForm<MultiLineSchemaType>({
+    resolver: zodResolver(MultiLineSchema),
     defaultValues: {
       label: elementInstance?.attributes?.label || "No label",
       required: elementInstance?.attributes?.required ?? false,
       helperText: elementInstance?.attributes?.helperText || "helper text here",
+      placeholder: elementInstance.attributes.placeholder,
     },
     mode: "all",
   });
 
-  function onSubmit(values: TextFieldSchemaType) {
+  function onSubmit(values: MultiLineSchemaType) {
     updateElement(elementInstance.id, {
       ...elementInstance,
       attributes: {
@@ -140,6 +143,23 @@ export function TextFieldPropertiesComponent({
             );
           }}
         />
+
+        <FormField
+          control={form.control}
+          name="placeholder"
+          render={({ field }) => {
+            return (
+              <FormItem className="mt-5 flex flex-col gap-y-2.5">
+                <FormLabel>Placeholder</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
+
         <FormField
           control={form.control}
           name="required"
@@ -178,7 +198,7 @@ export function TextFieldPropertiesComponent({
   );
 }
 
-export function TextFieldPreviewComponent({
+export function MultiLinePreviewComponent({
   elementInstance,
   field,
   fieldState,
@@ -191,22 +211,23 @@ export function TextFieldPreviewComponent({
     <div className="flex w-full flex-col items-start gap-y-1">
       <Label
         htmlFor={elementInstance.id}
-        className={cn(
-          "relative text-sm font-medium text-gray-800",
-          fieldState?.error && "text-red-500",
-        )}
+        className="relative text-sm font-medium text-gray-800"
       >
         {elementInstance?.attributes?.label || "No label"}
         {elementInstance?.attributes?.required && (
           <FaStarOfLife className="absolute top-0 -right-2 h-[7.5px] w-[7.5px] text-red-500" />
         )}
       </Label>
-      <Input
+      <Textarea
         {...field}
+        rows={30}
+        name={elementInstance.id}
+        id={elementInstance.id}
         className={cn(
-          "w-full gap-x-1 rounded-none border border-gray-200 bg-white px-2 py-1.5 text-xs font-light text-gray-400",
-          fieldState?.error && "border-red-500",
+          "min-h-[110px] w-full gap-x-1 rounded-none border border-gray-200 bg-white px-2 py-1.5 text-xs font-light text-gray-400",
+          { "border-red-500": fieldState?.error },
         )}
+        placeholder={elementInstance.attributes.placeholder || "No placeholder"}
       />
       {elementInstance.attributes.helperText && (
         <p className="text-xs font-light text-gray-500">
@@ -222,7 +243,7 @@ export function TextFieldPreviewComponent({
   );
 }
 
-export function TextFieldSubmitComponent({
+export function MultiLineSubmitComponent({
   elementInstance,
   setFormValues,
 }: {
@@ -242,20 +263,13 @@ export function TextFieldSubmitComponent({
           <FaStarOfLife className="absolute top-0 -right-2 h-[7.5px] w-[7.5px] text-red-500" />
         )}
       </Label>
-      <Input
-        onChange={(e) => {
-          setFormValues((prev) => {
-            const newFormValues = { ...prev };
-            prev[elementInstance.id] = e.target.value;
-            return newFormValues;
-          });
-        }}
+      <Textarea
+        rows={30}
+        readOnly
         name={elementInstance.id}
         id={elementInstance.id}
-        className="w-full gap-x-1 rounded-none border border-gray-200 bg-white px-2 py-1.5 text-xs font-light text-gray-400"
-        defaultValue={
-          elementInstance.attributes.defaultValue || "No default value"
-        }
+        className="pointer-events-none w-full gap-x-1 rounded-none border border-gray-200 bg-white px-2 py-1.5 text-xs font-light text-gray-400"
+        placeholder={elementInstance.attributes.placeholder || "No placeholder"}
       />
       {elementInstance.attributes.helperText && (
         <p className="text-xs font-light text-gray-500">
@@ -266,4 +280,4 @@ export function TextFieldSubmitComponent({
   );
 }
 
-export default TextField;
+export default MultiLine;

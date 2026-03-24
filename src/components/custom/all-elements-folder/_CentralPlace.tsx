@@ -1,10 +1,7 @@
-import {
-  ControllerFieldState,
-  ControllerRenderProps,
-  UseFormReturn,
-} from "react-hook-form";
+import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 
 import { FormBuilderElementType } from "../buttons/question-type-button/QuestionTypeButton";
+import MultiLine from "./multi-line/MultiLine";
 import ParagraphField from "./paragraph/Paragraph";
 import SeparatorField from "./separator/Separator";
 import SpacerField from "./spacer/Spacer";
@@ -18,7 +15,8 @@ export type AllElementsType =
   | "SubTitle"
   | "Paragraph"
   | "Separator"
-  | "Spacer";
+  | "Spacer"
+  | "Multiline";
 
 export type FormElement = {
   type: AllElementsType;
@@ -71,4 +69,5 @@ export const FormElements: FormElementsType = {
   Paragraph: ParagraphField,
   Separator: SeparatorField,
   Spacer: SpacerField,
+  Multiline: MultiLine,
 };

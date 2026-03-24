@@ -73,3 +73,19 @@ export const SeparatorSchema = z.object({
 });
 
 export type SperatorSchemaType = z.infer<typeof SeparatorSchema>;
+
+export const MultiLineSchema = z.object({
+  label: z
+    .string()
+    .min(1, { error: "Label is required" })
+    .min(3, { error: "Label must have at least three characters" }),
+  required: z.boolean(),
+  helperText: z.string(),
+  placeholder: z.string().optional(),
+  styles: z.object({
+    width: z.enum(["half", "full"]),
+    alignment: z.enum(["left", "center", "right"]),
+  }),
+});
+
+export type MultiLineSchemaType = z.infer<typeof MultiLineSchema>;
