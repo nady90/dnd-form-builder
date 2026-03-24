@@ -55,10 +55,7 @@ export const ParagraphSchema = z.object({
 export type ParagraphSchemaType = z.infer<typeof ParagraphSchema>;
 
 export const SpacerSchema = z.object({
-  label: z
-    .string()
-    .min(1, { error: "Label is required" })
-    .min(3, { error: "Label must have at least three characters" }),
+  height: z.number(),
   styles: z.object({
     width: z.enum(["half", "full"]),
     alignment: z.enum(["left", "center", "right"]),
