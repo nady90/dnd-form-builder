@@ -98,7 +98,18 @@ const PreviewDialog = () => {
               }
 
               return (
-                <div key={el.id}>
+                <div
+                  key={el.id}
+                  className={cn(
+                    "group relative cursor-grab",
+                    el.attributes.styles.width === "full" ? "w-full" : "w-1/2",
+                    el.attributes.styles.alignment === "left"
+                      ? "mr-auto"
+                      : el.attributes.styles.alignment === "center"
+                        ? "mx-auto"
+                        : "ml-auto",
+                  )}
+                >
                   <FormField
                     control={form.control}
                     // eslint-disable-next-line
