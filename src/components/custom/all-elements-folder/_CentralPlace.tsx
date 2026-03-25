@@ -2,6 +2,7 @@ import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 
 import { FormBuilderElementType } from "../buttons/question-type-button/QuestionTypeButton";
 import MultiLine from "./multi-line/MultiLine";
+import Number from "./number/Number";
 import ParagraphField from "./paragraph/Paragraph";
 import SeparatorField from "./separator/Separator";
 import SpacerField from "./spacer/Spacer";
@@ -16,7 +17,8 @@ export type AllElementsType =
   | "Paragraph"
   | "Separator"
   | "Spacer"
-  | "Multiline";
+  | "Multiline"
+  | "Number";
 
 export type FormElement = {
   type: AllElementsType;
@@ -49,7 +51,7 @@ export type FormElementInstance = {
     required?: boolean;
     placeholder?: string;
     helperText?: string;
-    defaultValue?: string;
+    defaultValue?: string | number;
     height?: number;
     styles: {
       width: "half" | "full";
@@ -70,4 +72,5 @@ export const FormElements: FormElementsType = {
   Separator: SeparatorField,
   Spacer: SpacerField,
   Multiline: MultiLine,
+  Number: Number,
 };

@@ -91,8 +91,6 @@ const PreviewDialog = () => {
               const PreviewComponent = FormElements[el.type].previewComponent;
 
               // If the element doesn't require validation, just show it as is
-              console.log("works?", elementDoesntRequireValidation(el));
-
               if (elementDoesntRequireValidation(el)) {
                 return <PreviewComponent key={el.id} elementInstance={el} />;
               }

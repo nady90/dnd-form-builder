@@ -89,3 +89,20 @@ export const MultiLineSchema = z.object({
 });
 
 export type MultiLineSchemaType = z.infer<typeof MultiLineSchema>;
+
+export const NumberSchema = z.object({
+  label: z
+    .string()
+    .min(1, { error: "Label is required" })
+    .min(3, { error: "Label must have at least three characters" }),
+  defaultValue: z.number().optional(),
+  required: z.boolean(),
+  helperText: z.string(),
+  placeholder: z.string().optional(),
+  styles: z.object({
+    width: z.enum(["half", "full"]),
+    alignment: z.enum(["left", "center", "right"]),
+  }),
+});
+
+export type NumberSchemaType = z.infer<typeof NumberSchema>;

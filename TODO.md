@@ -26,3 +26,4 @@
 2. Implement the two other tabs:
    a. Workflow: Email so and so when you are done.
    b. Permissions: Who can edit this survey? enter email.
+3. Bug: Make two number inputs and change one, the other will change (I think it's because they have the same label)
