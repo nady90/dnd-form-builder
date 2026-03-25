@@ -1,6 +1,8 @@
 import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 
 import { FormBuilderElementType } from "../buttons/question-type-button/QuestionTypeButton";
+import DateAndTimePicker from "./date-and-time/DateAndTime";
+import DatePicker from "./date-picker/DatePicker";
 import MultiLine from "./multi-line/MultiLine";
 import Number from "./number/Number";
 import ParagraphField from "./paragraph/Paragraph";
@@ -18,7 +20,9 @@ export type AllElementsType =
   | "Separator"
   | "Spacer"
   | "Multiline"
-  | "Number";
+  | "Number"
+  | "date"
+  | "Date & Time";
 
 export type FormElement = {
   type: AllElementsType;
@@ -73,4 +77,6 @@ export const FormElements: FormElementsType = {
   Spacer: SpacerField,
   Multiline: MultiLine,
   Number: Number,
+  date: DatePicker,
+  ["Date & Time"]: DateAndTimePicker,
 };
