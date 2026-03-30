@@ -100,6 +100,11 @@ export function DatePickerDesignerComponent({
           />
         </PopoverContent>
       </Popover>
+      {elementInstance.attributes.helperText && (
+        <p className="text-xs font-light text-gray-500">
+          {elementInstance.attributes.helperText}
+        </p>
+      )}
     </Field>
   );
 }
@@ -232,6 +237,11 @@ export function DatePickerPreviewComponent({
           />
         </PopoverContent>
       </Popover>
+      {elementInstance.attributes.helperText && (
+        <p className="text-xs font-light text-gray-500">
+          {elementInstance.attributes.helperText}
+        </p>
+      )}
     </Field>
   );
 }
