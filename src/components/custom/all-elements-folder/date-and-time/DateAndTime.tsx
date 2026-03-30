@@ -71,54 +71,64 @@ export function DatePickerDesignerComponent({
   const [open, setOpen] = React.useState(false);
   const [date, setDate] = React.useState<Date | undefined>(undefined);
   return (
-    <FieldGroup className="flex-row">
-      <Field>
-        <FieldLabel htmlFor="date-picker-optional">
-          <span className="relative">
-            {elementInstance.attributes.label || "Date"}{" "}
-            <span>
-              {elementInstance.attributes.required && (
-                <FaStarOfLife className="absolute top-0 -right-2 h-[7.5px] w-[7.5px] text-red-500" />
-              )}
+    <div className="flex flex-col gap-y-1">
+      <FieldGroup className="flex-row">
+        <Field>
+          <FieldLabel htmlFor="date-picker-optional">
+            <span className="relative">
+              {elementInstance.attributes.label || "Date"}{" "}
+              <span>
+                {elementInstance.attributes.required && (
+                  <FaStarOfLife className="absolute top-0 -right-2 h-[7.5px] w-[7.5px] text-red-500" />
+                )}
+              </span>
             </span>
-          </span>
-        </FieldLabel>
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              id="date-picker-optional"
-              className="w-32 justify-between font-normal"
+          </FieldLabel>
+          <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                id="date-picker-optional"
+                className="w-32 justify-between font-normal"
+              >
+                {date ? format(date, "PPP") : "Select date"}
+                <ChevronDownIcon />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent
+              className="w-auto overflow-hidden p-0"
+              align="start"
             >
-              {date ? format(date, "PPP") : "Select date"}
-              <ChevronDownIcon />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto overflow-hidden p-0" align="start">
-            <Calendar
-              mode="single"
-              selected={date}
-              captionLayout="dropdown"
-              defaultMonth={date}
-              onSelect={(date) => {
-                setDate(date);
-                setOpen(false);
-              }}
-            />
-          </PopoverContent>
-        </Popover>
-      </Field>
-      <Field className="w-32">
-        <FieldLabel htmlFor="time-picker-optional">Time</FieldLabel>
-        <Input
-          type="time"
-          id="time-picker-optional"
-          step="1"
-          defaultValue="10:30:00"
-          className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
-        />
-      </Field>
-    </FieldGroup>
+              <Calendar
+                mode="single"
+                selected={date}
+                captionLayout="dropdown"
+                defaultMonth={date}
+                onSelect={(date) => {
+                  setDate(date);
+                  setOpen(false);
+                }}
+              />
+            </PopoverContent>
+          </Popover>
+        </Field>
+        <Field className="w-32">
+          <FieldLabel htmlFor="time-picker-optional">Time</FieldLabel>
+          <Input
+            type="time"
+            id="time-picker-optional"
+            step="1"
+            defaultValue="10:30:00"
+            className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+          />
+        </Field>
+      </FieldGroup>
+      {elementInstance.attributes.helperText && (
+        <p className="text-xs font-light text-gray-500">
+          {elementInstance.attributes.helperText}
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -222,54 +232,64 @@ export function DatePickerPreviewComponent({
   console.log("Date&Time: ", date);
 
   return (
-    <FieldGroup className="flex-row">
-      <Field>
-        <FieldLabel htmlFor="date-picker-optional">
-          <span className="relative">
-            {elementInstance.attributes.label || "Date"}{" "}
-            <span>
-              {elementInstance.attributes.required && (
-                <FaStarOfLife className="absolute top-0 -right-2 h-[7.5px] w-[7.5px] text-red-500" />
-              )}
+    <div className="flex flex-col gap-y-1">
+      <FieldGroup className="flex-row">
+        <Field>
+          <FieldLabel htmlFor="date-picker-optional">
+            <span className="relative">
+              {elementInstance.attributes.label || "Date"}{" "}
+              <span>
+                {elementInstance.attributes.required && (
+                  <FaStarOfLife className="absolute top-0 -right-2 h-[7.5px] w-[7.5px] text-red-500" />
+                )}
+              </span>
             </span>
-          </span>
-        </FieldLabel>
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              id="date-picker-optional"
-              className="w-32 justify-between font-normal"
+          </FieldLabel>
+          <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                id="date-picker-optional"
+                className="w-32 justify-between font-normal"
+              >
+                {date ? format(date, "PPP") : "Select date"}
+                <ChevronDownIcon />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent
+              className="w-auto overflow-hidden p-0"
+              align="start"
             >
-              {date ? format(date, "PPP") : "Select date"}
-              <ChevronDownIcon />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto overflow-hidden p-0" align="start">
-            <Calendar
-              mode="single"
-              selected={date}
-              captionLayout="dropdown"
-              defaultMonth={date}
-              onSelect={(date) => {
-                setDate(date);
-                setOpen(false);
-              }}
-            />
-          </PopoverContent>
-        </Popover>
-      </Field>
-      <Field className="w-32">
-        <FieldLabel htmlFor="time-picker-optional">Time</FieldLabel>
-        <Input
-          type="time"
-          id="time-picker-optional"
-          step="1"
-          defaultValue="10:30:00"
-          className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
-        />
-      </Field>
-    </FieldGroup>
+              <Calendar
+                mode="single"
+                selected={date}
+                captionLayout="dropdown"
+                defaultMonth={date}
+                onSelect={(date) => {
+                  setDate(date);
+                  setOpen(false);
+                }}
+              />
+            </PopoverContent>
+          </Popover>
+        </Field>
+        <Field className="w-32">
+          <FieldLabel htmlFor="time-picker-optional">Time</FieldLabel>
+          <Input
+            type="time"
+            id="time-picker-optional"
+            step="1"
+            defaultValue="10:30:00"
+            className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+          />
+        </Field>
+      </FieldGroup>
+      {elementInstance.attributes.helperText && (
+        <p className="text-xs font-light text-gray-500">
+          {elementInstance.attributes.helperText}
+        </p>
+      )}
+    </div>
   );
 }
 
