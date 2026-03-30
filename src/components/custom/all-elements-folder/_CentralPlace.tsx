@@ -12,6 +12,7 @@ import SpacerField from "./spacer/Spacer";
 import SubTitleField from "./sub-title/SubTitle";
 import TextField from "./text-field/TextField";
 import TitleField from "./title/Title";
+import YesNoElement from "./yes-no/YesNo";
 
 export type AllElementsType =
   | "TextField"
@@ -24,7 +25,8 @@ export type AllElementsType =
   | "Number"
   | "date"
   | "Date & Time"
-  | "Dropdown";
+  | "Dropdown"
+  | "Yes/No";
 
 export type FormElement = {
   type: AllElementsType;
@@ -83,4 +85,5 @@ export const FormElements: FormElementsType = {
   date: DatePicker,
   ["Date & Time"]: DateAndTimePicker,
   Dropdown: Dropdown,
+  ["Yes/No"]: YesNoElement,
 };

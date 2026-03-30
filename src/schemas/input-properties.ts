@@ -156,3 +156,17 @@ export const DropdownSchema = z.object({
 });
 
 export type DropdownSchemaType = z.infer<typeof DropdownSchema>;
+
+export const YesNoFieldSchema = z.object({
+  label: z
+    .string()
+    .min(1, { error: "Label is required" })
+    .min(3, { error: "Label must have at least three characters" }),
+  helperText: z.string(),
+  styles: z.object({
+    width: z.enum(["half", "full"]),
+    alignment: z.enum(["left", "center", "right"]),
+  }),
+});
+
+export type YesNoFieldSchemaType = z.infer<typeof YesNoFieldSchema>;
