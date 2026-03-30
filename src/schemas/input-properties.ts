@@ -93,8 +93,8 @@ export type MultiLineSchemaType = z.infer<typeof MultiLineSchema>;
 export const NumberSchema = z.object({
   label: z
     .string()
-    .min(1, { error: "Label is required" })
-    .min(3, { error: "Label must have at least three characters" }),
+    .min(1, { error: "Label is required." })
+    .min(3, { error: "Label must have at least three characters." }),
   defaultValue: z.number().optional(),
   required: z.boolean(),
   helperText: z.string(),
@@ -106,3 +106,35 @@ export const NumberSchema = z.object({
 });
 
 export type NumberSchemaType = z.infer<typeof NumberSchema>;
+
+export const DateFieldSchema = z.object({
+  label: z
+    .string()
+    .min(1, { error: "Label is required." })
+    .min(3, { error: "Label must have at least three characters." }),
+  required: z.boolean(),
+  helperText: z.string(),
+  placeholder: z.string().optional(),
+  styles: z.object({
+    width: z.enum(["half", "full"]),
+    alignment: z.enum(["left", "center", "right"]),
+  }),
+});
+
+export type DateFieldSchemaType = z.infer<typeof DateFieldSchema>;
+
+export const DateAndTimeFieldSchema = z.object({
+  label: z
+    .string()
+    .min(1, { error: "Label is required." })
+    .min(3, { error: "Label must have at least three characters." }),
+  required: z.boolean(),
+  helperText: z.string(),
+  placeholder: z.string().optional(),
+  styles: z.object({
+    width: z.enum(["half", "full"]),
+    alignment: z.enum(["left", "center", "right"]),
+  }),
+});
+
+export type DateAndTimeFieldSchemaType = z.infer<typeof DateAndTimeFieldSchema>;

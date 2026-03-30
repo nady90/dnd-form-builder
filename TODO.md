@@ -27,3 +27,5 @@
    a. Workflow: Email so and so when you are done.
    b. Permissions: Who can edit this survey? enter email.
 3. Bug: Make two number inputs and change one, the other will change (I think it's because they have the same label)
+4. The user can delete a selected element with the delete button.
+5. The user shouldn't be able to select the text inside the buttons => iOS app like.
