@@ -3,6 +3,7 @@ import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 import { FormBuilderElementType } from "../buttons/question-type-button/QuestionTypeButton";
 import DateAndTimePicker from "./date-and-time/DateAndTime";
 import DatePicker from "./date-picker/DatePicker";
+import { Dropdown } from "./dropdown/Dropdown";
 import MultiLine from "./multi-line/MultiLine";
 import Number from "./number/Number";
 import ParagraphField from "./paragraph/Paragraph";
@@ -22,7 +23,8 @@ export type AllElementsType =
   | "Multiline"
   | "Number"
   | "date"
-  | "Date & Time";
+  | "Date & Time"
+  | "Dropdown";
 
 export type FormElement = {
   type: AllElementsType;
@@ -79,4 +81,5 @@ export const FormElements: FormElementsType = {
   Number: Number,
   date: DatePicker,
   ["Date & Time"]: DateAndTimePicker,
+  Dropdown: Dropdown,
 };
