@@ -59,6 +59,7 @@ export type FormElementInstance = {
     helperText?: string;
     defaultValue?: string | number;
     height?: number;
+    dropdownItemsArray?: { title: string }[];
     styles: {
       width: "half" | "full";
       alignment: "left" | "center" | "right";

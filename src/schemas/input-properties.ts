@@ -138,3 +138,21 @@ export const DateAndTimeFieldSchema = z.object({
 });
 
 export type DateAndTimeFieldSchemaType = z.infer<typeof DateAndTimeFieldSchema>;
+
+export const DropdownSchema = z.object({
+  label: z
+    .string()
+    .min(1, { error: "Label is required." })
+    .min(3, { error: "Label must have at least three characters." }),
+  required: z.boolean(),
+  dropdownItemsArray: z
+    .array(z.object({ title: z.string().min(1, "String is required.") }))
+    .min(1, "You must have at least one item.")
+    .max(5, "You can only have 5 items."),
+  styles: z.object({
+    width: z.enum(["half", "full"]),
+    alignment: z.enum(["left", "center", "right"]),
+  }),
+});
+
+export type DropdownSchemaType = z.infer<typeof DropdownSchema>;
