@@ -170,3 +170,18 @@ export const YesNoFieldSchema = z.object({
 });
 
 export type YesNoFieldSchemaType = z.infer<typeof YesNoFieldSchema>;
+
+export const CheckboxFieldSchema = z.object({
+  label: z
+    .string()
+    .min(1, { error: "Label is required" })
+    .min(3, { error: "Label must have at least three characters" }),
+  helperText: z.string(),
+  required: z.boolean(),
+  styles: z.object({
+    width: z.enum(["half", "full"]),
+    alignment: z.enum(["left", "center", "right"]),
+  }),
+});
+
+export type CheckboxFieldSchemaType = z.infer<typeof CheckboxFieldSchema>;

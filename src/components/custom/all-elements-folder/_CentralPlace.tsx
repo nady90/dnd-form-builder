@@ -1,6 +1,7 @@
 import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 
 import { FormBuilderElementType } from "../buttons/question-type-button/QuestionTypeButton";
+import CheckboxElement from "./checkbox/Checkbox";
 import DateAndTimePicker from "./date-and-time/DateAndTime";
 import DatePicker from "./date-picker/DatePicker";
 import { Dropdown } from "./dropdown/Dropdown";
@@ -26,7 +27,8 @@ export type AllElementsType =
   | "date"
   | "Date & Time"
   | "Dropdown"
-  | "Yes/No";
+  | "Yes/No"
+  | "Checkbox";
 
 export type FormElement = {
   type: AllElementsType;
@@ -86,4 +88,5 @@ export const FormElements: FormElementsType = {
   ["Date & Time"]: DateAndTimePicker,
   Dropdown: Dropdown,
   ["Yes/No"]: YesNoElement,
+  Checkbox: CheckboxElement,
 };
