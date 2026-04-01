@@ -26,6 +26,7 @@ const SaveButton = ({ formId }: { formId: number }) => {
 
   return (
     <NavbarBtn
+      disabled={isLoading}
       loading={isLoading}
       variety="save"
       onClick={() => {
