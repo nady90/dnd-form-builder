@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { CheckedState } from "@radix-ui/react-checkbox";
 import React, { useEffect } from "react";
 import {
   ControllerFieldState,
@@ -186,6 +187,8 @@ export function CheckboxPreviewComponent({
   field?: ControllerRenderProps<Record<string, string>, string>;
   fieldState?: ControllerFieldState;
 }) {
+  const [checked, setChecked] = React.useState<CheckedState>(false);
+
   return (
     <div className="flex w-full flex-col items-start gap-y-1">
       <Label
@@ -197,7 +200,7 @@ export function CheckboxPreviewComponent({
           <FaStarOfLife className="absolute top-0 -right-2 h-[7.5px] w-[7.5px] text-red-500" />
         )}
       </Label>
-      <Checkbox checked={true} />
+      <Checkbox checked={checked} onCheckedChange={setChecked} />
       {elementInstance.attributes.helperText && (
         <p className="text-xs font-light text-gray-500">
           {elementInstance.attributes.helperText}
