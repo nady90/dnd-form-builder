@@ -29,3 +29,22 @@
 3. Bug: Make two number inputs and change one, the other will change (I think it's because they have the same label)
 4. The user can delete a selected element with the delete button.
 5. The user shouldn't be able to select the text inside the buttons => iOS app like.
+6. Stream the AI response.
+
+7. PLAN:
+
+   > How do I tell a tester where to find an uploaded file? You will find it in your dashboard (max 20 files per form)
+   > Use only uploadthing for attachments and images:
+   > Security - auth => userId => rate limiting.
+   > Anybody can upload? Yes but each form can only have 20 files. &&&&&&&& Each use can only have 10 forms.
+
+   > > > > > > > > > Add a password (Shadcn PIN) to access this form => Permissions
+   > > > > > > > > > Permissions => Who can edit the form? Enter email invite like Figma.
+
+   > > > > > > > > > Workflows => Expiring links
+   > > > > > > > > > Workflows => Send an email (you submitted the form).
+   > > > > > > > > > Workflows => Send an email (the user submitted to your form) => Send to multiple emails. (Rate limiting only 5 emails)
+   > > > > > > > > > Workflows => Ask the user to rate the form.
+   > > > > > > > > > Workflows => Generate PDF of the form => Download? Save online?
+
+   > > > > > > > > > Rive video for workflows => New landing page section
