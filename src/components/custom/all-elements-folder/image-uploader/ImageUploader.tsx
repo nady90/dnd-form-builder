@@ -1,3 +1,4 @@
+"use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect } from "react";
 import {
@@ -63,7 +64,7 @@ export function ImageUploaderDesignerComponent({
 }: {
   elementInstance: FormElementInstance;
 }) {
-  return <ImageUploaderButton />;
+  return <ImageUploaderButton preview />;
 }
 
 export function ImageUploaderPropertiesComponent({
@@ -170,21 +171,7 @@ export function ImageUploaderPreviewComponent({
 }) {
   return (
     <div className="flex w-full flex-col items-start gap-y-1">
-      <Label
-        htmlFor={elementInstance.id}
-        className="relative text-sm font-medium text-gray-800"
-      >
-        {elementInstance?.attributes?.label || "No label"}
-        {elementInstance?.attributes?.required && (
-          <FaStarOfLife className="absolute top-0 -right-2 h-[7.5px] w-[7.5px] text-red-500" />
-        )}
-      </Label>
       <ImageUploaderButton />
-      {elementInstance.attributes.helperText && (
-        <p className="text-xs font-light text-gray-500">
-          {elementInstance.attributes.helperText}
-        </p>
-      )}
     </div>
   );
 }
