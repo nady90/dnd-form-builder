@@ -185,3 +185,18 @@ export const CheckboxFieldSchema = z.object({
 });
 
 export type CheckboxFieldSchemaType = z.infer<typeof CheckboxFieldSchema>;
+
+export const ImageUploaderFieldSchema = z.object({
+  label: z
+    .string()
+    .min(1, { error: "Label is required" })
+    .min(3, { error: "Label must have at least three characters" }),
+  helperText: z.string(),
+  required: z.boolean(),
+  styles: z.object({
+    width: z.enum(["half", "full"]),
+    alignment: z.enum(["left", "center", "right"]),
+  }),
+});
+
+export type ImageUploaderFieldSchemaType = z.infer<typeof CheckboxFieldSchema>;

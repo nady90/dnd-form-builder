@@ -5,6 +5,7 @@ import CheckboxElement from "./checkbox/Checkbox";
 import DateAndTimePicker from "./date-and-time/DateAndTime";
 import DatePicker from "./date-picker/DatePicker";
 import { Dropdown } from "./dropdown/Dropdown";
+import ImageUploader from "./image-uploader/ImageUploader";
 import MultiLine from "./multi-line/MultiLine";
 import Number from "./number/Number";
 import ParagraphField from "./paragraph/Paragraph";
@@ -28,7 +29,8 @@ export type AllElementsType =
   | "Date & Time"
   | "Dropdown"
   | "Yes/No"
-  | "Checkbox";
+  | "Checkbox"
+  | "Image";
 
 export type FormElement = {
   type: AllElementsType;
@@ -89,4 +91,5 @@ export const FormElements: FormElementsType = {
   Dropdown: Dropdown,
   ["Yes/No"]: YesNoElement,
   Checkbox: CheckboxElement,
+  Image: ImageUploader,
 };
