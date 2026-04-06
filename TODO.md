@@ -38,6 +38,7 @@
    > Use only uploadthing for attachments and images:
    > Security - auth => userId => rate limiting.
    > Anybody can upload? Yes but each form can only have 20 files. &&&&&&&& Each use can only have 10 forms.
+   > Check the properties tabs for all the elements specially the upload ones.
 
    > > > > > > > > > Add a password (Shadcn PIN) to access this form => Permissions
    > > > > > > > > > Permissions => Who can edit the form? Enter email invite like Figma.
@@ -49,3 +50,17 @@
    > > > > > > > > > Workflows => Generate PDF of the form => Download? Save online?
 
    > > > > > > > > > Rive video for workflows => New landing page section
+
+// PLAN:
+// CHANGE THE ROUTE TO /API/V1/AI
+// 1. Finish the POST route that returns mock elements
+// 2. Show a loader of these mock elements on the designer
+// 3. Show the elements (isAiGenerated style) BUT with an animation
+// 4. Exit animation for unaccepted results NO FOR ALL RESULTS.
+// 5. Toast for accepted results => change them to look normal
+
+// LATER:
+// api user validation
+// api return Zod Validation
+// axios and data access layer and dto
+// api handeling errors on the back and the front

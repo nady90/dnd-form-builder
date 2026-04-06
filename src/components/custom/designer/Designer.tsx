@@ -95,20 +95,6 @@ const Designer: React.FC = () => {
     },
   });
 
-  // PLAN:
-  // CHANGE THE ROUTE TO /API/V1/AI
-  // 1. Finish the POST route that returns mock elements
-  // 2. Show a loader of these mock elements on the designer
-  // 3. Show the elements (isAiGenerated style) BUT with an animation
-  // 4. Exit animation for unaccepted results NO FOR ALL RESULTS.
-  // 5. Toast for accepted results => change them to look normal
-
-  // LATER:
-  // api user validation
-  // api return Zod Validation
-  // axios and data access layer and dto
-  // api handeling errors on the back and the front
-
   return (
     <div
       data-testid="builder"
