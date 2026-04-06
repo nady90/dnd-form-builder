@@ -1,6 +1,7 @@
 import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 
 import { FormBuilderElementType } from "../buttons/question-type-button/QuestionTypeButton";
+import AttachmentsUploader from "./attachments-uploader/AttachmentsUploader";
 import CheckboxElement from "./checkbox/Checkbox";
 import DateAndTimePicker from "./date-and-time/DateAndTime";
 import DatePicker from "./date-picker/DatePicker";
@@ -30,7 +31,8 @@ export type AllElementsType =
   | "Dropdown"
   | "Yes/No"
   | "Checkbox"
-  | "Image";
+  | "Image"
+  | "Attachments";
 
 export type FormElement = {
   type: AllElementsType;
@@ -92,4 +94,5 @@ export const FormElements: FormElementsType = {
   ["Yes/No"]: YesNoElement,
   Checkbox: CheckboxElement,
   Image: ImageUploader,
+  Attachments: AttachmentsUploader,
 };

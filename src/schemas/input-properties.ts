@@ -199,4 +199,23 @@ export const ImageUploaderFieldSchema = z.object({
   }),
 });
 
-export type ImageUploaderFieldSchemaType = z.infer<typeof CheckboxFieldSchema>;
+export type ImageUploaderFieldSchemaType = z.infer<
+  typeof ImageUploaderFieldSchema
+>;
+
+export const AttachmentsUploaderFieldSchema = z.object({
+  label: z
+    .string()
+    .min(1, { error: "Label is required" })
+    .min(3, { error: "Label must have at least three characters" }),
+  helperText: z.string(),
+  required: z.boolean(),
+  styles: z.object({
+    width: z.enum(["half", "full"]),
+    alignment: z.enum(["left", "center", "right"]),
+  }),
+});
+
+export type AttachmentsUploaderFieldSchemaType = z.infer<
+  typeof AttachmentsUploaderFieldSchema
+>;
