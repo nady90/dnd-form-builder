@@ -11,6 +11,8 @@
 ~~1. Tailwind brakpoints to storybook.~~
 ~~3. Re-write all the Inter Family tests in the metas to use a step function.~~
 
+~~1. Implement the rest of the components~~
+
 1. Remove the min-width of the info cards.
 2. Internationalization. i18n + json (en, fr and ar).
 3. Find out why the dialog overlay is too dark.
@@ -22,7 +24,6 @@
 
 ---
 
-1. Implement the rest of the components
 2. Implement the two other tabs:
    a. Workflow: Email so and so when you are done.
    b. Permissions: Who can edit this survey? enter email.
