@@ -7,6 +7,7 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import React, { useEffect, useId, useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import ElementsBuilder from "@/components/sections/elements-builder-section/ElementsBuilder";
 import PublishedSuccessSection from "@/components/sections/published-success-section/PublishedSuccessSection";
@@ -54,7 +55,11 @@ const Builder: React.FC<IBuilder> = ({ form }) => {
 
   return (
     <DndContext id={id} sensors={sensors}>
-      {!isReady && <div>LOADING THIS SHIT!</div>}
+      {!isReady && (
+        <div className="flex h-full w-full grow flex-row items-center justify-center gap-x-5">
+          <AiOutlineLoading3Quarters className="animate-spin text-6xl" />
+        </div>
+      )}
       {isReady && (
         <div className="flex grow flex-row gap-x-5 bg-gray-50">
           <ElementsBuilder className="" />

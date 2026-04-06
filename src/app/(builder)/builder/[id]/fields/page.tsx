@@ -17,7 +17,7 @@ export default async function BuilderFieldsPage({
   }
 
   return (
-    <div className="">
+    <div className="grow">
       <Builder form={form} />
     </div>
   );

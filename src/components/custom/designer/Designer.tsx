@@ -108,7 +108,6 @@ const Designer: React.FC = () => {
   // api return Zod Validation
   // axios and data access layer and dto
   // api handeling errors on the back and the front
-  // MAIN DESIGNER LOADING THIS SHIT FIX
 
   return (
     <div
