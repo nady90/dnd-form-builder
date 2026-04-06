@@ -11,6 +11,7 @@ import MultiLine from "./multi-line/MultiLine";
 import Number from "./number/Number";
 import ParagraphField from "./paragraph/Paragraph";
 import SeparatorField from "./separator/Separator";
+import Slider from "./slider/Slider";
 import SpacerField from "./spacer/Spacer";
 import SubTitleField from "./sub-title/SubTitle";
 import TextField from "./text-field/TextField";
@@ -32,7 +33,8 @@ export type AllElementsType =
   | "Yes/No"
   | "Checkbox"
   | "Image"
-  | "Attachments";
+  | "Attachments"
+  | "Slider";
 
 export type FormElement = {
   type: AllElementsType;
@@ -95,4 +97,5 @@ export const FormElements: FormElementsType = {
   Checkbox: CheckboxElement,
   Image: ImageUploader,
   Attachments: AttachmentsUploader,
+  Slider: Slider,
 };

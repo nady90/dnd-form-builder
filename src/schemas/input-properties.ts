@@ -219,3 +219,20 @@ export const AttachmentsUploaderFieldSchema = z.object({
 export type AttachmentsUploaderFieldSchemaType = z.infer<
   typeof AttachmentsUploaderFieldSchema
 >;
+
+export const SliderSchema = z.object({
+  label: z
+    .string()
+    .min(1, { error: "Label is required." })
+    .min(3, { error: "Label must have at least three characters." }),
+  defaultValue: z.number().max(100).optional(),
+  required: z.boolean(),
+  helperText: z.string(),
+  placeholder: z.string().optional(),
+  styles: z.object({
+    width: z.enum(["half", "full"]),
+    alignment: z.enum(["left", "center", "right"]),
+  }),
+});
+
+export type SliderSchemaType = z.infer<typeof SliderSchema>;
