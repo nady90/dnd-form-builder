@@ -44,7 +44,7 @@ const Number: FormElement = {
     };
   },
   designerComponent: NumberDesignerComponent,
-  sidebarComponent: "TextField",
+  sidebarComponent: "Number",
   propertiesComponent: NumberPropertiesComponent,
   previewComponent: NumberPreviewComponent,
   submitComponent: NumberSubmitComponent,
